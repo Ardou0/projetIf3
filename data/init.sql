@@ -12,9 +12,9 @@ CREATE TABLE destination (
 -- Table Company (Société)
 CREATE TABLE company (
     company_id INT AUTO_INCREMENT PRIMARY KEY,
-    tag VARCHAR(255) NOT NULL,
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     picture VARCHAR(100) UNIQUE
 );
 
@@ -40,6 +40,7 @@ CREATE TABLE accommodation_reference (
     provider_name VARCHAR(100) NOT NULL,
     room_type VARCHAR(50),
     amenities TEXT,
+    max_occupants INT NOT NULL DEFAULT 1,
     price_per_night DECIMAL(10, 2),
     FOREIGN KEY (company_id) REFERENCES company(company_id) ON DELETE CASCADE,
     FOREIGN KEY (destination_id) REFERENCES destination(destination_id) ON DELETE CASCADE
@@ -88,23 +89,13 @@ CREATE TABLE package (
 -- Table Client
 CREATE TABLE client (
     client_id INT AUTO_INCREMENT PRIMARY KEY,
-    tag VARCHAR(255) NOT NULL,
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     phone_number VARCHAR(20),
+    birthdate DATE,
     loyalty_points INT DEFAULT 0,
     travel_preferences ENUM('plane', 'train', 'bus', 'car') DEFAULT 'plane',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
--- Table Utilisateur pour l'authentification
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    tag VARCHAR(255) NOT NULL,
-    role ENUM('client', 'company') DEFAULT 'client',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -113,6 +104,7 @@ CREATE TABLE users (
 CREATE TABLE reservation (
     reservation_id INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NOT NULL,
+    num_passengers INT NOT NULL DEFAULT 1,
     destination_id INT NOT NULL,
     package_id INT,
     transport_id INT,
@@ -128,6 +120,19 @@ CREATE TABLE reservation (
     FOREIGN KEY (accommodation_id) REFERENCES accommodation(accommodation_id) ON DELETE CASCADE,
     FOREIGN KEY (destination_id) REFERENCES destination(destination_id) ON DELETE CASCADE
 );
+
+-- Table Passenger
+CREATE TABLE passenger (
+    passenger_id INT AUTO_INCREMENT PRIMARY KEY,
+    reservation_id INT NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    seat_preference VARCHAR(50),
+    transport_id INT,
+    FOREIGN KEY (reservation_id) REFERENCES reservation(reservation_id) ON DELETE CASCADE,
+    FOREIGN KEY (transport_id) REFERENCES transport(transport_id) ON DELETE CASCADE
+);
+
 
 -- Table Paiement (Payment)
 CREATE TABLE payment (
