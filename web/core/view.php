@@ -15,8 +15,8 @@ class view {
         $this->_file = "views/" . $page . "View.php";
         $this->_title = ucfirst($page);
         $this->_model = new model();
-        $data = $this->_model->extract("menu.json");
-        $this->_header = $this->generateFile("views/layout/header.php", array("title" => $page, "menu" => $data));
+        $data = $this->_model->extract("header.json");
+        $this->_header = $this->generateFile("views/layout/header.php", array("title" => $page, "data" => $data));
         if (file_exists('public/css/' . $page . '.css')) {
             $this->_css = '<link rel="stylesheet" href="' . URL . 'assets/css/' . $page . '.css">';
         }

@@ -5,3 +5,8 @@
     font-weight: 400;
     font-style: normal;
 }
+
+body {
+    width: 100%;
+    min-height: 100%;
+}

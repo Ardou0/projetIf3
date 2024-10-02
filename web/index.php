@@ -20,6 +20,7 @@ if(isset($_COOKIE['lang'])) {
     setcookie('lang', $lang, $cookie_duration, "/");
     define("LANG", $lang."/");
 }
+session_start();
 
 require_once('core/model.php');
 require_once('core/view.php');

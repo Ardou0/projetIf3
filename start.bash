@@ -40,7 +40,7 @@ WSL_IP=$(hostname -I | awk '{print $1}')
 if [ -z "$WSL_IP" ]; then
     echo -e "${RED}Failed to retrieve WSL IP address.${RESET}"
 else
-    echo -e "${GREEN}WSL IP address: $WSL_IP${RESET}"
+    echo -e "${GREEN}WSL IP address: http://$WSL_IP${RESET}"
 fi
 
 echo -e "${CYAN}All tasks completed.${RESET}"
