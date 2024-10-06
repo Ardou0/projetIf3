@@ -188,3 +188,37 @@ LEFT JOIN destination D ON PR.destination_id = D.destination_id
 LEFT JOIN payment P ON R.reservation_id = P.reservation_id
 LEFT JOIN comments CM ON C.client_id = CM.client_id
 ORDER BY C.client_id, R.reservation_date DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO destination (country, city) VALUES
+('France', 'Paris'),
+('USA', 'New York'),
+('Japan', 'Tokyo'),
+('Italy', 'Rome'),
+('Australia', 'Sydney'),
+('Brazil', 'Rio de Janeiro'),
+('Germany', 'Berlin'),
+('Canada', 'Toronto'),
+('Mexico', 'Mexico City'),
+('UK', 'London'),
+('China', 'Beijing'),
+('Spain', 'Barcelona'),
+('Thailand', 'Bangkok'),
+('India', 'Mumbai'),
+('South Africa', 'Cape Town'),
+('Russia', 'Moscow'),
+('Argentina', 'Buenos Aires'),
+('Turkey', 'Istanbul'),
+('Netherlands', 'Amsterdam'),
+('Egypt', 'Cairo');
+

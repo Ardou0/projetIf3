@@ -1,0 +1,6 @@
+{
+    "hostname": "db",
+    "username": "root",
+    "password": "mypass",
+    "database": "travel_agency"
+}

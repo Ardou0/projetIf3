@@ -1,0 +1,30 @@
+section {
+    width: 100%;
+}
+
+h1 {
+    text-shadow: 0 0 7px var(--background-color);
+    font-weight: revert;
+    font-size: 75px;
+    color: var(--link-color);
+}
+
+h3 {
+    text-shadow: 0 0 7px var(--background-color);
+    font-weight: revert;
+    font-size: 2 5px;
+    color: var(--link-color);
+}
+
+section .content-header {
+    height: 500px;
+    background-image: url('/public/img/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-blend-mode: color;
+    background-color: rgba(0, 0, 0, 0.301);
+}

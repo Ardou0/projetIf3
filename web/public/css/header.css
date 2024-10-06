@@ -1,6 +1,9 @@
 header {
     width: 100%;
-    height: 200px;
+    height: 125px;
+    position: fixed;
+    top: 0;
+    background-color: white;
 }
 
 header li {
@@ -8,9 +11,11 @@ header li {
 }
 
 header a {
-    color: #333;
     text-decoration: none;
     text-transform: capitalize;
+    font-family: "Protest Strike", sans-serif;
+    font-size: 25px;
+    color: var(--background-color);
 }
 
 header {
@@ -19,10 +24,18 @@ header {
     justify-content: center;
 }
 
+header .major-container {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 header .menu,
 header .logo,
 header .account {
-    height: 200px;
+    padding: 15px 0px;
+    height: calc(100% - 30px);
 }
 
 header img {
@@ -40,10 +53,44 @@ header .logo {
 }
 
 header .menu {
-    width: 50%;
+    width: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+header .logo .logo-container {
+    background-color: var(--link-color);
+    height: 90%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    position: relative;
+    transform: rotate(25deg);
+    z-index: 1;
+}
+
+header .logo .logo-container:before {
+    content: '';
+    background-color: var(--background-color);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: calc(15px + 10%);
+    z-index: -1 !important;
+    transform: rotate(-25deg);
+}
+
+header .logo .logo-container svg {
+    width: 60%;
+    transform: rotate(-25deg);
+    height: 60%;
+}
+
+header .logo-container path {
+    fill: var(--link-color);
 }
 
 header .menu ul {
@@ -57,40 +104,64 @@ header .menu li {
     margin-left: 40px;
 }
 
-header .login-button,
-header .login-button:before {
-    padding: 20px 35px;
-    background-color: #e24545;
-    border-radius: 15px;
-    color: white;
-    font-weight: 600;
-    font-size: 20px;
+header .menu li a {
     position: relative;
-    z-index: 1;
-    overflow: hidden;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-header .login-button:before {
-    content: '';
-    right: 0;
-    top: 50%;
+
+header .menu li a::after {
     position: absolute;
-    background-color: aquamarine;
+    left: 0;
+    top: 0;
     width: 0%;
-    height: 0%;
-    padding: 0;
-    z-index: -1;
+    opacity: 1;
+    overflow: hidden;
+    content: attr(text);
+    color: var(--link-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
     transition: 0.5s;
 }
 
-header .login-button:hover:before {
-    width: 100%!important;
-    top: 0%!important;
-    height: 100%!important;
+header .menu li a:hover::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    content: attr(text);
+    color: var(--link-color);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.login-btn {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.login-btn:hover {
+    background-color: var(--link-color);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
 }
 
 header .account {
-    width: 25%;
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;

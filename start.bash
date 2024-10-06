@@ -6,7 +6,49 @@ RED="\033[0;31m"
 CYAN="\033[0;36m"
 RESET="\033[0m"
 
+# Charger les variables depuis le fichier .env
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+else
+    echo -e "${RED}.env file not found!${RESET}"
+    exit 1
+fi
+
+# Mise à jour du fichier web/data/conf.json avec les valeurs de .env
+CONF_FILE="web/data/config.json"
+
+if [ -f $CONF_FILE ]; then
+    echo -e "${CYAN}Updating conf.json with environment variables...${RESET}"
+
+    # Modifier le contenu du fichier conf.json
+    cat > $CONF_FILE <<EOL
+{
+    "hostname": "${DB_HOST}",
+    "username": "${DB_USER}",
+    "password": "${DB_PASSWORD}",
+    "database": "travel_agency"
+}
+EOL
+
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}conf.json updated successfully.${RESET}"
+    else
+        echo -e "${RED}Failed to update conf.json.${RESET}"
+        exit 1
+    fi
+else
+    echo -e "${RED}conf.json file not found at $CONF_FILE!${RESET}"
+    exit 1
+fi
+
 echo -e "${CYAN}Starting services with Docker Compose...${RESET}"
+
+if docker-compose build php; then
+    echo -e "${GREEN}Docker Compose built PHP.${RESET}"
+else
+    echo -e "${RED}Docker Compose failed to build PHP.${RESET}"
+    exit 1
+fi
 
 # Exécution de docker-compose up
 docker-compose up -d

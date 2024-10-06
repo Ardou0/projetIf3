@@ -9,4 +9,11 @@
 body {
     width: 100%;
     min-height: 100%;
+    padding-top: 125px;
+}
+:root {
+    --text-color: #E3DFFF;
+    --link-color: #9FB798;
+    --background-color: #023436;
+    --text-second-color: #FF6663;
 }
