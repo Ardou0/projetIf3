@@ -4,6 +4,19 @@
         "subtitle": "Voyagez à travers le monde"
     },
     "form": {
-        "title": "Choisissez votre destination"
+        "title": "Choisissez votre destination", 
+        "go": "Je souhaite aller à"
+    },
+    "latest": {
+        "title": "Les nouvelles offres",
+        "package": {
+            "title": "Packs "
+        },
+        "accomodation": {
+            "title": "Logements "
+        },
+        "transport": {
+            "title": "Transports"
+        }
     }
 }

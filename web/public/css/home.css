@@ -2,7 +2,7 @@ section {
     width: 100%;
 }
 
-h1 {
+.content-header h1 {
     text-shadow: 0 0 7px var(--background-color);
     font-weight: revert;
     font-size: 75px;
@@ -23,8 +23,56 @@ section .content-header {
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-evenly;
     background-blend-mode: color;
     background-color: rgba(0, 0, 0, 0.301);
+}
+
+section .main-search-bar {
+    width: 600px;
+    height: 200px;
+    border-color: var(--background-color) !important;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 15px;
+}
+
+section .main-search-bar h2 {
+    font-weight: bolder;
+    font-size: 35px;
+    color: var(--background-color);
+    text-transform: capitalize;
+}
+
+section .main-search-bar form {
+    display: flex;
+    align-items: center;
+}
+section .main-search-bar select {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--background-color);
+    outline: none;
+}
+
+section .main-search-bar button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+section .main-search-bar button svg {
+    fill: var(--background-color);
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    transition: 0.25s;
+}
+
+section .main-search-bar button svg:hover {
+    fill: var(--text-second-color);
 }
