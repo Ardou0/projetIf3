@@ -123,5 +123,17 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
         </div>
     </div>
+    <?php
+    
+    if(isset($_SESSION['type']) && $_SESSION['type'] == "client") {
+        ?>
 
+        <div class="recommandation">
+            <h1>Recommandation</h1>
+        </div>
+
+        <?php
+    }
+
+    ?>
 </section>

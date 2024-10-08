@@ -33,6 +33,7 @@ section .main-search-bar {
     height: 200px;
     border-color: var(--background-color) !important;
     background-color: white;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,18 +106,25 @@ section .latest-offers {
 }
 
 .horizontal-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 20px;
-    justify-content: space-around;
     border-bottom: 2px solid var(--background-color);
     padding-bottom: 20px;
+    width: 100%;
+    grid-template: ' . . .';
+    justify-content: center;
+}
+
+@media (max-width: 1330px) {
+    .horizontal-container {
+        grid-template: ' . .'!important;
+    }
 }
 
 .card {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 17px rgb(0 0 0 / 30%);
     padding: 20px;
     width: 300px;
     text-align: center;
@@ -130,7 +138,8 @@ section .latest-offers {
 .card h3 {
     font-size: 22px;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--background-color);
+    text-shadow: none;
 }
 
 .card p {
@@ -144,13 +153,18 @@ section .latest-offers {
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #28a745;
+    background-color: var(--background-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.25s;
     text-decoration: none;
 }
 
 .btn-book:hover {
-    background-color: #218838;
+    background-color: var(--link-color);
+}
+
+.latest-transport .horizontal-container {
+    border: none;
 }
