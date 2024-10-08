@@ -8,15 +8,31 @@
         "go": "Je souhaite aller à"
     },
     "latest": {
+        "days": "jours",
+        "people": "personne",
+        "book": "Reserver",
         "title": "Les nouvelles offres",
         "package": {
-            "title": "Packs "
+            "title": "Packs ",
+            "duration": "Durée",
+            "price": "Prix",
+            "itinerary": "Itinéraire"
         },
-        "accomodation": {
-            "title": "Logements "
+        "accommodation": {
+            "title": "Logements ",
+            "type": "Logement",
+            "price": "Prix par nuit",
+            "capacity": "Pour",
+            "amenities": "Equipements",
+            "where": "En"
         },
         "transport": {
-            "title": "Transports"
+            "title": "Transports",
+            "type": "Type",
+            "where": "Vers",
+            "price": "Prix",
+            "ticket": "Billet", 
+            "seat": "Siège"
         }
     }
 }

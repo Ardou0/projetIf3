@@ -1,0 +1,7 @@
+{
+    "base": "Une erreur est survenu",
+    "wait": "Veuillez patienter quelques instants...",
+    "database": {
+        "ready": "La base de donnée est en cours de chargement"
+    }
+}

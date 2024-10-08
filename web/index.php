@@ -16,11 +16,17 @@ if(isset($_COOKIE['lang'])) {
     if (!in_array($lang, $supported_langs)) {
         $lang = 'en';
     }
-
     setcookie('lang', $lang, $cookie_duration, "/");
     define("LANG", $lang."/");
 }
+if(LANG == 'fr/') { 
+    define("CURRENCY", "€");
+}
+else {
+    define("CURRENCY", "$");
+}
 session_start();
+define('ERROR', json_decode(file_get_contents(PATH."data/".LANG."error.json"), true));
 
 require_once('core/model.php');
 require_once('core/view.php');

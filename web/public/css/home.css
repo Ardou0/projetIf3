@@ -51,6 +51,7 @@ section .main-search-bar form {
     display: flex;
     align-items: center;
 }
+
 section .main-search-bar select {
     margin: 10px;
     padding: 10px;
@@ -75,4 +76,81 @@ section .main-search-bar button svg {
 
 section .main-search-bar button svg:hover {
     fill: var(--text-second-color);
+}
+
+section .latest-offers {
+    width: 60%;
+    margin: auto;
+}
+
+.latest-offers h1 {
+    text-align: center;
+    margin: 30px;
+    font-size: 35px;
+    font-family: "Protest Strike", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--background-color);
+}
+
+/* Titres secondaires alignés à gauche */
+.latest-offers h2 {
+    text-align: left;
+    margin: 30px 0px;
+    font-size: 20px;
+    font-family: "Protest Strike", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--background-color);
+}
+
+.horizontal-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    border-bottom: 2px solid var(--background-color);
+    padding-bottom: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.btn-book {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-book:hover {
+    background-color: #218838;
 }

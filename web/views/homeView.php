@@ -35,15 +35,92 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
     <div class="content-travel">
         <div class="latest-offers">
             <h1><?= $data["latest"]["title"] ?></h1>
-            <div class="latest-package">
+
+            <div class="latest-package latest">
                 <h2><?= $data["latest"]["package"]["title"] ?></h2>
+                <div class="horizontal-container">
+                    <?php
+
+                    foreach ($package as $element) {
+                        foreach ($options as $destination) {
+                            if ($destination['destination_id'] == $element['destination_id']) {
+                                $title = $destination['city'] . ", " . $destination['country'];
+                            }
+                        }
+                    ?>
+                        <div class="card package-card">
+                            <h3><?= $title ?></h3>
+                            <p><strong><?= $data['latest']['package']['duration'] ?>:</strong> <?= $element['duration'] . " " . $data['latest']['days'] ?></p>
+                            <p><strong><?= $data['latest']['package']['price'] ?>:</strong> <?= $element['price'] . CURRENCY ?></p>
+                            <p><strong><?= $data['latest']['package']['itinerary'] ?>:</strong> <?= $element['itinerary'] ?></p>
+                            <button class="btn-book"><?= $data['latest']['book'] ?></button>
+                        </div>
+
+                    <?php
+                    }
+
+                    ?>
+                </div>
             </div>
-            <div class="latest-accomodation">
-                <h2><?= $data["latest"]["accomodation"]["title"] ?></h2>
+
+            <div class="latest-accommodation latest">
+                <h2><?= $data["latest"]["accommodation"]["title"] ?></h2>
+                <div class="horizontal-container">
+                    <?php
+
+                    foreach ($accommodation as $element) {
+                        foreach ($options as $destination) {
+                            if ($destination['destination_id'] == $element['destination_id']) {
+                                $where = $destination['country'] . ", " . $destination['city'];
+                            }
+                        }
+                    ?>
+                        <div class="card accommodation-card">
+                            <h3><?= $element['provider_name'] ?></h3>
+                            <p><strong><?= $data['latest']['accommodation']['where'] ?>:</strong> <?= $where ?></p>
+                            <p><strong><?= $data['latest']['accommodation']['type'] ?>:</strong> <?= $element['room_type'] ?></p>
+                            <p><strong><?= $data['latest']['accommodation']['price'] ?>:</strong> <?= $element['price_per_night'] . CURRENCY ?></p>
+                            <p><strong><?= $data['latest']['accommodation']['capacity'] ?>:</strong> <?= $element['max_occupants'] ?></p>
+                            <p><strong><?= $data['latest']['accommodation']['amenities'] ?>:</strong> <?= $element['amenities'] ?></p>
+                            <button class="btn-book"><?= $data['latest']['book'] ?></button>
+                        </div>
+
+                    <?php
+                    }
+
+                    ?>
+                </div>
             </div>
-            <div class="latest-transport">
+
+            <div class="latest-transport latest">
                 <h2><?= $data["latest"]["transport"]["title"] ?></h2>
+                <div class="horizontal-container">
+                    <?php
+
+                    foreach ($transport as $element) {
+                        foreach ($options as $destination) {
+                            if ($destination['destination_id'] == $element['destination_id']) {
+                                $where = $destination['country'] . ", " . $destination['city'];
+                            }
+                        }
+                    ?>
+                        <div class="card transport-card">
+                            <h3><?= $element['provider_name']. " - " .$element['seat_available'] ?></h3>
+                            <p><strong><?= $data['latest']['transport']['where'] ?>:</strong> <?= $where ?></p>
+                            <p><strong><?= $data['latest']['transport']['type'] ?>:</strong> <?= $element['transport_type'] ?></p>
+                            <p><strong><?= $data['latest']['transport']['price'] ?>:</strong> <?= $element['price'] . CURRENCY ?></p>
+                            <p><strong><?= $data['latest']['transport']['ticket'] ?>:</strong> <?= $element['ticket_format'] ?></p>
+                            <p><strong><?= $data['latest']['transport']['seat'] ?>:</strong> <?= $element['seat_available'] ?></p>
+                            <button class="btn-book"><?= $data['latest']['book'] ?></button>
+                        </div>
+
+                    <?php
+                    }
+
+                    ?>
+                </div>
             </div>
+
         </div>
     </div>
 
