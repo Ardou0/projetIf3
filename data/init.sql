@@ -89,7 +89,8 @@ CREATE TABLE package (
 -- Table Client
 CREATE TABLE client (
     client_id INT AUTO_INCREMENT PRIMARY KEY,
-    full_name VARCHAR(100) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     phone_number VARCHAR(20),
@@ -125,7 +126,8 @@ CREATE TABLE reservation (
 CREATE TABLE passenger (
     passenger_id INT AUTO_INCREMENT PRIMARY KEY,
     reservation_id INT NOT NULL,
-    full_name VARCHAR(100) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
     email VARCHAR(100),
     seat_preference VARCHAR(50),
     transport_id INT,
@@ -165,7 +167,8 @@ CREATE TABLE comments (
 CREATE OR REPLACE DEFINER='root'@'%' VIEW client_history AS
 SELECT
     C.client_id,
-    C.full_name,
+    C.first_name,
+    C.last_name,
     C.email,
     R.reservation_id,
     D.city AS destination_city,
@@ -278,12 +281,12 @@ INSERT INTO package (package_reference_id) VALUES
 (5);
 
 -- Insertion des données pour la table Client
-INSERT INTO client (full_name, email, password, phone_number, birthdate, loyalty_points, travel_preferences) VALUES
-('Alice Dupont', 'alice@example.com', 'hashed_password1', '123456789', '1990-01-15', 100, 'plane'),
-('Bob Martin', 'bob@example.com', 'hashed_password2', '987654321', '1985-05-22', 150, 'train'),
-('Charlie Brown', 'charlie@example.com', 'hashed_password3', '5647382910', '1992-09-30', 200, 'bus'),
-('David Smith', 'david@example.com', 'hashed_password4', '555444333', '1988-03-17', 50, 'car'),
-('Eva Green', 'eva@example.com', 'hashed_password5', '222333444', '1995-12-01', 75, 'plane');
+INSERT INTO client (first_name, last_name, email, password, phone_number, birthdate, loyalty_points, travel_preferences) VALUES
+('Alice', 'Dupont', 'alice@example.com', 'hashed_password1', '123456789', '1990-01-15', 100, 'plane'),
+('Bob', 'Martin', 'bob@example.com', 'hashed_password2', '987654321', '1985-05-22', 150, 'train'),
+('Charlie', "Brown", 'charlie@example.com', 'hashed_password3', '5647382910', '1992-09-30', 200, 'bus'),
+('David', 'Smith', 'david@example.com', 'hashed_password4', '555444333', '1988-03-17', 50, 'car'),
+('Eva', 'Green', 'eva@example.com', 'hashed_password5', '222333444', '1995-12-01', 75, 'plane');
 
 -- Insertion des données pour la table Reservation
 INSERT INTO reservation (client_id, num_passengers, destination_id, package_id, transport_id, accommodation_id, travel_date_from, travel_date_to, loyalty_points_generated, status) VALUES
@@ -294,12 +297,12 @@ INSERT INTO reservation (client_id, num_passengers, destination_id, package_id, 
 (5, 1, 5, 5, NULL, 5, '2024-12-05', '2024-12-09', 8, 'pending');
 
 -- Insertion des données pour la table Passenger
-INSERT INTO passenger (reservation_id, full_name, email, seat_preference) VALUES
-(1, 'Alice Dupont', 'alice@example.com', 'Window'),
-(1, 'John Doe', 'john@example.com', 'Aisle'),
-(2, 'Bob Martin', 'bob@example.com', 'Middle'),
-(3, 'Charlie Brown', 'charlie@example.com', 'Window'),
-(4, 'David Smith', 'david@example.com', 'Aisle');
+INSERT INTO passenger (reservation_id, first_name, last_name, email, seat_preference) VALUES
+(1, 'Alice', 'Dupont', 'alice@example.com', 'Window'),
+(1, 'John', 'Doe', 'john@example.com', 'Aisle'),
+(2, 'Bob', 'Martin', 'bob@example.com', 'Middle'),
+(3, 'Charlie', 'Brown', 'charlie@example.com', 'Window'),
+(4, 'David', 'Smith', 'david@example.com', 'Aisle');
 
 -- Insertion des données pour la table Payment
 INSERT INTO payment (reservation_id, amount, payment_method, payment_status) VALUES

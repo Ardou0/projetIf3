@@ -12,7 +12,7 @@
         "logout": "deconnexion"
     },
     "menu": {
-        "home": "acceuil",
+        "home": "accueil",
         "travel" : "voyages",
         "accomodations": "logements",
         "transport": "transports"
