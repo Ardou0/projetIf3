@@ -114,9 +114,5 @@ class model
         } else {
             throw new Exception("Query execution failed.");
         }
-        /*
-            $sql = "SELECT * FROM destination WHERE country = :country";
-            $params = [':country' => 'France'];        
-        */
     }
 }

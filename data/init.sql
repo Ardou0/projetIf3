@@ -74,7 +74,6 @@ CREATE TABLE accommodation (
     accommodation_reference_id INT NOT NULL,
     check_in_date DATETIME NOT NULL,
     check_out_date DATETIME NOT NULL,
-    price DECIMAL(10, 2),
     FOREIGN KEY (accommodation_reference_id) REFERENCES accommodation_reference(accommodation_reference_id) ON DELETE CASCADE
 );
 
@@ -265,12 +264,12 @@ INSERT INTO transport (transport_reference_id, departure_date, arrival_date, tic
 (5, '2024-12-05 08:00:00', '2024-12-05 09:00:00', 'UB1234', 'Window');
 
 -- Insertion des données pour la table Accommodation
-INSERT INTO accommodation (accommodation_reference_id, check_in_date, check_out_date, price) VALUES
-(1, '2024-12-01 14:00:00', '2024-12-07 12:00:00', 900.00),
-(2, '2024-12-02 14:00:00', '2024-12-06 12:00:00', 720.00),
-(3, '2024-12-03 14:00:00', '2024-12-10 12:00:00', 1400.00),
-(4, '2024-12-04 14:00:00', '2024-12-08 12:00:00', 1400.00),
-(5, '2024-12-05 14:00:00', '2024-12-09 12:00:00', 640.00);
+INSERT INTO accommodation (accommodation_reference_id, check_in_date, check_out_date) VALUES
+(1, '2024-12-01 14:00:00', '2024-12-07 12:00:00'),
+(2, '2024-12-02 14:00:00', '2024-12-06 12:00:00'),
+(3, '2024-12-03 14:00:00', '2024-12-10 12:00:00'),
+(4, '2024-12-04 14:00:00', '2024-12-08 12:00:00'),
+(5, '2024-12-05 14:00:00', '2024-12-09 12:00:00');
 
 -- Insertion des données pour la table Package
 INSERT INTO package (package_reference_id) VALUES

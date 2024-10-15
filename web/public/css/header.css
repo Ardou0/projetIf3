@@ -168,3 +168,84 @@ header .account {
     align-items: center;
     justify-content: center;
 }
+
+.global-menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1030px) {
+    .major-container {
+        justify-content: flex-end !important;
+    }
+
+    .global-menu-container {
+        background-color: var(--background-color);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 100%;
+        transition: 0.25s;
+        z-index: 50;
+        flex-direction: column;
+    }
+
+    ul {
+        flex-direction: column;
+        justify-content: space-around !important;
+        height: 100%;
+    }
+
+    ul li {
+        margin-left: 0 !important;
+    }
+
+    .menu a {
+        color: var(--text-second-color);
+    }
+
+    .account {
+        height: 30% !important;
+    }
+
+    .login-btn {
+        background-color: var(--text-second-color);
+    }
+
+    .global-menu-container-active {
+        left: 0%;
+    }
+
+    .menu-button {
+        padding: 45px;
+        cursor: pointer;
+        display: block;
+        z-index: 52;
+    }
+
+    .menu-button .bar1,
+    .menu-button .bar2,
+    .menu-button .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: var(--background-color);
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+
+    .change-menu .bar1 {
+        background-color: var(--text-second-color);
+        transform: translate(0, 11px) rotate(-45deg);
+    }
+
+    .change-menu .bar2 {
+        opacity: 0;
+    }
+
+    .change-menu .bar3 {
+        background-color: var(--text-second-color);
+        transform: translate(0, -11px) rotate(45deg);
+    }
+}

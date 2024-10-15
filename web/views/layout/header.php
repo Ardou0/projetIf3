@@ -23,55 +23,67 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
         </div>
     </div>
     <div class="major-container">
-
-        <div class="menu">
-            <ul>
+        <div class="menu-button">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <div class="global-menu-container">
+            <div class="menu">
+                <ul>
+                    <?php
+                    foreach ($data['menu'] as $key => $element) {
+                    ?>
+                        <li>
+                            <a href="<?= URL . $key ?>" text="<?= $element ?>"><?= $element ?></a>
+                        </li>
+                    <?
+                    }
+                    ?>
+                </ul>
+            </div>
+            <div class="account">
                 <?php
-                foreach ($data['menu'] as $key => $element) {
+                if (!isset($_SESSION['email'])) {
                 ?>
-                    <li>
-                        <a href="<?= URL . $key ?>" text="<?= $element ?>"><?= $element ?></a>
-                    </li>
-                <?
+
+                    <a href="<?= URL ?>login">
+                        <div class="login-btn"><?= $data['login'] ?></div>
+                    </a>
+
+                <?php
+                } else {
+
+
+                ?>
+                    <div class="profile">
+                        <div class="profile-name">
+                            <?= $data['logged'] . " " . $_SESSION['username'] ?>
+                        </div>
+                        <div class="profile-menu">
+                            <ul>
+                                <?php
+                                foreach ($data[$_SESSION['type']] as $key => $value) {
+                                ?>
+                                    <li>
+                                        <a href="<?= URL . $key ?>"><?= $value ?></a>
+                                    </li>
+                                <?php
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                    </div>
+                <?php
                 }
                 ?>
-            </ul>
-        </div>
-        <div class="account">
-            <?php
-            if (!isset($_SESSION['user'])) {
-            ?>
-
-                <a href="<?= URL ?>login">
-                    <div class="login-btn"><?= $data['login'] ?></div>
-                </a>
-
-            <?php
-            } else {
-
-
-            ?>
-                <div class="profile">
-                    <div class="profile-name">
-                        <?= $data['logged'] . " " . $_SESSION['username'] ?>
-                    </div>
-                    <div class="profile-menu">
-                        <ul>
-                            <?php
-                            foreach ($data[$_SESSION['type']] as $key => $value) {
-                            ?>
-                                <li>
-                                    <a href="<?= URL . $key ?>"><?= $value ?></a>
-                                </li>
-                            <?php
-                            }
-                            ?>
-                        </ul>
-                    </div>
-                </div>
-            <?php
-            }
-            ?>
+            </div>
         </div>
     </div>
+    <script>
+        document.querySelector(".menu-button").addEventListener("click", () => {
+            document.querySelector(".menu-button").classList.toggle("change-menu");
+            document.querySelector(".global-menu-container").classList.toggle("global-menu-container-active");
+        });
+    </script>
 </header>

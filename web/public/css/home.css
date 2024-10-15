@@ -168,3 +168,12 @@ section .latest-offers {
 .latest-transport .horizontal-container {
     border: none;
 }
+
+@media (max-width: 1030px) {
+    .content-header {
+        flex-direction: column!important;
+    }
+    .main-cover {
+        text-align: center;
+    }
+}

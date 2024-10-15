@@ -1,0 +1,20 @@
+{
+    "login": {
+        "button": "Connexion",
+        "id": "Email",
+        "password": "Mot de Passe",
+        "remember": "Se souvenir de moi"
+    },
+    "register": {
+        "button": "Inscription",
+        "iam": "Je suis un(e)",
+        "firstname": "Nom",
+        "name": "Prénom",
+        "id": "Email",
+        "password": "Mot de Passe",
+        "type": {
+            "client": "Client",
+            "company": "Entreprise"
+        }
+    }
+}
