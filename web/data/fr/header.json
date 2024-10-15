@@ -2,14 +2,14 @@
     "login": "Connexion",
     "logged": "Bienvenu(e)",
     "client": {
-        "profile": "profile",
+        "profile": "profil",
         "hisotry": "historique",
-        "logout": "deconnexion"
+        "login/logout": "deconnexion"
     },
     "company": {
         "profile": "profile",
         "offers": "Mes offres",
-        "logout": "deconnexion"
+        "login/logout": "deconnexion"
     },
     "menu": {
         "home": "accueil",
