@@ -33,7 +33,7 @@ class loginController
             $credentials[$key] = htmlspecialchars($value);
         }
         if(isset($credentials["email"]) && isset($credentials["password"]) && isset($credentials["type"])) {
-            $result = $this->_model->executeQuery("SELECT * FROM " . $credentials["type"] . " WHERE email= ? and password = ? ", array($credentials["email"], $credentials["password"]));
+            $result = $this->_model->executeQuery("SELECT * FROM " . $credentials["type"] . " WHERE email= ? and password = ? ", array($credentials["email"], hash("sha256", $credentials["password"])));
             if (isset($result) && count($result) == 1) {
                 $_SESSION['type'] = $credentials['type'];
                 if ($credentials['type'] == "client") {

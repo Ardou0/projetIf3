@@ -72,6 +72,7 @@ header .logo .logo-container {
     position: relative;
     transform: rotate(25deg);
     z-index: 1;
+    cursor: pointer;
 }
 
 header .logo .logo-container:before {

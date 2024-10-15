@@ -48,8 +48,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                             ?>
                         </select>
                     </div>
-                    <input type="text" name="firstname" placeholder="<?= $data['register']['firstname'] ?>" required />
-                    <input id="name_input" type="text" name="name" placeholder="<?= $data['register']['name'] ?>" required />
+                    <input type="text" name="first_name" placeholder="<?= $data['register']['firstname'] ?>" required />
+                    <input id="name_input" type="text" name="last_name" placeholder="<?= $data['register']['name'] ?>" required />
                     <input type="email" name="email" placeholder="<?= $data['register']['id'] ?>" required />
                     <input type="password" name="password" placeholder="<?= $data['register']['password'] ?>" required />
                     <button class="btn btn-primary" type="submit">
