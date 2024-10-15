@@ -65,11 +65,13 @@ CREATE TABLE package_reference (
 -- Table Activité
 CREATE TABLE activity (
     activity_id INT AUTO_INCREMENT PRIMARY KEY,
+    company_id INT NOT NULL,
     package_reference_id INT NOT NULL,
     activity_name VARCHAR(255) NOT NULL,
     activity_description TEXT,
     duration_hours DECIMAL(5, 2), -- Durée en heures
-    FOREIGN KEY (package_reference_id) REFERENCES package_reference(package_reference_id) ON DELETE CASCADE
+    FOREIGN KEY (package_reference_id) REFERENCES package_reference(package_reference_id) ON DELETE CASCADE,
+    FOREIGN KEY (company_id) REFERENCES company(company_id) ON DELETE CASCADE
 );
 
 -- Table Transport
