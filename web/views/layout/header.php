@@ -85,5 +85,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             document.querySelector(".menu-button").classList.toggle("change-menu");
             document.querySelector(".global-menu-container").classList.toggle("global-menu-container-active");
         });
+        document.querySelector('.logo-container').addEventListener("click", () => {
+            window.location = "<?= URL ?>";
+        })
     </script>
 </header>
