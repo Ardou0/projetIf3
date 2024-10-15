@@ -239,10 +239,10 @@ INSERT INTO package_reference (destination_id, transport_reference_id, accommoda
 (3, 3, 3, 10, 1200.00, 'Rome vacation package with train and hotel', 2);
 
 -- Ajout de données test pour la table activity
-INSERT INTO activity (package_reference_id, activity_name, activity_description, duration_hours) VALUES 
-(1, 'Eiffel Tower Visit', 'Visit the iconic Eiffel Tower in Paris', 3.00),
-(1, 'Louvre Museum Tour', 'Explore the world-famous Louvre Museum', 4.00),
-(2, 'Statue of Liberty Tour', 'Tour to the Statue of Liberty in New York', 2.00);
+INSERT INTO activity (package_reference_id, company_id, activity_name, activity_description, duration_hours) VALUES 
+(1, 1, 'Eiffel Tower Visit', 'Visit the iconic Eiffel Tower in Paris', 3.00),
+(1, 1, 'Louvre Museum Tour', 'Explore the world-famous Louvre Museum', 4.00),
+(2, 2, 'Statue of Liberty Tour', 'Tour to the Statue of Liberty in New York', 2.00);
 
 -- Ajout de données test pour la table transport
 INSERT INTO transport (transport_reference_id, departure_date, arrival_date, ticket_number, seat_preference) VALUES 
