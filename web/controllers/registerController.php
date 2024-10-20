@@ -19,7 +19,7 @@ class registerController
             }
             if (isset($credentials['type'])) {
                 if ($credentials['type'] == "company") {
-                    if (!isset($credentials['full_name']) || !isset($credentials['email']) || !isset($credentials['password'])) {
+                    if (!isset($credentials['first_name']) || !isset($credentials['email']) || !isset($credentials['password'])) {
                         header('location:' . URL . 'login/missing');
                         exit();
                     }

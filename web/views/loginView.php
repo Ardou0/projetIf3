@@ -5,6 +5,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 ?>
 
 <section>
+    <video autoplay muted loop preload>
+        <source src="<?= URL ?>public/video/background.mp4" type="video/mp4" />
+    </video>
     <div class="forms">
         <div class="main-form">
             <div class="login-form form">
@@ -21,7 +24,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                             }
                             ?>
                         </select>
-                    </div>      
+                    </div>
                     <input type="email" name="email" placeholder="<?= $data['login']['id'] ?>" required />
                     <input type="password" name="password" placeholder="<?= $data['login']['password'] ?>" required />
                     <div class="remember-me">
