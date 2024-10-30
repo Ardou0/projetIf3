@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
 <section>
     <video autoplay muted loop preload>
-        <source src="<?= URL ?>public/video/background.mp4" type="video/mp4" />
+        <source src="https://armand-walle.com/wp-content/uploads/2024/10/background_login.mp4" type="video/mp4" />
     </video>
     <div class="forms">
         <div class="main-form">

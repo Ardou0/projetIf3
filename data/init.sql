@@ -68,6 +68,7 @@ CREATE TABLE activity (
     company_id INT NOT NULL,
     package_reference_id INT NOT NULL,
     activity_name VARCHAR(255) NOT NULL,
+    activity_photo VARCHAR(100) NOT NULL,
     activity_description TEXT,
     duration_hours DECIMAL(5, 2), -- Durée en heures
     FOREIGN KEY (package_reference_id) REFERENCES package_reference(package_reference_id) ON DELETE CASCADE,
@@ -239,10 +240,10 @@ INSERT INTO package_reference (destination_id, transport_reference_id, accommoda
 (3, 3, 3, 10, 1200.00, 'Rome vacation package with train and hotel', 2);
 
 -- Ajout de données test pour la table activity
-INSERT INTO activity (package_reference_id, company_id, activity_name, activity_description, duration_hours) VALUES 
-(1, 1, 'Eiffel Tower Visit', 'Visit the iconic Eiffel Tower in Paris', 3.00),
-(1, 1, 'Louvre Museum Tour', 'Explore the world-famous Louvre Museum', 4.00),
-(2, 2, 'Statue of Liberty Tour', 'Tour to the Statue of Liberty in New York', 2.00);
+INSERT INTO activity (package_reference_id, company_id, activity_name, activity_photo, activity_description, duration_hours) VALUES 
+(1, 1, 'Eiffel Tower Visit', 'eiffel_visite_1.jpg', 'Visit the iconic Eiffel Tower in Paris', 3.00),
+(1, 1, 'Louvre Museum Tour', 'louvre_museum_1.jpg', 'Explore the world-famous Louvre Museum', 4.00),
+(2, 2, 'Statue of Liberty Tour', 'liberty_statue_2.jpg', 'Tour to the Statue of Liberty in New York', 2.00);
 
 -- Ajout de données test pour la table transport
 INSERT INTO transport (transport_reference_id, departure_date, arrival_date, ticket_number, seat_preference) VALUES 
