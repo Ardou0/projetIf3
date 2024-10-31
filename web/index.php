@@ -5,7 +5,7 @@ define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" :
 define('PATH', str_replace("index.php", "", $_SERVER['DOCUMENT_ROOT'].$_SERVER['PHP_SELF'])); // path de l'app
 //define('CONF', json_decode(file_get_contents("./config.json"), true));
 
-$cookie_duration = time() + (60*60);
+$cookie_duration = time() + (60*60*60);
 if(isset($_COOKIE['lang'])) {
     define("LANG", $_COOKIE['lang']."/");
 } else {

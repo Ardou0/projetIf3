@@ -1,0 +1,130 @@
+.offer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #1b1b1b; /* Arrière-plan sombre pour contraster */
+}
+
+.offer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colonnes de taille égale */
+    gap: 1px;
+    border: 2px solid blue; /* Bordure extérieure */
+}
+
+.offer-cell {
+    border: 1px solid blue;
+    padding: 10px;
+    text-align: center;
+}
+
+.offer-cell h3, .offer-cell p {
+    margin: 0;
+}
+
+.offer-cell ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.offer-cell ul li {
+    font-size: 0.9em;
+}
+
+section {
+    width: 80%;
+    margin: auto;
+}
+form button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+form button:hover svg {
+    fill: var(--text-second-color);
+}
+form svg {
+    width: 50px;
+    height: 50px;
+    fill: var(--background-color);
+    transition: 0.25s;
+}
+
+/* Container principal de la barre de filtrage */
+.filter-bar-container {
+    background-color: #f4f4f4;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Formulaire de filtres */
+.filter-form {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Chaque élément de filtre */
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+/* Style pour les labels */
+.filter-item label {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Champs de texte et de sélection */
+.filter-item input,
+.filter-item select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 150px;
+    transition: border-color 0.3s;
+}
+
+.filter-item input:focus,
+.filter-item select:focus {
+    border-color: #0066cc;
+    outline: none;
+}
+
+/* Bouton de recherche stylisé */
+.search-button {
+    border: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+/* Icône de recherche */
+.search-button svg {
+    background-color: var(--background-color);
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+    fill: #ffffff;
+    border-radius: 50%;
+    overflow: visible;
+}
+
