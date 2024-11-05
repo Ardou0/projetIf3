@@ -14,13 +14,13 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
         <div class="main-search-bar">
             <h2><?= $data['form']['title'] ?></h2>
-            <form action="/search-destination.php" method="POST" class="destination-form">
+            <form action="<?= URL ?>travel" method="POST" class="destination-form">
                 <label for="destination"><?= $data['form']['go'] ?></label>
                 <select name="destination" id="destination">
                     <?php
-                    foreach ($options as $element) {
+                    foreach ($destinations as $element) {
                     ?>
-                        <option value="<?= $element['city'] ?>"><?= $element['city'] . ", " . $element['country'] ?></option>
+                        <option value="<?= $element['destination_id'] ?>"><?= $element['city'] . ", " . $element['country'] ?></option>
                     <?php
                     }
                     ?>
@@ -32,21 +32,62 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             </form>
         </div>
     </div>
-    <section>
+    <section><!-- HTML Interface for Travel Packages -->
         <h1>Packs Voyage</h1>
         <div class="package-container">
             <?php foreach ($packages as $package) : ?>
                 <div class="package-card">
-                    <img src="/images/package_default.jpg" alt="Image of <?php echo htmlspecialchars($package['city']); ?>">
+                    <div class="package-carousel" id="carousel-<?= $package['package_reference_id'] ?>">
+                        <div class="carousel-images">
+                            <?php
+                            $activityImages = array_filter($activities, fn($activity) => $activity['package_reference_id'] === $package['package_reference_id']);
+                            foreach ($activityImages as $index => $activity) : ?>
+                                <img src="/images/<?= htmlspecialchars($activity['activity_photo']) ?>" alt="Image of <?= htmlspecialchars($activity['activity_name']) ?>" class="carousel-image <?= $index === 0 ? 'active' : '' ?>">
+                            <?php endforeach; ?>
+                        </div>
+                        <?php if ($activityImages) : ?>
+                            <button class="carousel-btn prev-btn" onclick="changeSlide(-1, 'carousel-<?= $package['package_reference_id'] ?>')">❮</button>
+                            <button class="carousel-btn next-btn" onclick="changeSlide(1, 'carousel-<?= $package['package_reference_id'] ?>')">❯</button>
+                        <?php endif; ?>
+                    </div>
+
                     <div class="package-description">
-                        <h3><?php echo htmlspecialchars($package['city']) . ', ' . htmlspecialchars($package['country']); ?></h3>
-                        <p><?php echo htmlspecialchars($package['description']); ?></p>
-                        <p>Duration: <?php echo htmlspecialchars($package['duration']); ?> days</p>
-                        <p>Price: <?php echo htmlspecialchars($package['price']); ?> €</p>
+                        <h3><?= htmlspecialchars($package['description']) ?></h3>
+                        <p>Destination: <?= htmlspecialchars($package['city']) ?></p>
+                        <p>Duration: <?= htmlspecialchars($package['duration']) ?> days</p>
+                        <p>Price: <?= htmlspecialchars($package['price']) ?> <?= CURRENCY ?></p>
+
+                        <h4><?= $activityImages ? 'Activities Included:' : 'No Activities Available' ?></h4>
+
+                        <?php if ($activityImages) : ?>
+                            <ul>
+                                <?php foreach ($activityImages as $activity) : ?>
+                                    <li>
+                                        <p><strong><?= htmlspecialchars($activity['activity_name']) ?></strong>: <?= htmlspecialchars($activity['activity_description']) ?></p>
+                                        <p>Duration: <?= htmlspecialchars($activity['duration_hours']) ?> hours</p>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+
                         <a href="#" class="learn-more-btn">BT en savoir plus</a>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
+        <script>
+            function changeSlide(direction, carouselId) {
+                const carousel = document.getElementById(carouselId);
+                const images = carousel.querySelectorAll('.carousel-image');
+                let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + direction + images.length) % images.length;
+                images[currentIndex].classList.add('active');
+            }
+        </script>
+
+
+
     </section>
 </section>

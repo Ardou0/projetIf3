@@ -144,3 +144,45 @@ section .main-search-bar button svg:hover {
         text-align: center;
     }
 }
+
+
+.package-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    overflow: hidden;
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-image {
+    min-width: 100%;
+    display: none;
+}
+
+.carousel-image.active {
+    display: block;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
