@@ -96,6 +96,6 @@ class travelController
 
         // Transmission des packages à la vue
         $this->_view = new view("travel");
-        $this->_view->buildUp(['packages' => $package_references, 'destinations' => $destinations]);
+        $this->_view->buildUp(['packages' => $package_references, 'destinations' => $destinations, 'trad' => $this->_model->extract('travel.json')]);
     }
 }

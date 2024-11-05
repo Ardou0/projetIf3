@@ -32,108 +32,21 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             </form>
         </div>
     </div>
-    <div class="content-travel">
-        <div class="latest-offers">
-            <h1><?= $data["latest"]["title"] ?></h1>
-
-            <div class="latest-package latest">
-                <h2><?= $data["latest"]["package"]["title"] ?></h2>
-                <div class="horizontal-container">
-                    <?php
-
-                    foreach ($package as $element) {
-                        foreach ($options as $destination) {
-                            if ($destination['destination_id'] == $element['destination_id']) {
-                                $title = $destination['city'] . ", " . $destination['country'];
-                            }
-                        }
-                    ?>
-                        <div class="card package-card">
-                            <h3><?= $title ?></h3>
-                            <p><strong><?= $data['latest']['package']['duration'] ?>:</strong> <?= $element['duration'] . " " . $data['latest']['days'] ?></p>
-                            <p><strong><?= $data['latest']['package']['price'] ?>:</strong> <?= $element['price'] . CURRENCY ?></p>
-                            <p><strong><?= $data['latest']['package']['itinerary'] ?>:</strong> <?= $element['itinerary'] ?></p>
-                            <button class="btn-book"><?= $data['latest']['book'] ?></button>
-                        </div>
-
-                    <?php
-                    }
-
-                    ?>
+    <section>
+        <h1>Packs Voyage</h1>
+        <div class="package-container">
+            <?php foreach ($packages as $package) : ?>
+                <div class="package-card">
+                    <img src="/images/package_default.jpg" alt="Image of <?php echo htmlspecialchars($package['city']); ?>">
+                    <div class="package-description">
+                        <h3><?php echo htmlspecialchars($package['city']) . ', ' . htmlspecialchars($package['country']); ?></h3>
+                        <p><?php echo htmlspecialchars($package['description']); ?></p>
+                        <p>Duration: <?php echo htmlspecialchars($package['duration']); ?> days</p>
+                        <p>Price: <?php echo htmlspecialchars($package['price']); ?> €</p>
+                        <a href="#" class="learn-more-btn">BT en savoir plus</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="latest-accommodation latest">
-                <h2><?= $data["latest"]["accommodation"]["title"] ?></h2>
-                <div class="horizontal-container">
-                    <?php
-
-                    foreach ($accommodation as $element) {
-                        foreach ($options as $destination) {
-                            if ($destination['destination_id'] == $element['destination_id']) {
-                                $where = $destination['country'] . ", " . $destination['city'];
-                            }
-                        }
-                    ?>
-                        <div class="card accommodation-card">
-                            <h3><?= $element['provider_name'] ?></h3>
-                            <p><strong><?= $data['latest']['accommodation']['where'] ?>:</strong> <?= $where ?></p>
-                            <p><strong><?= $data['latest']['accommodation']['type'] ?>:</strong> <?= $element['room_type'] ?></p>
-                            <p><strong><?= $data['latest']['accommodation']['price'] ?>:</strong> <?= $element['price_per_night'] . CURRENCY ?></p>
-                            <p><strong><?= $data['latest']['accommodation']['capacity'] ?>:</strong> <?= $element['max_occupants'] ?></p>
-                            <p><strong><?= $data['latest']['accommodation']['amenities'] ?>:</strong> <?= $element['amenities'] ?></p>
-                            <button class="btn-book"><?= $data['latest']['book'] ?></button>
-                        </div>
-
-                    <?php
-                    }
-
-                    ?>
-                </div>
-            </div>
-
-            <div class="latest-transport latest">
-                <h2><?= $data["latest"]["transport"]["title"] ?></h2>
-                <div class="horizontal-container">
-                    <?php
-
-                    foreach ($transport as $element) {
-                        foreach ($options as $destination) {
-                            if ($destination['destination_id'] == $element['destination_id']) {
-                                $where = $destination['country'] . ", " . $destination['city'];
-                            }
-                        }
-                    ?>
-                        <div class="card transport-card">
-                            <h3><?= $element['provider_name']. " - " .$element['seat_available'] ?></h3>
-                            <p><strong><?= $data['latest']['transport']['where'] ?>:</strong> <?= $where ?></p>
-                            <p><strong><?= $data['latest']['transport']['type'] ?>:</strong> <?= $element['transport_type'] ?></p>
-                            <p><strong><?= $data['latest']['transport']['price'] ?>:</strong> <?= $element['price'] . CURRENCY ?></p>
-                            <p><strong><?= $data['latest']['transport']['ticket'] ?>:</strong> <?= $element['ticket_format'] ?></p>
-                            <p><strong><?= $data['latest']['transport']['seat'] ?>:</strong> <?= $element['seat_available'] ?></p>
-                            <button class="btn-book"><?= $data['latest']['book'] ?></button>
-                        </div>
-
-                    <?php
-                    }
-
-                    ?>
-                </div>
-            </div>
-
+            <?php endforeach; ?>
         </div>
-    </div>
-    <?php
-    
-    if(isset($_SESSION['type']) && $_SESSION['type'] == "client") {
-        ?>
-
-        <div class="recommandation">
-            <h1>Recommandation</h1>
-        </div>
-
-        <?php
-    }
-
-    ?>
+    </section>
 </section>

@@ -1,0 +1,14 @@
+{
+    "search": {
+        "price": "Prix",
+        "place": "Lieu",
+        "choose": "Selectionner",
+        "people": "Nombre de personnes",
+        "alone": "Seul",
+        "couple": "Couple",
+        "family": "Famille",
+        "activities": "Nombre d'activités",
+        "duration": "Durée (jours)"
+    },
+    "no-offers": "Aucune offre ne correspond à vos filtres. Veuillez essayer de changer les filtres."
+}

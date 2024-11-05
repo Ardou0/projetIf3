@@ -3,14 +3,17 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #1b1b1b; /* Arrière-plan sombre pour contraster */
+    background-color: #1b1b1b;
+    /* Arrière-plan sombre pour contraster */
 }
 
 .offer {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 colonnes de taille égale */
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 colonnes de taille égale */
     gap: 1px;
-    border: 2px solid blue; /* Bordure extérieure */
+    border: 2px solid blue;
+    /* Bordure extérieure */
 }
 
 .offer-cell {
@@ -19,7 +22,8 @@
     text-align: center;
 }
 
-.offer-cell h3, .offer-cell p {
+.offer-cell h3,
+.offer-cell p {
     margin: 0;
 }
 
@@ -37,14 +41,23 @@ section {
     width: 80%;
     margin: auto;
 }
+
+@media (max-width: 1200px) {
+    section {
+        width: 100%;
+    }
+}
+
 form button {
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
+
 form button:hover svg {
     fill: var(--text-second-color);
 }
+
 form svg {
     width: 50px;
     height: 50px;
@@ -60,6 +73,9 @@ form svg {
     justify-content: center;
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
+    margin: 25px auto;
+    border-radius: 25px;
+    border: 2px solid var(--background-color);
 }
 
 /* Formulaire de filtres */
@@ -75,6 +91,7 @@ form svg {
 
 /* Chaque élément de filtre */
 .filter-item {
+    width: 15%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -102,29 +119,32 @@ form svg {
 
 .filter-item input:focus,
 .filter-item select:focus {
-    border-color: #0066cc;
+    border-color: var(--background-color);
     outline: none;
 }
 
 /* Bouton de recherche stylisé */
 .search-button {
     border: none;
-    height: 100%;
+    width: 40px;
+    height: 39px;
+    border-radius: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background-color: var(--background-color);
+    place-self: center;
+
 }
 
 
 /* Icône de recherche */
 .search-button svg {
-    background-color: var(--background-color);
     width: 25px;
     height: 25px;
-    padding: 10px;
-    fill: #ffffff;
+    padding: 0px;
     border-radius: 50%;
+    fill: white;
     overflow: visible;
 }
-
