@@ -66,7 +66,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                         <p><?= $data['packs']['duration'] ?>: <?= htmlspecialchars($package['duration']) ?> <?= $data['packs']['days'] ?></p>
                         <p><?= $data['packs']['price'] ?>: <?= htmlspecialchars($package['price']) ?> <?= CURRENCY ?></p>
 
-                        <h4><?= $activityImages ? 'Activities Included:' : 'No Activities Available' ?></h4>
+                        <h4><?= $activityImages ? $data['packs']['activities'].':' : 'No Activities Available' ?></h4>
 
                         <?php if ($activityImages) : ?>
                             <ul>
