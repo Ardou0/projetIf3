@@ -5,6 +5,7 @@ USE travel_agency;
 -- Table Destination
 CREATE TABLE destination (
     destination_id INT AUTO_INCREMENT PRIMARY KEY,
+    continent ENUM('eu', 'na', 'sa', 'oc', 'af') NOT NULL,
     country VARCHAR(100) NOT NULL,
     city VARCHAR(100) NOT NULL
 );
@@ -211,10 +212,10 @@ ORDER BY C.client_id, R.reservation_date DESC;
 
 
 -- Ajout de données test pour la table destination
-INSERT INTO destination (country, city) VALUES 
-('France', 'Paris'),
-('USA', 'New York'),
-('Italy', 'Rome');
+INSERT INTO destination (continent, country, city) VALUES 
+('eu', 'France', 'Paris'),
+('na', 'USA', 'New York'),
+('eu', 'Italy', 'Rome');
 
 -- Ajout de données test pour la table company
 INSERT INTO company (full_name, email, password, picture) VALUES 
@@ -237,13 +238,13 @@ INSERT INTO accommodation_reference (company_id, destination_id, provider_name, 
 INSERT INTO package_reference (destination_id, transport_reference_id, accommodation_reference_id, duration, price, description, activity_count) VALUES 
 (1, 1, 1, 7, 1000.00, 'Paris vacation package with flights and hotel', 3),
 (2, 2, 2, 5, 1500.00, 'New York vacation package with flights and hotel', 4),
-(3, 3, 3, 10, 1200.00, 'Rome vacation package with train and hotel', 2);
+(3, 3, 3, 10, 1200.00, 'Rome vacation package with train and hotel', 0);
 
 -- Ajout de données test pour la table activity
 INSERT INTO activity (package_reference_id, company_id, activity_name, activity_photo, activity_description, duration_hours) VALUES 
-(1, 1, 'Eiffel Tower Visit', 'eiffel_visite_1.jpg', 'Visit the iconic Eiffel Tower in Paris', 3.00),
-(1, 1, 'Louvre Museum Tour', 'louvre_museum_1.jpg', 'Explore the world-famous Louvre Museum', 4.00),
-(2, 2, 'Statue of Liberty Tour', 'liberty_statue_2.jpg', 'Tour to the Statue of Liberty in New York', 2.00);
+(1, 1, 'Eiffel Tower Visit', 'eiffel_visite_1.png', 'Visit the iconic Eiffel Tower in Paris', 3.00),
+(1, 1, 'Louvre Museum Tour', 'louvre_museum_1.png', 'Explore the world-famous Louvre Museum', 4.00),
+(2, 2, 'Statue of Liberty Tour', 'liberty_statue_2.png', 'Tour to the Statue of Liberty in New York', 2.00);
 
 -- Ajout de données test pour la table transport
 INSERT INTO transport (transport_reference_id, departure_date, arrival_date, ticket_number, seat_preference) VALUES 

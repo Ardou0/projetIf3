@@ -7,32 +7,17 @@
         "title": "Choisissez votre destination", 
         "go": "Je souhaite aller à"
     },
-    "latest": {
+    "map": {
+        "title": "A travers le monde",
+        "description": "Cliquez sur le continent de votre choix"
+    },
+    "packs": {
+        "title": "Packs Voyage",
+        "destination": "Destination",
+        "duration": "Durée",
+        "price": "Prix",
+        "activities": "Activité inclus",
         "days": "jours",
-        "people": "personne",
-        "book": "Reserver",
-        "title": "Les nouvelles offres",
-        "package": {
-            "title": "Packs ",
-            "duration": "Durée",
-            "price": "Prix",
-            "itinerary": "Itinéraire"
-        },
-        "accommodation": {
-            "title": "Logements ",
-            "type": "Logement",
-            "price": "Prix par nuit",
-            "capacity": "Pour",
-            "amenities": "Equipements",
-            "where": "En"
-        },
-        "transport": {
-            "title": "Transports",
-            "type": "Type",
-            "where": "Vers",
-            "price": "Prix",
-            "ticket": "Billet", 
-            "seat": "Siège"
-        }
+        "more": "En savoir plus"
     }
 }

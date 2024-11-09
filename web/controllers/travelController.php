@@ -55,6 +55,10 @@ class travelController
             $conditions[] = "p.duration <= ?";
             $params[] = $_POST['duration_max'];
         }
+        if (!empty($_POST['continent_name'])) {
+            $conditions[] = "d.continent = ?";
+            $params[] = $_POST['continent_name'];
+        }
 
         // Ajout des conditions dans la requête
         if ($conditions) {
