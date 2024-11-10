@@ -177,6 +177,58 @@ header .account {
     width: 100%;
 }
 
+header .profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+header .profile-name {
+    border-radius: 15px;
+    padding: 15px;
+    border: 2px solid var(--background-color);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    transition: 0.5s;
+    background: white;
+    z-index: 1;
+}
+
+header .profile-menu {
+    width: 100%;
+    top: 50%;
+    position: absolute;
+    background: white;
+    padding: 0px 15px;
+    border: 2px solid var(--background-color);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    overflow: hidden;
+    height: 0px;
+    transition: 0.5s;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .profile-menu a {
+    font-size: 20px;
+}
+
+header .profile:hover .profile-name {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom: 2px solid white;
+}
+
+header .profile:hover .profile-menu {
+    height: 100px;
+    top: 100%;
+
+}
+
 @media (max-width: 1030px) {
     header .major-container {
         justify-content: flex-end !important;
@@ -249,5 +301,23 @@ header .account {
     header .change-menu .bar3 {
         background-color: var(--text-second-color);
         transform: translate(0, -11px) rotate(45deg);
+    }
+
+    header .profile {
+        transform: translateY(0px);
+        width: 200px;
+    }
+
+    header .profile-name {
+        width: 200px;
+        text-align: center;
+    }
+
+    header .profile ul {
+        height: auto;
+    }
+
+    header .profile:hover {
+        transform: translateY(-50px);
     }
 }

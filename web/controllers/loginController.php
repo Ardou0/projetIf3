@@ -40,6 +40,7 @@ class loginController
                     $_SESSION['first_name'] = $result[0]['first_name'];
                     $_SESSION['last_name'] = $result[0]['last_name'];
                     $_SESSION['username'] = $_SESSION['first_name'];
+                    $_SESSION['phone'] = $result[0]['phone_number'];
                 } else {
                     $_SESSION['full_name'] = $result[0]['full_name'];
                     $_SESSION['username'] = $_SESSION['full_name'];

@@ -1,0 +1,38 @@
+{
+    "title": "Mon Profil",
+    "description": "Afin de fournir un service qui répond à vos attentes, il est impératif que vous remplissiez ou mettiez à jours vos données.",
+    "login": {
+        "title": "Mes informations de connexion",
+        "mail": "Votre E-mail",
+        "password": "Votre mot de passe actuel",
+        "newer": "Votre nouveau mot de passe"
+    },
+    "typeHere": "Ecrivez ici",
+    "update": "Mettre à jour",
+    "personal": {
+        "client": {
+            "title": "Mes information Personnelles",
+            "first-name": "Prénom",
+            "last-name": "Nom",
+            "phone": "Numéro de téléphone",
+            "birth": "Date de naissance",
+            "preference": "Moyen de transport préféré"
+        },
+        "company": {
+            "title": "Mes informations Entreprise",
+            "name": "Nom de la société",
+            "picture": "Photo d'entreprise",
+            "select": "Cliquer pour choisir"
+        }
+    },
+    "search": {
+        "choose": "Selectionner",
+        "transport": {
+            "title": "Moyen de transport",
+            "plane": "Avion",
+            "train": "Train",
+            "bus": "Bus",
+            "car": "Voiture"
+        }
+    }
+}
