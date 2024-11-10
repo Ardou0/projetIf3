@@ -23,20 +23,12 @@
         }
     },
     "no-offers": "Aucune offre ne correspond à vos filtres. Veuillez essayer de changer les filtres.",
-    "packs": {
-        "title": "Packs Voyage",
-        "destination": "Destination",
-        "duration": "Durée",
-        "price": "Prix",
-        "activities": "Activité(s) inclus",
-        "days": "jours",
-        "more": "Réserver",
-        "transport": {
-            "title": "Moyen de transport",
-            "plane": "Avion",
-            "train": "Train",
-            "bus": "Bus",
-            "car": "Voiture"
-        }
+    "accommodations" : {
+        "location": "Lieu",
+        "room_type": "Type de chambre",
+        "max_occupants": "Nombre de personne",
+        "amenities": "Equipements",
+        "price_per_night": "Prix par nuit",
+        "more": "Réserver"
     }
 }

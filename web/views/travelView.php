@@ -4,13 +4,13 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
 ?>
 
-<section>
+<section id="travel-content">
     <section class="filter-bar-container">
         <form id="filter-bar" method="POST" action="<?= URL ?>travel" class="filter-form">
 
             <!-- Filtre par Prix -->
             <div class="filter-item">
-                <label for="price-min"><?= $trad['search']['price'] ?> :</label>
+                <label for="price-min"><?= $data['search']['price'] ?> :</label>
                 <input type="number" id="price-min" name="price_min" placeholder="Min" step="0.01"
                     value="<?= isset($_POST['price_min']) ? htmlspecialchars($_POST['price_min']) : '' ?>">
                 <input type="number" id="price-max" name="price_max" placeholder="Max" step="0.01"
@@ -19,9 +19,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
             <!-- Filtre par Lieu (Destination) -->
             <div class="filter-item">
-                <label for="destination"><?= $trad['search']['place'] ?> :</label>
+                <label for="destination"><?= $data['search']['place'] ?> :</label>
                 <select id="destination" name="destination">
-                    <option value="" <?= empty($_POST['destination']) ? 'selected' : '' ?>><?= $trad['search']['choose'] ?></option>
+                    <option value="" <?= empty($_POST['destination']) ? 'selected' : '' ?>><?= $data['search']['choose'] ?></option>
                     <?php
 
                     foreach ($destinations as $location) {
@@ -34,34 +34,56 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                     ?>
 
                 </select>
+                <label for="destination"><?= $data['search']['continent']['title'] ?> :</label>
+                <select id="continent" name="continent_name">
+                    <option value="" <?= empty($_POST['continent']) ? 'selected' : '' ?>><?= $data['search']['choose'] ?></option>
+                    <?php
+                    $continents = ['eu', 'na', 'sa', 'af', 'as', 'oc'];
+                    foreach ($continents as $location) {
+                    ?>
+                        <option value="<?= htmlspecialchars($location) ?>" <?= (isset($_POST['continent_name']) && $_POST['continent_name'] == $location) ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($data['search']['continent'][$location]) ?>
+                        </option>
+                    <?php
+                    }
+                    ?>
+                </select>
+
             </div>
 
             <!-- Filtre par Nombre de Personnes -->
             <div class="filter-item">
-                <label for="people"><?= $trad['search']['people'] ?> :</label>
+                <label for="people"><?= $data['search']['people'] ?> :</label>
                 <select id="people" name="people">
-                    <option value="" <?= empty($_POST['people']) ? 'selected' : '' ?>><?= $trad['search']['choose'] ?></option>
-                    <option value="seul" <?= (isset($_POST['people']) && $_POST['people'] == 'seul') ? 'selected' : '' ?>><?= $trad['search']['alone'] ?></option>
-                    <option value="couple" <?= (isset($_POST['people']) && $_POST['people'] == 'couple') ? 'selected' : '' ?>><?= $trad['search']['couple'] ?></option>
-                    <option value="famille" <?= (isset($_POST['people']) && $_POST['people'] == 'famille') ? 'selected' : '' ?>><?= $trad['search']['family'] ?></option>
+                    <option value="" <?= empty($_POST['people']) ? 'selected' : '' ?>><?= $data['search']['choose'] ?></option>
+                    <option value="seul" <?= (isset($_POST['people']) && $_POST['people'] == 'seul') ? 'selected' : '' ?>><?= $data['search']['alone'] ?> (1)</option>
+                    <option value="couple" <?= (isset($_POST['people']) && $_POST['people'] == 'couple') ? 'selected' : '' ?>><?= $data['search']['couple'] ?> (2)</option>
+                    <option value="famille" <?= (isset($_POST['people']) && $_POST['people'] == 'famille') ? 'selected' : '' ?>><?= $data['search']['family'] ?> (3+)</option>
                 </select>
             </div>
 
             <!-- Filtre par Nombre d'Activités -->
             <div class="filter-item">
-                <label for="activity-count"><?= $trad['search']['activities'] ?> :</label>
+                <label for="activity-count"><?= $data['search']['activities'] ?> :</label>
                 <input type="number" id="activity-count" name="activity_count" placeholder="Min activités"
                     value="<?= isset($_POST['activity_count']) ? htmlspecialchars($_POST['activity_count']) : '' ?>">
             </div>
 
             <!-- Filtre par Durée en Jours -->
             <div class="filter-item">
-                <label for="duration-min"><?= $trad['search']['duration'] ?> :</label>
-                <input type="number" id="duration-min" name="duration_min" placeholder="Min jours"
-                    value="<?= isset($_POST['duration_min']) ? htmlspecialchars($_POST['duration_min']) : '' ?>">
-                <input type="number" id="duration-max" name="duration_max" placeholder="Max jours"
-                    value="<?= isset($_POST['duration_max']) ? htmlspecialchars($_POST['duration_max']) : '' ?>">
+                <label for="date-min"><?= $data['search']['date']['departure'] ?> :</label>
+                <input type="date" id="date-min" name="date_min" placeholder="Départ"
+                    value="<?= isset($_POST['date_min']) ? htmlspecialchars($_POST['date_min']) : '' ?>">
+                <label for="date-min"><?= $data['search']['date']['return'] ?> :</label>
+                <input type="date" id="date-max" name="date_max" placeholder="Retour"
+                    value="<?= isset($_POST['date_max']) ? htmlspecialchars($_POST['date_max']) : '' ?>">
             </div>
+            <script>
+                let date = new Date();
+                date.setDate(date.getDate() + 1);
+                document.getElementById("date-min").min = date.toISOString().split('T')[0]
+                document.getElementById("date-max").min = date.toISOString().split('T')[0];
+            </script>
 
             <!-- Bouton de soumission avec icône SVG -->
             <button type="submit" class="search-button">
@@ -84,34 +106,87 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
 
 
-    <?php if (!empty($packages)): ?>
-        <!-- Boucle sur les offres disponibles -->
-        <?php foreach ($packages as $package): ?>
-            <div class="offer">
-                <div class="offer-cell">
-                    <h3><?= htmlspecialchars($package['country']); ?></h3>
-                    <p><?= htmlspecialchars($package['city']); ?></p>
+    <div class="package-container">
+        <?php if ($packages) { ?>
+            <?php foreach ($packages as $package) : ?>
+                <div class="package-card">
+                    <div class="package-carousel" id="carousel-<?= $package['package_reference_id'] ?>">
+                        <div class="carousel-images">
+                            <?php
+                            $activityImages = array_filter($package['activities'], fn($activity) => $activity['package_reference_id'] === $package['package_reference_id']);
+                            if (count($activityImages) <= 1) {
+                                $showCarousel = 0;
+                            } else {
+                                $showCarousel = 1;
+                            }
+                            $firstElement = true;
+                            if (count($activityImages) >= 1) {
+                                foreach ($activityImages as $activity) { ?>
+                                    <img src="<?= URL . "public/img/activities/" . htmlspecialchars($activity['activity_photo']) ?>"
+                                        alt="Image of <?= htmlspecialchars($activity['activity_name']) ?>"
+                                        class="carousel-image <?= $firstElement ? 'active' : '' ?>">
+                                    <?php $firstElement = false; ?>
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <img src="<?= URL . "public/img/accommodations/" . htmlspecialchars($package['accommodation_photo']) ?>"
+                                    alt="Image of <?= htmlspecialchars($package['provider_name']) ?>"
+                                    class="carousel-image active">
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <?php if ($showCarousel) : ?>
+                            <button class="carousel-btn prev-btn" onclick="changeSlide(-1, 'carousel-<?= $package['package_reference_id'] ?>')">❮</button>
+                            <button class="carousel-btn next-btn" onclick="changeSlide(1, 'carousel-<?= $package['package_reference_id'] ?>')">❯</button>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="package-description">
+                        <h3><?= htmlspecialchars($package['description']) ?></h3>
+                        <div class="package-advantages">
+                            <p><?= $data['packs']['destination'] ?>: <?= htmlspecialchars($package['city']) ?></p>
+                            <p><?= $data['packs']['duration'] ?>: <?= htmlspecialchars($package['duration']) ?> <?= $data['packs']['days'] ?></p>
+                            <p><?= $data['packs']['price'] ?>: <?= htmlspecialchars($package['price']) ?> <?= CURRENCY ?></p>
+                            <p><?= $data['packs']['transport']['title'] ?>: <?= $data['packs']['transport'][htmlspecialchars($package['transport_type'])] ?></p>
+
+                            <div>
+
+                                <h4><?= $activityImages ? $data['packs']['activities'] . ':' : '' ?></h4>
+                                <?php if ($activityImages) : ?>
+                                    <ul>
+                                        <?php foreach ($activityImages as $activity) : ?>
+                                            <li>
+                                                <p><strong><?= htmlspecialchars($activity['activity_name']) ?></strong></p>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                        <a href="#" class="learn-more-btn"><?= $data['packs']['more'] ?></a>
+                    </div>
                 </div>
-                <div class="offer-cell">
-                    <h3><?= htmlspecialchars($package['description']); ?></h3>
-                </div>
-                <div class="offer-cell">
-                    <p>Nombre personnes : <?= htmlspecialchars($package['max_occupants']); ?></p>
-                </div>
-                <div class="offer-cell">
-                    <p>Activités (<?= count($package['activities']); ?>) :</p>
-                    <ul>
-                        <?php foreach ($package['activities'] as $activity): ?>
-                            <li><?= htmlspecialchars($activity['activity_name']); ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-                <div class="offer-cell">
-                    <p>Prix : <?= htmlspecialchars($package['price']); ?> €</p>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p class="no-offers-message"><?= $trad['no-offers'] ?></p>
-    <?php endif; ?>
+            <?php endforeach; ?>
+        <?php
+        } else {
+        ?>
+            <p><?= $data['no-offers'] ?></p>
+        <?php
+        }
+        ?>
+    </div>
+    <script>
+        function changeSlide(direction, carouselId) {
+            const carousel = document.getElementById(carouselId);
+            const images = carousel.querySelectorAll('.carousel-image');
+            let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+    </script>
 </section>

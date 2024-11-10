@@ -7,6 +7,13 @@
         "alone": "Seul",
         "couple": "Couple",
         "family": "Famille",
+        "transport": {
+            "title": "Moyen de transport",
+            "plane": "Avion",
+            "train": "Train",
+            "bus": "Bus",
+            "car": "Voiture"
+        },
         "activities": "Nombre d'activités",
         "continent": {
             "title": "Continent",
@@ -22,21 +29,10 @@
             "return": "Retour"
         }
     },
-    "no-offers": "Aucune offre ne correspond à vos filtres. Veuillez essayer de changer les filtres.",
-    "packs": {
-        "title": "Packs Voyage",
-        "destination": "Destination",
-        "duration": "Durée",
+    "transports" : {
+        "location": "Lieu",
         "price": "Prix",
-        "activities": "Activité(s) inclus",
-        "days": "jours",
-        "more": "Réserver",
-        "transport": {
-            "title": "Moyen de transport",
-            "plane": "Avion",
-            "train": "Train",
-            "bus": "Bus",
-            "car": "Voiture"
-        }
+        "seat": "Siège disponible",
+        "more": "Réserver"
     }
 }

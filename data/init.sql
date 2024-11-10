@@ -39,6 +39,7 @@ CREATE TABLE accommodation_reference (
     company_id INT NOT NULL,
     destination_id INT NOT NULL,
     provider_name VARCHAR(100) NOT NULL,
+    accommodation_photo VARCHAR(100) NOT NULL UNIQUE,
     room_type VARCHAR(50),
     amenities TEXT,
     max_occupants INT NOT NULL DEFAULT 1,
@@ -50,14 +51,15 @@ CREATE TABLE accommodation_reference (
 -- Table Forfait référence (Travel Package reference)
 CREATE TABLE package_reference (
     package_reference_id INT AUTO_INCREMENT PRIMARY KEY,
+    company_id INT NOT NULL,
     destination_id INT NOT NULL,
     transport_reference_id INT DEFAULT NULL,
     accommodation_reference_id INT DEFAULT NULL, 
     duration INT NOT NULL, -- durée en jours
     price DECIMAL(10, 2) NOT NULL,
     description TEXT NOT NULL,
-    activity_count INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (company_id) REFERENCES company(company_id) ON DELETE CASCADE,
     FOREIGN KEY (destination_id) REFERENCES destination(destination_id) ON DELETE CASCADE,
     FOREIGN KEY (transport_reference_id) REFERENCES transport_reference(transport_reference_id) ON DELETE CASCADE,
     FOREIGN KEY (accommodation_reference_id) REFERENCES accommodation_reference(accommodation_reference_id) ON DELETE CASCADE
@@ -69,11 +71,20 @@ CREATE TABLE activity (
     company_id INT NOT NULL,
     package_reference_id INT NOT NULL,
     activity_name VARCHAR(255) NOT NULL,
-    activity_photo VARCHAR(100) NOT NULL,
+    activity_photo VARCHAR(100) NOT NULL UNIQUE,
     activity_description TEXT,
     duration_hours DECIMAL(5, 2), -- Durée en heures
     FOREIGN KEY (package_reference_id) REFERENCES package_reference(package_reference_id) ON DELETE CASCADE,
     FOREIGN KEY (company_id) REFERENCES company(company_id) ON DELETE CASCADE
+);
+
+--Table Itinéraire
+CREATE TABLE itinerary (
+    itinerary_id INT AUTO_INCREMENT PRIMARY KEY,
+    package_reference_id INT NOT NULL,
+    schedule_description TEXT NOT NULL,
+    emergency_contact VARCHAR(100) NOT NULL,
+    FOREIGN KEY (package_reference_id) REFERENCES package_reference(package_reference_id) ON DELETE CASCADE,
 );
 
 -- Table Transport
@@ -229,10 +240,10 @@ INSERT INTO transport_reference (company_id, destination_id, provider_name, tran
 (1, 3, 'Trenitalia', 'train', 'Paper', 'First Class', 100.00);
 
 -- Ajout de données test pour la table accommodation_reference
-INSERT INTO accommodation_reference (company_id, destination_id, provider_name, room_type, amenities, max_occupants, price_per_night) VALUES 
-(1, 1, 'Hotel Parisien', 'Double Room', 'Wifi, Breakfast', 2, 120.00),
-(2, 2, 'NY Grand Hotel', 'Suite', 'Pool, Gym', 4, 300.00),
-(1, 3, 'Rome Hotel', 'Single Room', 'Wifi', 1, 80.00);
+INSERT INTO accommodation_reference (company_id, destination_id, provider_name, accommodation_photo, room_type, amenities, max_occupants, price_per_night) VALUES 
+(1, 1, 'Hotel Parisien', 'paris_hotel_1.png', 'Double Room', 'Wifi, Breakfast', 2, 120.00),
+(2, 2, 'NY Grand Hotel', 'new_york_ny_grand_hotel_2.png', 'Suite', 'Pool, Gym', 4, 300.00),
+(1, 3, 'Rome Hotel', 'rome_rome_hotel_1.png', 'Single Room', 'Wifi', 1, 80.00);
 
 -- Ajout de données test pour la table package_reference
 INSERT INTO package_reference (destination_id, transport_reference_id, accommodation_reference_id, duration, price, description, activity_count) VALUES 

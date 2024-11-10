@@ -146,8 +146,8 @@ section .main-search-bar button svg:hover {
     color: var(--background-color);
 }
 
-.package-container ul li {
-    list-style-type: none;
+.package-container ul{
+    margin-left: 20px;
 }
 
 .package-carousel {
@@ -214,7 +214,7 @@ section .main-search-bar button svg:hover {
 .continent-container svg {
     max-height: 800px;
     position: absolute;
-    top: -150px;
+    top: -120px;
 }
 
 .continent path{

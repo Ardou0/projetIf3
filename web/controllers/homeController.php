@@ -11,7 +11,7 @@ class homeController {
     {   
         $this->_model = new model();
 
-        $packages = $this->_model->executeQuery("SELECT * FROM `package_reference` p INNER JOIN destination d ON p.destination_id = d.destination_id WHERE activity_count >= 1 ORDER BY package_reference_id DESC LIMIT 4");
+        $packages = $this->_model->executeQuery("SELECT * FROM `package_reference` p INNER JOIN destination d ON p.destination_id = d.destination_id WHERE (SELECT COUNT(*) FROM activity WHERE package_reference_id = p.package_reference_id) >= 1 ORDER BY package_reference_id DESC LIMIT 4");
         if(count($packages) > 0) {
             $sql = "SELECT * FROM activity";
             $conditions = [];

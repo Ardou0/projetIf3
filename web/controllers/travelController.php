@@ -13,10 +13,11 @@ class travelController
 
         $destinations = $this->_model->executeQuery("SELECT * FROM destination");
         // Initialisation de la requête SQL et des paramètres
-        $sql = "SELECT p.*, d.*, a.max_occupants 
+        $sql = "SELECT p.*, d.*, a.*, t.transport_type
                 FROM `package_reference` p 
                 INNER JOIN destination d ON p.destination_id = d.destination_id 
                 INNER JOIN accommodation_reference a ON p.accommodation_reference_id = a.accommodation_reference_id
+                INNER JOIN transport_reference t on p.transport_reference_id = t.transport_reference_id
                 ";
         $conditions = [];
         $params = [];
@@ -47,13 +48,21 @@ class travelController
             $conditions[] = "p.activity_count >= ?";
             $params[] = $_POST['activity_count'];
         }
-        if (!empty($_POST['duration_min'])) {
-            $conditions[] = "p.duration >= ?";
-            $params[] = $_POST['duration_min'];
-        }
-        if (!empty($_POST['duration_max'])) {
+        if (!empty($_POST['date_max'])) {
+            // Calculer la durée maximale en jours entre la date actuelle et la date max fournie
+            if (!empty($_POST['date_min'])) {
+                $departure = new DateTime($_POST['date_min']);
+            }
+            else {
+                $departure = new DateTime();
+            }
+            $date_max = new DateTime($_POST['date_max']);
+            $interval = $departure->diff($date_max);
+            $max_duration_days = $interval->days;
+
+            // Ajouter la condition pour la durée
             $conditions[] = "p.duration <= ?";
-            $params[] = $_POST['duration_max'];
+            $params[] = $max_duration_days;
         }
         if (!empty($_POST['continent_name'])) {
             $conditions[] = "d.continent = ?";
@@ -100,6 +109,6 @@ class travelController
 
         // Transmission des packages à la vue
         $this->_view = new view("travel");
-        $this->_view->buildUp(['packages' => $package_references, 'destinations' => $destinations, 'trad' => $this->_model->extract('travel.json')]);
+        $this->_view->buildUp(['packages' => $package_references, 'destinations' => $destinations, 'data' => $this->_model->extract('travel.json')]);
     }
 }

@@ -178,11 +178,11 @@ header .account {
 }
 
 @media (max-width: 1030px) {
-    .major-container {
+    header .major-container {
         justify-content: flex-end !important;
     }
 
-    .global-menu-container {
+    header .global-menu-container {
         background-color: var(--background-color);
         position: fixed;
         width: 100%;
@@ -194,42 +194,42 @@ header .account {
         flex-direction: column;
     }
 
-    ul {
+    header ul {
         flex-direction: column;
         justify-content: space-around !important;
         height: 100%;
     }
 
-    ul li {
+    header ul li {
         margin-left: 0 !important;
     }
 
-    .menu a {
+    header .menu a {
         color: var(--text-second-color);
     }
 
-    .account {
+    header .account {
         height: 30% !important;
     }
 
-    .login-btn {
+    header .login-btn {
         background-color: var(--text-second-color);
     }
 
-    .global-menu-container-active {
+    header .global-menu-container-active {
         left: 0%;
     }
 
-    .menu-button {
+    header .menu-button {
         padding: 45px;
         cursor: pointer;
         display: block;
         z-index: 52;
     }
 
-    .menu-button .bar1,
-    .menu-button .bar2,
-    .menu-button .bar3 {
+    header .menu-button .bar1,
+    header .menu-button .bar2,
+    header .menu-button .bar3 {
         width: 35px;
         height: 5px;
         background-color: var(--background-color);
@@ -237,16 +237,16 @@ header .account {
         transition: 0.4s;
     }
 
-    .change-menu .bar1 {
+    header .change-menu .bar1 {
         background-color: var(--text-second-color);
         transform: translate(0, 11px) rotate(-45deg);
     }
 
-    .change-menu .bar2 {
+    header .change-menu .bar2 {
         opacity: 0;
     }
 
-    .change-menu .bar3 {
+    header .change-menu .bar3 {
         background-color: var(--text-second-color);
         transform: translate(0, -11px) rotate(45deg);
     }
