@@ -239,8 +239,7 @@ form svg {
 
 .package-carousel {
     position: relative;
-    width: 100%;
-    max-width: 300px;
+    width: 300px;
     overflow: hidden;
 }
 

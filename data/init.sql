@@ -78,13 +78,13 @@ CREATE TABLE activity (
     FOREIGN KEY (company_id) REFERENCES company(company_id) ON DELETE CASCADE
 );
 
---Table Itinéraire
+-- Table Itinéraire
 CREATE TABLE itinerary (
     itinerary_id INT AUTO_INCREMENT PRIMARY KEY,
     package_reference_id INT NOT NULL,
     schedule_description TEXT NOT NULL,
     emergency_contact VARCHAR(100) NOT NULL,
-    FOREIGN KEY (package_reference_id) REFERENCES package_reference(package_reference_id) ON DELETE CASCADE,
+    FOREIGN KEY (package_reference_id) REFERENCES package_reference(package_reference_id) ON DELETE CASCADE
 );
 
 -- Table Transport
@@ -246,10 +246,10 @@ INSERT INTO accommodation_reference (company_id, destination_id, provider_name, 
 (1, 3, 'Rome Hotel', 'rome_rome_hotel_1.png', 'Single Room', 'Wifi', 1, 80.00);
 
 -- Ajout de données test pour la table package_reference
-INSERT INTO package_reference (destination_id, transport_reference_id, accommodation_reference_id, duration, price, description, activity_count) VALUES 
-(1, 1, 1, 7, 1000.00, 'Paris vacation package with flights and hotel', 3),
-(2, 2, 2, 5, 1500.00, 'New York vacation package with flights and hotel', 4),
-(3, 3, 3, 10, 1200.00, 'Rome vacation package with train and hotel', 0);
+INSERT INTO package_reference (destination_id, company_id, transport_reference_id, accommodation_reference_id, duration, price, description) VALUES 
+(1, 1, 1, 1, 7, 1000.00, 'Paris vacation package with flights and hotel'),
+(2, 2, 2, 2, 5, 1500.00, 'New York vacation package with flights and hotel'),
+(3, 1, 3, 3, 10, 1200.00, 'Rome vacation package with train and hotel');
 
 -- Ajout de données test pour la table activity
 INSERT INTO activity (package_reference_id, company_id, activity_name, activity_photo, activity_description, duration_hours) VALUES 

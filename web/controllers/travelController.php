@@ -45,7 +45,7 @@ class travelController
             }
         }
         if (!empty($_POST['activity_count'])) {
-            $conditions[] = "p.activity_count >= ?";
+            $conditions[] = "(SELECT COUNT(*) FROM activity WHERE package_reference_id = p.package_reference_id ) >= ?";
             $params[] = $_POST['activity_count'];
         }
         if (!empty($_POST['date_max'])) {
