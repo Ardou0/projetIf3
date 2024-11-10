@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
 <section id="accommodation-section">
     <section class="filter-bar-container">
-        <form id="filter-bar" method="POST" action="<?= URL ?>travel" class="filter-form">
+        <form id="filter-bar" method="POST" action="<?= URL ?>accommodations" class="filter-form">
 
             <!-- Filtre par Prix -->
             <div class="filter-item">
@@ -106,7 +106,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                 </div>
             <?php endforeach; ?>
         <?php } else { ?>
-            <p><?= $data['no-accommodations'] ?></p>
+            <p><?= $data['no-offers'] ?></p>
         <?php } ?>
     </div>
 

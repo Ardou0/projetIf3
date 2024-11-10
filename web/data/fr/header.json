@@ -14,7 +14,7 @@
     "menu": {
         "home": "accueil",
         "travel" : "voyages",
-        "accomodations": "logements",
+        "accommodations": "logements",
         "transport": "transports"
     }
 }

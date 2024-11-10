@@ -25,7 +25,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                             ?>
                         </select>
                     </div>
-                    <input type="email" name="email" placeholder="<?= $data['login']['id'] ?>" required />
+                    <input id="login-email" type="email" name="email" placeholder="<?= $data['login']['id'] ?>" required />
                     <input type="password" name="password" placeholder="<?= $data['login']['password'] ?>" required />
                     <div class="remember-me">
                         <input id="remember-me" type="checkbox" name="remember" />
@@ -74,6 +74,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             }
         }
 
+        document.getElementById("login").addEventListener("submit", () => {
+            if (localStorage.getItem("rememberme") == "true") {
+                localStorage.setItem("email", document.getElementById("login-email").value);
+            }
+        })
+
         document.getElementById("account-type").addEventListener("input", () => {
             if (document.getElementById("account-type").value == "company") {
                 document.getElementById("name_input").style.display = "none";
@@ -84,5 +90,22 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                 document.getElementById("name_input").setAttribute("required", "")
             }
         })
+
+        document.getElementById("remember-me").addEventListener("input", () => {
+            console.log(document.getElementById("remember-me").checked);
+            if (document.getElementById("remember-me").checked) {
+                localStorage.setItem("rememberme", "true");
+            } else {
+                localStorage.setItem("rememberme", "false");
+            }
+        })
+
+        if (localStorage.getItem("rememberme") == "true") {
+            document.getElementById("remember-me").checked = true;
+            document.getElementById("login-email").value = localStorage.getItem("email");
+        }
+        else {
+            localStorage.setItem("email", "");
+        }
     </script>
 </section>

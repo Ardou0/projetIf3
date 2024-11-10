@@ -2,7 +2,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
-class accomodationsController
+class accommodationsController
 {
     private $_view;
     private $_model;
