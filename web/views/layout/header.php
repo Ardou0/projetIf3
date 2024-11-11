@@ -64,7 +64,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                                 foreach ($data[$_SESSION['type']] as $key => $value) {
                                 ?>
                                     <li>
-                                        <a href="<?= URL . $key ?>"><?= $value ?></a>
+                                        <a href="<?= URL . $key ?>" text="<?= $value ?>"><?= $value ?></a>
                                     </li>
                                 <?php
                                 }

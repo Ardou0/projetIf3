@@ -41,9 +41,14 @@ class loginController
                     $_SESSION['last_name'] = $result[0]['last_name'];
                     $_SESSION['username'] = $_SESSION['first_name'];
                     $_SESSION['phone'] = $result[0]['phone_number'];
+                    $_SESSION['birth'] = $result[0]['birthdate'];
+                    $_SESSION['transport'] = $result[0]['travel_preferences'];
+                    $_SESSION['id'] = $result[0]['client_id'];
                 } else {
                     $_SESSION['full_name'] = $result[0]['full_name'];
                     $_SESSION['username'] = $_SESSION['full_name'];
+                    $_SESSION['photo'] = $result[0]['picture'];
+                    $_SESSION['id'] = $result[0]['company_id'];
                 }
                 $_SESSION['email'] = $result[0]['email'];
                 header('location:' . URL);

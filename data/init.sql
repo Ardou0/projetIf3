@@ -274,17 +274,16 @@ INSERT INTO package (package_reference_id) VALUES
 
 -- Ajout de données test pour la table client
 INSERT INTO client (first_name, last_name, email, password, phone_number, birthdate, loyalty_points, travel_preferences) VALUES 
-('John', 'Doe', 'john.doe@example.com', 'securepassword', '555-1234', '1990-05-15', 500, 'plane'),
+('John', 'Doe', 'john.doe@example.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '555-1234', '1990-05-15', 500, 'plane'),
 ('Jane', 'Smith', 'jane.smith@example.com', 'anotherpassword', '555-5678', '1985-08-20', 300, 'train');
 
 -- Ajout de données test pour la table reservation
 INSERT INTO reservation (client_id, num_passengers, destination_id, package_id, transport_id, accommodation_id, travel_date_from, travel_date_to, loyalty_points_generated, status) VALUES 
-(1, 2, 1, 1, 1, 1, '2024-10-20', '2024-10-27', 100, 'confirmed'),
-(2, 1, 2, 2, 2, 2, '2024-11-10', '2024-11-15', 150, 'pending');
+(1, 1, 1, 1, 1, 1, '2024-11-20', '2024-11-27', 100, 'confirmed'),
+(2, 0, 2, 2, 2, 2, '2024-11-10', '2024-11-15', 150, 'pending');
 
 -- Ajout de données test pour la table passenger
 INSERT INTO passenger (reservation_id, first_name, last_name, email, seat_preference, transport_id) VALUES 
-(1, 'John', 'Doe', 'john.doe@example.com', 'Window', 1),
 (1, 'Jane', 'Doe', 'jane.doe@example.com', 'Aisle', 1);
 
 -- Ajout de données test pour la table payment

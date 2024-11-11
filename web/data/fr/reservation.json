@@ -1,0 +1,16 @@
+{
+    "invoice": "Détails",
+    "destination": "Destination",
+    "duration": "Durée",
+    "price": "Prix",
+    "date": "Date de voyage",
+    "reservation": "Statut de la réservation",
+    "payment": "Statut du payment",
+    "pay": "payer",
+    "cancel": "Annuler",
+    "notification": {
+        "payed": "Le paiement a bien été effectuer",
+        "error": "Une erreur est survenue",
+        "cancelled": "Votre réservation a été annuler"
+    }
+}

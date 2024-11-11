@@ -11,7 +11,7 @@
     "update": "Mettre à jour",
     "personal": {
         "client": {
-            "title": "Mes information Personnelles",
+            "title": "Mes informations Personnelles",
             "first-name": "Prénom",
             "last-name": "Nom",
             "phone": "Numéro de téléphone",
@@ -34,5 +34,9 @@
             "bus": "Bus",
             "car": "Voiture"
         }
+    },
+    "notification": {
+        "error": "Un erreur est survenue",
+        "updated": "Mise à jour effectué"
     }
 }

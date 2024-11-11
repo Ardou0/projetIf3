@@ -3,7 +3,7 @@
     "logged": "Bienvenu(e)",
     "client": {
         "profile": "profil",
-        "hisotry": "historique",
+        "reservation": "Réservation",
         "login/logout": "deconnexion"
     },
     "company": {

@@ -107,7 +107,7 @@ header .menu li {
     margin-left: 40px;
 }
 
-header .menu li a {
+header li a {
     position: relative;
     text-decoration: none;
     text-transform: uppercase;
@@ -115,7 +115,7 @@ header .menu li a {
 }
 
 
-header .menu li a::after {
+header li a::after {
     position: absolute;
     left: 0;
     top: 0;
@@ -130,7 +130,7 @@ header .menu li a::after {
     transition: 0.5s;
 }
 
-header .menu li a:hover::after {
+header li a:hover::after {
     position: absolute;
     left: 0;
     top: 0;
@@ -215,6 +215,17 @@ header .profile-menu {
 
 header .profile-menu a {
     font-size: 20px;
+    text-transform: capitalize;
+}
+
+header .profile-menu a::after {
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+header .profile-menu a:hover::after {
+    font-size: 20px;
+    text-transform: capitalize;
 }
 
 header .profile:hover .profile-name {

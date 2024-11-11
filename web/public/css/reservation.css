@@ -1,0 +1,97 @@
+section {
+    margin: 50px auto;
+}
+.reservation {
+    border: 2px solid var(--background-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 600px;
+    margin: auto;
+}
+
+.description {
+    display: grid;
+    grid-template: '. .';
+    margin: 15px auto;
+}
+
+.description p {
+    width: 70%;
+    margin: auto;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.details-button {
+    padding: 10px 15px;
+    border: 2px solid var(--background-color);
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+    background-color: white;
+}
+
+p.completed, p.confirmed{
+    color: green;
+}
+
+p.pending, p.pending{
+    color: rgb(255, 136, 0);
+}
+
+
+p.cancelled, p.refunded{
+    color: rgb(255, 60, 0);
+}
+
+.pay-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid #007bff;
+    text-decoration: none;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid #dc3545;
+    text-decoration: none;
+}
+
+.notification {
+    width: 250px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+}
+
+.notification-error {
+    background: #ff000073;
+    border: 2px solid red;
+}
+
+.notification-payed,
+.notification-cancelled {
+    
+    background: #00ff3773;
+    border: 2px solid rgb(51, 255, 0);
+}

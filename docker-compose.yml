@@ -16,6 +16,8 @@ services:
             - db
         links:
             - db
+        command: sh -c "mkdir -p /var/www/html/public/img/ && chown -R www-data:www-data /var/www/html/public/img/ && chmod -R 775 /var/www/html/public/img/ && php-fpm"
+
  
     nginx:
         image: nginx:1.17

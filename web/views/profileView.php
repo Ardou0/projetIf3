@@ -10,18 +10,18 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
     <p class="  "><?= $data['description'] ?></p>
     <div class="login-data">
         <h3><?= $data["login"]["title"] ?></h3>
-        <form id="login-form" action="<?= URL ?>profile/update/login" method="POST">
+        <form id="login-form" action="<?= URL ?>profile" method="POST">
             <div class="login-form-element">
                 <label for="email"><?= $data['login']['mail'] ?> :</label>
-                <input id="email" name="email" type="email" value="<?= $_SESSION['email'] ?>" disabled>
+                <input id="email" name="email" type="email" value="<?= $_SESSION['email'] ?>" disabled required>
             </div>
             <div class="login-form-element">
                 <label for="oldpassword"><?= $data['login']['password'] ?> :</label>
-                <input id="oldpassword" name="oldpass" type="password" value="**********" disabled>
+                <input id="oldpassword" name="oldpass" type="password" value="**********" placeholder="<?= $data['typeHere'] ?>" disabled required>
             </div>
             <div class="login-form-element login-edit hidden-update-login">
                 <label for="newpassword"><?= $data['login']['newer'] ?></label>
-                <input id="newpassword" type="password" name="newpass" placeholder="<?= $data['typeHere'] ?>">
+                <input id="newpassword" type="password" name="newpass" required placeholder="<?= $data['typeHere'] ?>" disabled>
             </div>
             <input type="submit" value="<?= $data['update'] ?>">
         </form>
@@ -31,6 +31,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                 if (!editLogin) {
                     e.preventDefault();
                     document.querySelector(".login-edit").classList.remove("hidden-update-login");
+                    document.getElementById("oldpassword").value = "";
                     const inputs = document.getElementById("login-form").querySelectorAll('input');
 
                     // Parcourir les inputs et enlever l'attribut 'disabled'
@@ -48,35 +49,35 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
     <div class="personal-data">
         <h3><?= $data["personal"][$_SESSION['type']]["title"] ?></h3>
 
-        <form id="personal-form" action="<?= URL ?>profile/update/data" method="POST">
+        <form id="personal-form" action="<?= URL ?>profile" method="POST" enctype="multipart/form-data">
             <?php
 
             if ($_SESSION['type'] == "client") {
             ?>
                 <div class="personal-form-element">
                     <label for="first-name"><?= $data['personal']['client']['first-name'] ?> :</label>
-                    <input id="first-name" name="first-name" type="text" value="<?= $_SESSION['first_name'] ?>" disabled>
+                    <input id="first-name" name="first-name" type="text" value="<?= $_SESSION['first_name'] ?>" disabled required>
                 </div>
                 <div class="personal-form-element">
                     <label for="last-name"><?= $data['personal']['client']['last-name'] ?> :</label>
-                    <input id="last-name" name="last-name" type="text" value="<?= $_SESSION['last_name'] ?>" disabled>
+                    <input id="last-name" name="last-name" type="text" value="<?= $_SESSION['last_name'] ?>" disabled required>
                 </div>
                 <div class="personal-form-element">
                     <label for="phone"><?= $data['personal']['client']['phone'] ?> :</label>
-                    <input id="phone" name="phone" type="text" <?= (isset($_SESSION['phone']) && $_SESSION['phone'] == '') ? 'value="' . $_SESSION['phone'] . '"' : 'placeholder="' . $data['typeHere'] . '"' ?>" disabled>
+                    <input id="phone" name="phone" type="text" <?= (isset($_SESSION['phone']) && $_SESSION['phone'] != '') ? 'value="' . $_SESSION['phone'] . '"' : 'placeholder="' . $data['typeHere'] . '"' ?> required disabled>
                 </div>
                 <div class="personal-form-element">
                     <label for="birth"><?= $data['personal']['client']['birth'] ?> :</label>
-                    <input id="birth" name="birth" type="date" disabled>
+                    <input id="birth" name="birth" type="date" disabled required <?= (isset($_SESSION['birth']) && $_SESSION['birth'] != '') ? 'value="' . $_SESSION['birth'] . '"' : 'placeholder="' . $data['typeHere'] . '"' ?>>
                 </div>
                 <div class="personal-form-element">
                     <label for="preference"><?= $data['personal']['client']['preference'] ?> :</label>
-                    <select id="preference" name="preference" disabled>
+                    <select id="preference" name="preference" disabled required>
                         <option value="" selected><?= $data['search']['choose'] ?></option>
-                        <option value="plane" <?= (isset($_POST['transport']) && $_POST['transport'] == 'plane') ? 'selected' : '' ?>><?= $data['search']['transport']['plane'] ?></option>
-                        <option value="bus" <?= (isset($_POST['transport']) && $_POST['transport'] == 'bus') ? 'selected' : '' ?>><?= $data['search']['transport']['bus'] ?></option>
-                        <option value="car" <?= (isset($_POST['transport']) && $_POST['transport'] == 'car') ? 'selected' : '' ?>><?= $data['search']['transport']['car'] ?></option>
-                        <option value="train" <?= (isset($_POST['transport']) && $_POST['transport'] == 'train') ? 'selected' : '' ?>><?= $data['search']['transport']['train'] ?></option>
+                        <option value="plane" <?= (isset($_SESSION['transport']) && $_SESSION['transport'] == 'plane') ? 'selected' : '' ?>><?= $data['search']['transport']['plane'] ?></option>
+                        <option value="bus" <?= (isset($_SESSION['transport']) && $_SESSION['transport'] == 'bus') ? 'selected' : '' ?>><?= $data['search']['transport']['bus'] ?></option>
+                        <option value="car" <?= (isset($_SESSION['transport']) && $_SESSION['transport'] == 'car') ? 'selected' : '' ?>><?= $data['search']['transport']['car'] ?></option>
+                        <option value="train" <?= (isset($_SESSION['transport']) && $_SESSION['transport'] == 'train') ? 'selected' : '' ?>><?= $data['search']['transport']['train'] ?></option>
                     </select>
                 </div>
             <?php
@@ -85,10 +86,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             ?>
                 <div class="personal-form-element">
                     <label for="name"><?= $data['personal']['company']['name'] ?> :</label>
-                    <input id="name" name="full_name" type="text" value="<?= $_SESSION['full_name'] ?>" disabled>
+                    <input id="name" name="full_name" type="text" value="<?= $_SESSION['full_name'] ?>" disabled required>
                 </div>
                 <div id="previewImageContainer">
-
+                    <img id="preview-image" src="<?= (isset($_SESSION['photo']) && $_SESSION['photo'] != '' && file_exists(PATH . 'public/img/profile/' . $_SESSION['photo'])) ? URL . 'public/img/profile/' . $_SESSION['photo'] : URL . 'public/img/profile/default.jpg' ?>" alt="">
                 </div>
                 <div class="personal-form-element">
                     <label for="company_picture"><?= $data['personal']['company']['picture'] ?> :</label>
@@ -142,18 +143,16 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
                     reader.addEventListener('load', function(event) {
                         const imageUrl = event.target.result;
-                        const image = new Image();
+                        const image = document.getElementById("preview-image");
 
                         image.addEventListener('load', function() {
-                            imagePreviewContainer.innerHTML = ''; // Vider le conteneur au cas où il y aurait déjà des images.
+                            imagePreviewContainer.innerHTML = '';
                             imagePreviewContainer.appendChild(image);
                             imagePreviewContainer.classList.add("previewed");
                             fileHandler.innerText = fileInput.files[0].name;
                         });
 
                         image.src = imageUrl;
-                        image.style.width = 'auto'; // Indiquez les dimensions souhaitées ici.
-                        image.style.height = '100%'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
                     });
 
                     reader.readAsDataURL(file);
@@ -161,5 +160,20 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             }
         </script>
     </div>
+    <?php
 
+    if ($notification) {
+    ?>
+        <div class="notification notification-<?= $notification ?>">
+            <?= $data["notification"][$notification] ?>
+        </div>
+        <script>
+            setTimeout(() => {
+                document.querySelector(".notification").remove();
+            }, 3000);
+        </script>
+    <?php
+    }
+
+    ?>
 </section>
