@@ -1,13 +1,14 @@
 section {
     margin: 50px auto;
 }
+
 .reservation {
     border: 2px solid var(--background-color);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     width: 600px;
-    margin: auto;
+    margin: 25px auto;
 }
 
 .description {
@@ -27,7 +28,7 @@ section {
     justify-content: space-evenly;
 }
 
-.details-button {
+.details-button, .comment-button, .publish-button {
     padding: 10px 15px;
     border: 2px solid var(--background-color);
     border-radius: 5px;
@@ -35,18 +36,22 @@ section {
     color: black;
     text-decoration: none;
     background-color: white;
+    font-size: 16px;
 }
 
-p.completed, p.confirmed{
+p.completed,
+p.confirmed {
     color: green;
 }
 
-p.pending, p.pending{
+p.pending,
+p.pending {
     color: rgb(255, 136, 0);
 }
 
 
-p.cancelled, p.refunded{
+p.cancelled,
+p.refunded {
     color: rgb(255, 60, 0);
 }
 
@@ -59,6 +64,7 @@ p.cancelled, p.refunded{
     cursor: pointer;
     border: 2px solid #007bff;
     text-decoration: none;
+    font-size: 16px;
 }
 
 .cancel-button {
@@ -70,6 +76,7 @@ p.cancelled, p.refunded{
     cursor: pointer;
     border: 2px solid #dc3545;
     text-decoration: none;
+    font-size: 16px;
 }
 
 .notification {
@@ -90,8 +97,84 @@ p.cancelled, p.refunded{
 }
 
 .notification-payed,
-.notification-cancelled {
-    
+.notification-cancelled,
+.notification-comment {
+
     background: #00ff3773;
     border: 2px solid rgb(51, 255, 0);
+}
+
+.rating {
+    float: left;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 28px;
+    margin-top: -11px;
+    color: #e8d04c;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.rating>span {
+    display: inline-block;
+    position: relative;
+    width: 0.7em;
+    cursor: pointer;
+}
+
+.rating>span:hover:before,
+.rating>span:hover~span:before,
+.rating>span.rated:before,
+.rating>span.rated~span:before {
+    content: "\2605";
+    position: absolute;
+}
+
+.comment-section {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    background: #9fb7988a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-section form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid var(--background-color);
+    width: 300px;
+    border-radius: 15px;
+    padding: 15px;
+    background: white;
+}
+
+.section-hidden {
+    display: none;
+}
+
+.buttons-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#descriptionRating {
+    text-align: center;
+}
+
+textarea {
+    border: 1px solid var(--background-color);
+    resize: none;
+    width: 80%;
+    height: 80px;
+    padding: 5px;
+    margin: 15px;
 }

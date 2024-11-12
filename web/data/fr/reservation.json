@@ -8,9 +8,12 @@
     "payment": "Statut du payment",
     "pay": "payer",
     "cancel": "Annuler",
+    "comment": "Donnez votre avis",
     "notification": {
         "payed": "Le paiement a bien été effectuer",
         "error": "Une erreur est survenue",
-        "cancelled": "Votre réservation a été annuler"
-    }
+        "cancelled": "Votre réservation a été annuler",
+        "comment": "Avis publié"
+    },
+    "taken": "Le"
 }

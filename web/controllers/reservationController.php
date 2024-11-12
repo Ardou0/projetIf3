@@ -22,6 +22,9 @@ class reservationController
                 $this->payReservation($url);
             } elseif (isset($url[2]) and $url[2] == 'cancel' and isset($url[3])) {
                 $this->cancelReservation($url);
+            }
+            elseif (isset($url[2]) and $url[2] == 'comment' and !isset($url[3])) {
+                $this->commentReservation();
             } else {
 
                 if (isset($url[2]) == "notification") {
@@ -42,20 +45,38 @@ class reservationController
                     R.travel_date_from,
                     R.travel_date_to,
                     R.status AS reservation_status,
+                    R.reservation_date,
                     P.payment_status,
                     P.amount AS payment_amount,
                     TR.transport_type,
+                    A.accommodation_id,
+                    T.transport_id,
+                    PCK.package_id,
                     
                     -- Calcul des prix individuels
-                    AR.price_per_night * DATEDIFF(R.travel_date_to, R.travel_date_from) AS total_accommodation_price,
+                    AR.price_per_night * PR.duration AS total_accommodation_price,
                     TR.price AS total_transport_price,
                     PR.price AS total_package_price,
                     
                     -- Calcul du prix total de la réservation
-                    (IFNULL(AR.price_per_night * DATEDIFF(R.travel_date_to, R.travel_date_from), 0) + 
+                    (IFNULL(AR.price_per_night * PR.duration, 0) + 
                     IFNULL(TR.price, 0) + 
-                    IFNULL(PR.price, 0)) AS total_price
-    
+                    IFNULL(PR.price, 0)) AS total_price,
+        
+                    -- Booléen indiquant si un commentaire existe pour tous les éléments de la réservation
+                    (
+                        SELECT 
+                            CASE 
+                                WHEN COUNT(*) > 0 THEN 1
+                                ELSE 0
+                            END
+                        FROM comments CM
+                        WHERE CM.client_id = C.client_id
+                        AND (CM.accommodation_id = A.accommodation_id OR A.accommodation_id IS NULL)
+                        AND (CM.transport_id = T.transport_id OR T.transport_id IS NULL)
+                        AND (CM.package_id = PCK.package_id OR PCK.package_id IS NULL)
+                    ) AS has_comment
+        
                 FROM 
                     reservation R
                     JOIN client C ON R.client_id = C.client_id
@@ -67,12 +88,12 @@ class reservationController
                     LEFT JOIN transport T ON R.transport_id = T.transport_id
                     LEFT JOIN transport_reference TR ON T.transport_reference_id = TR.transport_reference_id
                     LEFT JOIN payment P ON R.reservation_id = P.reservation_id
-    
+        
                 WHERE 
                     C.client_id = ?
                 ORDER BY 
                     R.reservation_date DESC;
-    
+        
                 ";
 
                 $reservations = $this->_model->executeQuery($sql, [$_SESSION['id']]);
@@ -113,5 +134,52 @@ class reservationController
         $this->_model->executeQuery($sql, [$url[3], $_SESSION['id']]);
         header("location:" . URL . "reservation/notification/cancelled");
         exit();
+    }
+
+    private function commentReservation() {
+        if(!isset($_POST['rating']) and !isset($_POST['comment'])) {
+            header('location:'.URL.'reservation/error');
+            exit();
+        }
+        else {
+            if(isset($_POST['accommodation_id']) or isset($_POST['transport_id']) or isset($_POST['package_id'])) {
+                if(isset($_POST['accommodation_id'])) {
+                    $accommodation = $_POST['accommodation_id'];
+                }
+                else {
+                    $accommodation = NULL;
+                }
+                if(isset($_POST['transport_id'])) {
+                    $transport = $_POST['transport_id'];
+                }
+                else {
+                    $transport = NULL;
+                }
+                if(isset($_POST['package_id'])) {
+                    $package = $_POST['package_id'];
+                }
+                else {
+                    $package = NULL;
+                }
+
+                $sql = "INSERT INTO `comments`(`client_id`, `package_id`, `transport_id`, `accommodation_id`, `rating`, `comments`) VALUES (?, ?, ?, ?, ?, ?)";
+                $params = [
+                    $_SESSION['id'],
+                    $package,
+                    $transport,
+                    $accommodation,
+                    $_POST['rating'],
+                    htmlspecialchars($_POST['comment'])
+                ];
+
+                $this->_model->executeQuery($sql, $params);
+                header("location:" . URL . "reservation/notification/comment");
+                exit();
+            }
+            else {
+                header('location:'.URL.'reservation/error');
+                exit();
+            }
+        }
     }
 }

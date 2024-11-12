@@ -16,6 +16,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                 <p><strong><?= $data['date'] ?>:</strong> Du <?php echo htmlspecialchars($reservation['travel_date_from']); ?> au <?php echo htmlspecialchars($reservation['travel_date_to']); ?></p>
                 <p class="<?= $reservation['reservation_status'] ?>"><strong><?= $data['reservation'] ?>:</strong> <?php echo ucfirst($reservation['reservation_status']); ?></p>
                 <p class="<?= $reservation['payment_status'] ?>"><strong><?= $data['payment'] ?>:</strong> <?php echo ucfirst($reservation['payment_status']); ?></p>
+                <p><?= $data['taken'] ?>: <?php echo htmlspecialchars($reservation['reservation_date']); ?></p>
             </div>
             <div class="buttons">
                 <a class="details-button" href="<?= URL . "reservation/invoice/" . $reservation['reservation_id'] ?>">
@@ -31,6 +32,16 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                     <a class="cancel-button" href="<?= URL . "reservation/cancel/" . $reservation['reservation_id'] ?>">
                         <?= $data['cancel'] ?>
                     </a>
+                <?php } ?>
+
+                <?php if ($reservation['has_comment'] === 0 && $reservation['reservation_status'] === 'completed') {
+
+                    $jsArray = "{accommodation_id: " . $reservation['accommodation_id'] . ", transport_id: " . $reservation['transport_id'] . ", package_id: " . $reservation['package_id'] . "}"
+
+                ?>
+                    <button class="comment-button" onclick="openRating(<?= $jsArray ?>)">
+                        <?= $data['comment'] ?>
+                    </button>
                 <?php } ?>
             </div>
         </div>
@@ -54,4 +65,67 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
     }
 
     ?>
+
+    <div class='comment-section section-hidden'>
+        <form action="<?= URL ?>reservation/comment" method="POST">
+            <input id="accommodation_id" class="inputId" type="hidden" name="accommodation_id" value="">
+            <input id="transport_id" class="inputId" type="hidden" name="transport_id" value="">
+            <input id="package_id" class="inputId" type="hidden" name="package_id" value="">
+            <input type="number" hidden name="rating" id="inputRating">
+            <div>
+                <div id="divRating" class="rating">
+                    <span id="spanRatingExcellent" title="Parfait" value="5">☆</span>
+                    <span id="spanRatingGood" title="Très bien" value="4">☆</span>
+                    <span id="spanRatingFair" title="Bien" value="3">☆</span>
+                    <span id="spanRatingPoor" title="Mauvais" value="2">☆</span>
+                    <span id="spanRatingAwful" title="Nul" value="1">☆</span>
+                </div>
+                <div id="descriptionRating">
+
+                </div>
+            </div>
+            <textarea id="commentText" name="comment" placeholder="Écrivez votre avis ici..." required></textarea>
+            <div class="buttons-form">
+                <button type="submit" class="publish-button">Publier l'avis</button>
+                <div class="cancel-button" onclick="closeRating()">Annuler</div>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('divRating').addEventListener('click', function(event) {
+            if (event.target.tagName.toLowerCase() != 'span') return;
+
+            if (event.target.classList.contains('rated')) {
+                event.target.classList.remove('rated');
+            } else {
+                Array.prototype.forEach.call(document.getElementsByClassName('rated'), function(el) {
+                    el.classList.remove('rated');
+                });
+                event.target.classList.add('rated');
+                document.getElementById("descriptionRating").innerText = event.target.title;
+                document.getElementById("inputRating").value = event.target.getAttribute('value');
+            }
+        });
+
+        function openRating(ids) {
+            document.querySelectorAll(".inputId").forEach(element => {
+                element.value = ids[element.id];
+            });
+            document.querySelector(".comment-section").classList.remove("section-hidden");
+        }
+
+        function closeRating() {
+            document.getElementById("descriptionRating").innerText = "";
+            document.getElementById("inputRating").value = "";
+            if (document.querySelector(".rated")) {
+                document.querySelector(".rated").classList.remove("rated");
+            }
+            document.getElementById("commentText").innerText = "";
+            document.querySelectorAll(".inputId").forEach(element => {
+                element.value = ""
+            });
+            document.querySelector(".comment-section").classList.add("section-hidden");
+
+        }
+    </script>
 </section>

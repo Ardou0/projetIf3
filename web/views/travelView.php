@@ -166,7 +166,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                             </div>
                         </div>
 
-                        <a href="#" class="learn-more-btn"><?= $data['packs']['more'] ?></a>
+                        <a href="<?= URL."travel/show/". $package['package_reference_id'] ?>" class="learn-more-btn"><?= $data['packs']['more'] ?></a>
                     </div>
                 </div>
             <?php endforeach; ?>
