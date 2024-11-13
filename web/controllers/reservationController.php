@@ -22,8 +22,7 @@ class reservationController
                 $this->payReservation($url);
             } elseif (isset($url[2]) and $url[2] == 'cancel' and isset($url[3])) {
                 $this->cancelReservation($url);
-            }
-            elseif (isset($url[2]) and $url[2] == 'comment' and !isset($url[3])) {
+            } elseif (isset($url[2]) and $url[2] == 'comment' and !isset($url[3])) {
                 $this->commentReservation();
             } else {
 
@@ -62,7 +61,10 @@ class reservationController
                     (IFNULL(AR.price_per_night * PR.duration, 0) + 
                     IFNULL(TR.price, 0) + 
                     IFNULL(PR.price, 0)) AS total_price,
-        
+                    
+                    -- Nombre de jours de différence entre travel_date_from et travel_date_to
+                    DATEDIFF(R.travel_date_to, R.travel_date_from) AS duration_days,
+                    
                     -- Booléen indiquant si un commentaire existe pour tous les éléments de la réservation
                     (
                         SELECT 
@@ -76,7 +78,7 @@ class reservationController
                         AND (CM.transport_id = T.transport_id OR T.transport_id IS NULL)
                         AND (CM.package_id = PCK.package_id OR PCK.package_id IS NULL)
                     ) AS has_comment
-        
+                
                 FROM 
                     reservation R
                     JOIN client C ON R.client_id = C.client_id
@@ -88,24 +90,97 @@ class reservationController
                     LEFT JOIN transport T ON R.transport_id = T.transport_id
                     LEFT JOIN transport_reference TR ON T.transport_reference_id = TR.transport_reference_id
                     LEFT JOIN payment P ON R.reservation_id = P.reservation_id
-        
+                
                 WHERE 
                     C.client_id = ?
                 ORDER BY 
                     R.reservation_date DESC;
-        
                 ";
 
                 $reservations = $this->_model->executeQuery($sql, [$_SESSION['id']]);
 
-                $this->_view->buildUp(array("data" => $this->_model->extract("reservation.json"), "reservations" => $reservations, "notification" => $notification));
+                $updated = false;
+                foreach ($reservations as $reservation) {
+                    if (new DateTime($reservation['travel_date_from']) < new DateTime() && $reservation['reservation_status'] == "confirmed") {
+                        $sql = "UPDATE `reservation` SET `status`='completed' WHERE reservation_id = ?";
+                        $this->_model->executeQuery($sql, [$reservation['reservation_id']]);
+                        $updated = true;
+                    }
+                }
+
+                if ($updated) {
+                    header('location:' . URL . 'reservation');
+                    exit();
+                } else {
+                    $this->_view->buildUp(array("data" => $this->_model->extract("reservation.json"), "reservations" => $reservations, "notification" => $notification));
+                }
             }
         }
     }
 
     private function generateInvoice($url)
     {
-        $sql = "SELECT R.reservation_id, R.num_passengers, R.reservation_date, R.travel_date_from, R.travel_date_to, R.status AS reservation_status, R.loyalty_points_generated, C.first_name AS client_first_name, C.last_name AS client_last_name, C.email AS client_email, C.phone_number, D.city AS destination_city, D.country AS destination_country, MAX(PR.description) AS package_description, MAX(PR.duration) AS package_duration, MAX(PR.price) AS package_price, MAX(IT.schedule_description) AS itinerary_schedule, MAX(IT.emergency_contact) AS emergency_contact, MAX(TR.provider_name) AS transport_provider, MAX(TR.transport_type) AS transport_type, MAX(TR.price) AS transport_price, MAX(TRR.departure_date) AS departure_date, MAX(TRR.arrival_date) AS arrival_date, MAX(ACCR.provider_name) AS accommodation_provider, MAX(ACCR.room_type) AS room_type, MAX(ACCR.price_per_night) AS price_per_night, MAX(ACC.check_in_date) AS check_in_date, MAX(ACC.check_out_date) AS check_out_date, GROUP_CONCAT(ACT.activity_name) AS activity_names, GROUP_CONCAT(ACT.activity_description) AS activity_descriptions, GROUP_CONCAT(ACT.duration_hours) AS activity_durations, GROUP_CONCAT(DISTINCT PSS.first_name) AS passenger_first_names, GROUP_CONCAT(DISTINCT PSS.last_name) AS passenger_last_names, MAX(PAY.amount) AS payment_amount, MAX(PAY.payment_date) AS payment_date, MAX(PAY.payment_method) AS payment_method, MAX(PAY.payment_status) AS payment_status FROM reservation R JOIN client C ON R.client_id = C.client_id LEFT JOIN destination D ON R.destination_id = D.destination_id LEFT JOIN package PCK ON R.package_id = PCK.package_id LEFT JOIN package_reference PR ON PCK.package_reference_id = PR.package_reference_id LEFT JOIN itinerary IT ON PR.package_reference_id = IT.package_reference_id LEFT JOIN transport_reference TR ON PR.transport_reference_id = TR.transport_reference_id LEFT JOIN transport TRR ON R.transport_id = TRR.transport_id LEFT JOIN accommodation_reference ACCR ON PR.accommodation_reference_id = ACCR.accommodation_reference_id LEFT JOIN accommodation ACC ON R.accommodation_id = ACC.accommodation_id LEFT JOIN activity ACT ON PR.package_reference_id = ACT.package_reference_id LEFT JOIN passenger PSS ON R.reservation_id = PSS.reservation_id LEFT JOIN payment PAY ON R.reservation_id = PAY.reservation_id WHERE R.client_id = ? AND R.reservation_id = ? GROUP BY R.reservation_id ORDER BY R.reservation_date DESC";
+        $sql = "SELECT 
+    R.reservation_id, 
+    R.num_passengers, 
+    R.reservation_date, 
+    R.travel_date_from, 
+    R.travel_date_to, 
+    R.status AS reservation_status, 
+    R.loyalty_points_generated, 
+    C.first_name AS client_first_name, 
+    C.last_name AS client_last_name, 
+    C.email AS client_email, 
+    C.phone_number, 
+    D.city AS destination_city, 
+    D.country AS destination_country, 
+    MAX(PR.description) AS package_description, 
+    MAX(PR.duration) AS package_duration, 
+    MAX(PR.price) AS package_price, 
+    MAX(IT.schedule_description) AS itinerary_schedule, 
+    MAX(IT.emergency_contact) AS emergency_contact, 
+    MAX(TR.provider_name) AS transport_provider, 
+    MAX(TR.transport_type) AS transport_type, 
+    MAX(TR.price) AS transport_price, 
+    MAX(TRR.departure_date) AS departure_date, 
+    MAX(TRR.arrival_date) AS arrival_date, 
+    MAX(ACCR.provider_name) AS accommodation_provider, 
+    MAX(ACCR.room_type) AS room_type, 
+    MAX(ACCR.price_per_night) AS price_per_night, 
+    MAX(ACCR.accommodation_photo) AS accommodation_photo,  -- Ajouter la photo de l'hébergement
+    MAX(ACC.check_in_date) AS check_in_date, 
+    MAX(ACC.check_out_date) AS check_out_date, 
+    GROUP_CONCAT(ACT.activity_name) AS activity_names, 
+    GROUP_CONCAT(ACT.activity_description) AS activity_descriptions, 
+    GROUP_CONCAT(ACT.duration_hours) AS activity_durations, 
+    GROUP_CONCAT(ACT.activity_photo) AS activity_photos,  -- Ajouter les photos des activités
+    GROUP_CONCAT(DISTINCT PSS.first_name) AS passenger_first_names, 
+    GROUP_CONCAT(DISTINCT PSS.last_name) AS passenger_last_names, 
+    MAX(PAY.amount) AS payment_amount, 
+    MAX(PAY.payment_date) AS payment_date, 
+    MAX(PAY.payment_method) AS payment_method, 
+    MAX(PAY.payment_status) AS payment_status 
+FROM 
+    reservation R 
+    JOIN client C ON R.client_id = C.client_id 
+    LEFT JOIN destination D ON R.destination_id = D.destination_id 
+    LEFT JOIN package PCK ON R.package_id = PCK.package_id 
+    LEFT JOIN package_reference PR ON PCK.package_reference_id = PR.package_reference_id 
+    LEFT JOIN itinerary IT ON PR.package_reference_id = IT.package_reference_id 
+    LEFT JOIN transport_reference TR ON R.transport_id = TR.transport_reference_id 
+    LEFT JOIN transport TRR ON R.transport_id = TRR.transport_id 
+    LEFT JOIN accommodation ACC ON R.accommodation_id = ACC.accommodation_id 
+    LEFT JOIN accommodation_reference ACCR ON ACC.accommodation_reference_id = ACCR.accommodation_reference_id 
+    LEFT JOIN activity ACT ON PR.package_reference_id = ACT.package_reference_id 
+    LEFT JOIN passenger PSS ON R.reservation_id = PSS.reservation_id 
+    LEFT JOIN payment PAY ON R.reservation_id = PAY.reservation_id 
+WHERE 
+    R.client_id = ? 
+    AND R.reservation_id = ? 
+GROUP BY 
+    R.reservation_id 
+ORDER BY 
+    R.reservation_date DESC;";
         $reservation = $this->_model->executeQuery($sql, [$_SESSION['id'], $url[3]]);
         if (isset($reservation)) {
             $reservation = $reservation[0];
@@ -136,29 +211,26 @@ class reservationController
         exit();
     }
 
-    private function commentReservation() {
-        if(!isset($_POST['rating']) and !isset($_POST['comment'])) {
-            header('location:'.URL.'reservation/error');
+    private function commentReservation()
+    {
+        if (!isset($_POST['rating']) and !isset($_POST['comment'])) {
+            header('location:' . URL . 'reservation/error');
             exit();
-        }
-        else {
-            if(isset($_POST['accommodation_id']) or isset($_POST['transport_id']) or isset($_POST['package_id'])) {
-                if(isset($_POST['accommodation_id'])) {
+        } else {
+            if (isset($_POST['accommodation_id']) or isset($_POST['transport_id']) or isset($_POST['package_id'])) {
+                if (isset($_POST['accommodation_id'])) {
                     $accommodation = $_POST['accommodation_id'];
-                }
-                else {
+                } else {
                     $accommodation = NULL;
                 }
-                if(isset($_POST['transport_id'])) {
+                if (isset($_POST['transport_id'])) {
                     $transport = $_POST['transport_id'];
-                }
-                else {
+                } else {
                     $transport = NULL;
                 }
-                if(isset($_POST['package_id'])) {
+                if (isset($_POST['package_id'])) {
                     $package = $_POST['package_id'];
-                }
-                else {
+                } else {
                     $package = NULL;
                 }
 
@@ -175,9 +247,8 @@ class reservationController
                 $this->_model->executeQuery($sql, $params);
                 header("location:" . URL . "reservation/notification/comment");
                 exit();
-            }
-            else {
-                header('location:'.URL.'reservation/error');
+            } else {
+                header('location:' . URL . 'reservation/error');
                 exit();
             }
         }

@@ -1,0 +1,22 @@
+{
+    "title": "Reservation d'un logement",
+    "accommodation": {
+        "title": "Le logement",
+        "room": "Type de chambre",
+        "plus": "Les équipements",
+        "for": "Nombre de couchages"
+    },
+    "price": {
+        "title": "Résumer des Prix",
+        "pack": "Pack",
+        "accommodation": "Logement (à la nuité)",
+        "transport": "Transport",
+        "total": "Total"
+    },
+    "book": {
+        "title": "Vous souhaitez reserver",
+        "button": "Réserver"
+    },
+    "departure": "Date de départ",
+    "return": "Date de retour"
+}

@@ -275,7 +275,7 @@ INSERT INTO package (package_reference_id) VALUES
 -- Ajout de données test pour la table client
 INSERT INTO client (first_name, last_name, email, password, phone_number, birthdate, loyalty_points, travel_preferences) VALUES 
 ('John', 'Doe', 'john.doe@example.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '555-1234', '1990-05-15', 500, 'plane'),
-('Jane', 'Smith', 'jane.smith@example.com', 'anotherpassword', '555-5678', '1985-08-20', 300, 'train');
+('Jane', 'Smith', 'jane.smith@example.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '555-5678', '1985-08-20', 300, 'train');
 
 -- Ajout de données test pour la table reservation
 INSERT INTO reservation (client_id, num_passengers, destination_id, package_id, transport_id, accommodation_id, travel_date_from, travel_date_to, loyalty_points_generated, status) VALUES 
@@ -288,8 +288,8 @@ INSERT INTO passenger (reservation_id, first_name, last_name, email, seat_prefer
 
 -- Ajout de données test pour la table payment
 INSERT INTO payment (reservation_id, amount, payment_date, payment_method, payment_status) VALUES 
-(1, 1000.00, '2024-10-10 12:00:00', 'credit_card', 'completed'),
-(2, 1500.00, '2024-11-01 12:00:00', 'bank_transfer', 'pending');
+(1, 1990.00, '2024-10-10 12:00:00', 'credit_card', 'completed'),
+(2, 3500.00 , '2024-11-01 12:00:00', 'bank_transfer', 'pending');
 
 -- Ajout de données test pour la table comments
 INSERT INTO comments (client_id, package_id, transport_id, accommodation_id, rating, comments) VALUES 

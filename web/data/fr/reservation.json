@@ -15,5 +15,8 @@
         "cancelled": "Votre réservation a été annuler",
         "comment": "Avis publié"
     },
-    "taken": "Le"
+    "taken": "Le",
+    "motd": "Résumer de la réservation",
+    "from": "Du",
+    "to": "au"
 }

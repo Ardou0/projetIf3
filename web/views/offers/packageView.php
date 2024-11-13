@@ -158,4 +158,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
         });
     </script>
 
+    <script>
+        let date = new Date();
+        date.setDate(date.getDate() + 1);
+        document.getElementById("departureDate").min = date.toISOString().split('T')[0]
+        document.getElementById("returnDate").min = date.toISOString().split('T')[0];
+    </script>
 </section>

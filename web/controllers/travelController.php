@@ -86,6 +86,7 @@ class travelController
                         $passengers += 1;
                     }
                 }
+
                 $sql = "INSERT INTO package (
                 package_reference_id
             )
@@ -178,23 +179,26 @@ class travelController
             );
 
             -- Insérer les passagers liés à la réservation
-            "
-                    . implode("", array_map(function ($i) {
-                        return "INSERT INTO passenger (
-                    reservation_id,
-                    first_name,
-                    last_name,
-                    email,
-                    transport_id
-                )
-                VALUES (
-                    @reservation_id,  -- L'ID de la réservation
-                    ?,  -- Prénom du passager
-                    ?,  -- Nom du passager
-                    ?,  -- Email du passager
-                    @transport_id
-                );n";
-                    }, range(0, $passengers - 1)));
+            ";
+                if ($passengers > 0) {
+                    $sql .=
+                        implode("", array_map(function ($i) {
+                            return "INSERT INTO passenger (
+                        reservation_id,
+                        first_name,
+                        last_name,
+                        email,
+                        transport_id
+                    )
+                    VALUES (
+                        @reservation_id,  -- L'ID de la réservation
+                        ?,  -- Prénom du passager
+                        ?,  -- Nom du passager
+                        ?,  -- Email du passager
+                        @transport_id
+                    );";
+                        }, range(0, $passengers - 1)));
+                }
                 $params = [
                     $package['package_reference_id'],  // package_reference_id
                     $package['transport_reference_id'],  // transport_reference_id
