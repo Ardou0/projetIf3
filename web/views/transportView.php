@@ -161,7 +161,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                                 <p><?= $data['transports']['price'] ?>: <?= htmlspecialchars($transport['price']) ?> <?= CURRENCY ?></p>
                             </div>
                         </div>
-                        <a href="#" class="learn-more-btn"><?= $data['transports']['more'] ?></a>
+                        <a href="<?= URL . "transport/show/" . $transport['transport_reference_id'] ?>" class="learn-more-btn"><?= $data['transports']['more'] ?></a>
                     </div>
                 </div>
             <?php endforeach; ?>

@@ -50,5 +50,22 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
         date.setDate(date.getDate() + 1);
         document.getElementById("departureDate").min = date.toISOString().split('T')[0]
         document.getElementById("returnDate").min = date.toISOString().split('T')[0];
+
+        document.querySelectorAll(".dateInput").forEach(element => {
+            element.addEventListener('input', () => {
+                let departureDate = new Date(document.getElementById("departureDate").value);
+                let returnDate = new Date(document.getElementById("returnDate").value);
+                
+                // Ensure a minimum of 1 day interval
+                if (element.id === "departureDate" && departureDate >= returnDate) {
+                    returnDate.setDate(departureDate.getDate() + 1);
+                    document.getElementById("returnDate").value = returnDate.toISOString().split('T')[0];
+                } else if (element.id === "returnDate" && returnDate <= departureDate) {
+                    departureDate.setDate(returnDate.getDate() - 1);
+                    document.getElementById("departureDate").value = departureDate.toISOString().split('T')[0];
+                }
+            });
+        });
     </script>
+
 </section>

@@ -1,0 +1,137 @@
+section {
+    width: 80%;
+    margin: auto;
+}
+
+
+@media (max-width: 1200px) {
+    #transport-view {
+        width: 95% !important;
+    }
+
+    section {
+        width: 100%;
+    }
+}
+
+h1,
+h2 {
+    background-color: #023436;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+h1 {
+    border-radius: 5px;
+    margin: 25px auto;
+    text-align: center;
+}
+
+h3 {
+    margin: 10px auto;
+    font-weight: bold;
+}
+
+.details {
+    padding: 10px;
+    border: 2px solid #023436;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #023436;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.accommodation-container .details,
+.activity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accommodation-container .container-image,
+.activity .container-image {
+    width: 75%;
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.accommodation-container .container-image img,
+.activity .container-image img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.accommodation-container .container-description,
+.activity .container-description {
+    width: 25%;
+
+}
+
+input {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 25px auto;
+    border-radius: 25px;
+    border: 2px solid var(--background-color);
+}
+
+
+#transport-view form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#transport-view form div {
+    width: 50%;
+
+}
+
+#transport-view li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-top: 2px solid var(--background-color);
+    margin: 15px auto;
+    list-style-type: disc;
+}
+
+li.you {
+    border: none!important;
+}
+
+.book-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#transport-view button {
+    font-size: 16px;
+    background-color: white;
+    border: 2px solid var(--background-color);
+    outline: none;
+    padding: 10px;
+    border-radius: 15px;
+    width: 200px;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+.section-inverse h2{
+    background-color: var(--link-color);
+}
+.section-inverse .details{
+    border: 2px solid var(--link-color);
+}

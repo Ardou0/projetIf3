@@ -1,0 +1,36 @@
+{
+    "title": "Reservation d'un transport",
+    "transport": {
+        "title": "Le transport",
+        "type": {
+            "title": "Moyen de transport",
+            "plane": "Avion",
+            "train": "Train",
+            "bus": "Bus",
+            "car": "Voiture"
+        },
+        "format": "Format du ticket",
+        "seat": "Siège disponible"
+    },
+    "price": {
+        "title": "Résumer des Prix",
+        "pack": "Pack",
+        "accommodation": "Logement (à la nuité)",
+        "transport": "Transport",
+        "total": "Total"
+    },
+    "book": {
+        "title": "Vous souhaitez reserver",
+        "button": "Réserver"
+    },
+    "reservation_title": "Réserver maintenant",
+    "first_name_label": "Prénom",
+    "last_name_label": "Nom",
+    "email_label": "Email",
+    "add_passenger_button": "Ajouter un passager",
+    "max_passengers_alert": "Il n'y a plus de place",
+    "departure": "Date de voyage",
+    "return": "Date de retour",
+    "passenger": "Passagers",
+    "you": "Vous"
+} 

@@ -35,8 +35,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
                 <?php if ($reservation['has_comment'] === 0 && $reservation['reservation_status'] === 'completed') {
 
-                    $jsArray = "{accommodation_id: " . $reservation['accommodation_id'] . ", transport_id: " . $reservation['transport_id'] . ", package_id: " . $reservation['package_id'] . "}"
+                    $accommodationId = isset($reservation['accommodation_id']) ? $reservation['accommodation_id'] : 'null';
+                    $transportId = isset($reservation['transport_id']) ? $reservation['transport_id'] : 'null';
+                    $packageId = isset($reservation['package_id']) ? $reservation['package_id'] : 'null';
 
+                    $jsArray = "{accommodation_id: " . $accommodationId . ", transport_id: " . $transportId . ", package_id: " . $packageId . "}"
                 ?>
                     <button class="comment-button" onclick="openRating(<?= $jsArray ?>)">
                         <?= $data['comment'] ?>

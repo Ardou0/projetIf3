@@ -58,7 +58,7 @@ class reservationController
                     PR.price AS total_package_price,
                     
                     -- Calcul du prix total de la réservation
-                    (IFNULL(AR.price_per_night * PR.duration, 0) + 
+                    (IFNULL(AR.price_per_night *  DATEDIFF(R.travel_date_to, R.travel_date_from), 0) + 
                     IFNULL(TR.price, 0) + 
                     IFNULL(PR.price, 0)) AS total_price,
                     
@@ -218,17 +218,17 @@ ORDER BY
             exit();
         } else {
             if (isset($_POST['accommodation_id']) or isset($_POST['transport_id']) or isset($_POST['package_id'])) {
-                if (isset($_POST['accommodation_id'])) {
+                if (isset($_POST['accommodation_id']) and $_POST['accommodation_id'] != NULL) {
                     $accommodation = $_POST['accommodation_id'];
                 } else {
                     $accommodation = NULL;
                 }
-                if (isset($_POST['transport_id'])) {
+                if (isset($_POST['transport_id']) and $_POST['transport_id'] != NULL) {
                     $transport = $_POST['transport_id'];
                 } else {
                     $transport = NULL;
                 }
-                if (isset($_POST['package_id'])) {
+                if (isset($_POST['package_id']) and $_POST['package_id'] != NULL) {
                     $package = $_POST['package_id'];
                 } else {
                     $package = NULL;
