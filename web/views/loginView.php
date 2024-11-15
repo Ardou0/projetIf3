@@ -103,9 +103,27 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
         if (localStorage.getItem("rememberme") == "true") {
             document.getElementById("remember-me").checked = true;
             document.getElementById("login-email").value = localStorage.getItem("email");
-        }
-        else {
+        } else {
             localStorage.setItem("email", "");
         }
     </script>
+
+
+
+    <?php
+
+    if ($notification) {
+    ?>
+        <div class="notification notification-<?= $notification ?>">
+            <?= $data["notification"][$notification] ?>
+        </div>
+        <script>
+            setTimeout(() => {
+                document.querySelector(".notification").remove();
+            }, 3000);
+        </script>
+    <?php
+    }
+
+    ?>
 </section>

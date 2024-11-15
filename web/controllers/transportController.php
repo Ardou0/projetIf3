@@ -12,12 +12,14 @@ class transportController
         $this->_model = new model();
 
         if (isset($url[2]) and $url[2] == "show" and isset($url[3])) {
-            $sql = "SELECT * FROM transport_reference WHERE transport_reference_id = ?";
+            $sql = "SELECT * FROM transport_reference t INNER JOIN company c ON t.company_id = c.company_id WHERE transport_reference_id = ?";
             $transport = $this->_model->executeQuery($sql, [$url[3]]);
             if ($transport) {
                 $transport = $transport[0];
+                $sql = "SELECT * FROM `comments` c INNER JOIN transport t ON c.transport_id = t.transport_id INNER JOIN client ct on c.client_id = ct.client_id WHERE t.transport_reference_id = ?";
+                $comments = $this->_model->executeQuery($sql, [$url[3]]);
                 $this->_view = new view("offers/transport");
-                $this->_view->buildUp(array("transport" => $transport, "data" => $this->_model->extract("offers/transport.json")));
+                $this->_view->buildUp(array("transport" => $transport, "data" => $this->_model->extract("offers/transport.json"), "comments" => $comments));
             } else {
                 header('location' . URL . 'transport');
                 exit();
@@ -149,6 +151,9 @@ class transportController
                 header('location:' . URL . 'transport');
                 exit();
             }
+        } elseif (!isset($_SESSION['type']) and isset($url[2]) and $url[2] == "book") {
+            header('location:' . URL . 'login/notification/connect');
+            exit();
         } else {
 
             $this->_view = new view("transport");

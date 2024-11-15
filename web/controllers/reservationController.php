@@ -26,7 +26,7 @@ class reservationController
                 $this->commentReservation();
             } else {
 
-                if (isset($url[2]) == "notification") {
+                if (isset($url[2]) == "notification" and isset($args[3])) {
                     $notification = $url[3];
                 } else {
                     $notification = "";
@@ -100,19 +100,23 @@ class reservationController
                 $reservations = $this->_model->executeQuery($sql, [$_SESSION['id']]);
 
                 $updated = false;
-                foreach ($reservations as $reservation) {
-                    if (new DateTime($reservation['travel_date_from']) < new DateTime() && $reservation['reservation_status'] == "confirmed") {
-                        $sql = "UPDATE `reservation` SET `status`='completed' WHERE reservation_id = ?";
-                        $this->_model->executeQuery($sql, [$reservation['reservation_id']]);
-                        $updated = true;
+                if ($reservations) {
+                    foreach ($reservations as $reservation) {
+                        if (new DateTime($reservation['travel_date_from']) < new DateTime() && $reservation['reservation_status'] == "confirmed") {
+                            $sql = "UPDATE `reservation` SET `status`='completed' WHERE reservation_id = ?";
+                            $this->_model->executeQuery($sql, [$reservation['reservation_id']]);
+                            $updated = true;
+                        }
                     }
-                }
 
-                if ($updated) {
-                    header('location:' . URL . 'reservation');
-                    exit();
+                    if ($updated) {
+                        header('location:' . URL . 'reservation');
+                        exit();
+                    } else {
+                        $this->_view->buildUp(array("data" => $this->_model->extract("reservation.json"), "reservations" => $reservations, "notification" => $notification));
+                    }
                 } else {
-                    $this->_view->buildUp(array("data" => $this->_model->extract("reservation.json"), "reservations" => $reservations, "notification" => $notification));
+                    $this->_view->buildUp(array("data" => $this->_model->extract("reservation.json"), "notification" => $notification));
                 }
             }
         }

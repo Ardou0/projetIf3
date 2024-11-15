@@ -18,5 +18,12 @@
         "button": "Réserver"
     },
     "departure": "Date de départ",
-    "return": "Date de retour"
+    "return": "Date de retour",
+    "comments": {
+        "title": "Les commentaires"
+    },
+    "nothing": "Aucun commentaire",
+    "company_title": "L'entreprise",
+    "company_name": "Nom de l'entreprise",
+    "company_email": "Email de l'entreprise"
 }

@@ -20,8 +20,13 @@ class loginController
             if ($_POST) {
                 $this->client_connect();
             } else {
+                if (isset($args[2]) == "notification" and isset($args[3])) {
+                    $notification = $args[3];
+                } else {
+                    $notification = "";
+                }
                 $this->_view = new view("login");
-                $this->_view->buildUp(array("data" => $this->_model->extract("login.json")));
+                $this->_view->buildUp(array("data" => $this->_model->extract("login.json"), "notification" => $notification));
             }
         }
     }

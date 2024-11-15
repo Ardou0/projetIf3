@@ -1,12 +1,32 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
+
+
+
+if ($transport['picture']) {
+    $img = URL . "public/img/profile/" . $transport['picture'];
+} else {
+    $img = URL . "public/img/profile/default.jpg";
+}
 ?>
 
 
 <section id="transport-view">
     <h1><?= $data['title'] ?></h1>
-
+    
+    <div class='section enterprise'>
+        <h2><?php echo $data['company_title']; ?></h2>
+        <div class='details'>
+            <div class="img">
+                <img src="<?= $img ?>" alt="company_picture">
+            </div>
+            <div class="text">
+                <p><strong><?php echo $data['company_name']; ?> :</strong> <?php echo $transport['full_name'] ?></p>
+                <p><strong><?php echo $data['company_email']; ?> :</strong> <?php echo $transport['email']; ?></p>
+            </div>
+        </div>
+    </div>
 
     <div class="transport-container section">
         <h2><?= $data["transport"]["title"] ?></h2>
@@ -46,6 +66,48 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                     <button type="submit" id="book-button"><?= htmlspecialchars($data['book']['button']); ?></button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="section comments">
+        <h2><?= $data["comments"]["title"] ?></h2>
+        <div class="details">
+            <?php
+
+            if (isset($comments)) {
+                foreach ($comments as $comment) {
+
+            ?>
+
+                    <div class="comment">
+                        <div class="name-rating">
+                            <div class="name">
+                                <?= $comment['first_name'] . " " . $comment['last_name'] ?>
+                            </div>
+                            <div class="rating">
+                                <?php
+                                for ($i = 0; $i < $comment['rating']; $i++) {
+                                ?>
+
+                                    <span class="rate">☆</span>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="comment-description">
+                            <?= htmlspecialchars($comment['comments']) ?>
+                        </div>
+                    </div>
+
+            <?php
+                }
+            }
+            else {
+                echo "<h1>". $data['nothing'] ."</h1>";
+            }
+
+            ?>
         </div>
     </div>
     <script>

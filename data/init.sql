@@ -230,8 +230,8 @@ INSERT INTO destination (continent, country, city) VALUES
 
 -- Ajout de données test pour la table company
 INSERT INTO company (full_name, email, password, picture) VALUES 
-('Company A', 'companya@example.com', 'password123', 'companya.jpg'),
-('Company B', 'companyb@example.com', 'password456', 'companyb.jpg');
+('Company A', 'companya@example.com', 'password123', null),
+('Company B', 'companyb@example.com', 'password456', null);
 
 -- Ajout de données test pour la table transport_reference
 INSERT INTO transport_reference (company_id, destination_id, provider_name, transport_type, ticket_format, seat_available, price) VALUES 

@@ -135,3 +135,50 @@ li.you {
 .section-inverse .details{
     border: 2px solid var(--link-color);
 }
+
+
+.comments .details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment .name-rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comment .rating {
+    margin-left: 25px;
+}
+
+.comment {
+    margin: 50px;
+    padding: 15px;
+    width: 260px;
+    border: 2px solid var(--background-color);
+
+    border-radius: 15px;
+}
+
+
+.comment .comment-description {
+    padding-top: 15px;
+}
+
+.enterprise .details {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.enterprise p {
+    margin: 10px;
+}
+
+.enterprise .img img{
+    width: 100px;
+    height: 100px;
+}

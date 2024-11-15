@@ -18,5 +18,6 @@
     "taken": "Le",
     "motd": "Résumer de la réservation",
     "from": "Du",
-    "to": "au"
+    "to": "au",
+    "nothing": "Aucune Réservation"
 }

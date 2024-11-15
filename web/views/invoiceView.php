@@ -34,7 +34,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                     for ($i = 0; $i < count($passenger_first_names); $i++) {
                         echo '<li>' . $passenger_first_names[$i] . ' ' . $passenger_last_names[$i] . '</li>';
                     }
-                } ?>
+                } else {
+                    echo $data['none'];
+                } 
+                
+                ?>
             </ul>
         </div>
     </div>

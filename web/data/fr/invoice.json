@@ -1,6 +1,7 @@
 {
     "header_title": "WallSub - Facture / Récapitulatif de la Réservation",
     "client_title": "Client",
+    "company_title": "Entreprise",
     "client_name_label": "Client",
     "client_email_label": "Email",
     "client_phone_label": "Numéro de téléphone",
@@ -34,5 +35,6 @@
     "payment_title": "Paiement",
     "payment_amount_label": "Montant",
     "payment_date_label": "Date de Paiement",
-    "no-passenger": "Aucun passager suplémentaire"
+    "no-passenger": "Aucun passager suplémentaire",
+    "none": "Aucun"
 }

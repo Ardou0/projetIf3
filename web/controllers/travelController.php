@@ -15,6 +15,7 @@ class travelController
             pr.package_reference_id,
             pr.company_id,
             c.full_name AS company_name,
+            c.picture,
             c.email AS company_email,
             d.continent,
             d.country,
@@ -53,16 +54,17 @@ class travelController
             $package = $this->_model->executeQuery($sql, [$url[3]]);
 
             if ($package) {
+                $sql = "SELECT * FROM `comments` c INNER JOIN package pa ON c.package_id = pa.package_id INNER JOIN client ct on c.client_id = ct.client_id WHERE pa.package_reference_id = ?";
+                $comments = $this->_model->executeQuery($sql, [$url[3]]);
                 $sql = "SELECT * FROM activity WHERE package_reference_id = ?";
-
                 $activities = $this->_model->executeQuery($sql, [$package[0]["package_reference_id"]]);
                 $this->_view = new view("offers/package");
-                $this->_view->buildUp(array("package" => $package[0], "data" => $this->_model->extract("offers/package.json"), "activities" => $activities));
+                $this->_view->buildUp(array("package" => $package[0], "data" => $this->_model->extract("offers/package.json"), "activities" => $activities, "comments" => $comments));
             } else {
                 header('location:' . URL . 'travel');
                 exit();
             }
-        } elseif (isset($url[2]) and $url[2] == "book" and isset($url[3]) and $_SESSION['type'] == "client") {
+        } elseif (isset($url[2]) and $url[2] == "book" and isset($_SESSION['type']) and isset($url[3]) and $_SESSION['type'] == "client") {
             $sql = "SELECT 
             PR.*,  -- Sélectionner toutes les colonnes de package_reference
             (IFNULL(AR.price_per_night * PR.duration, 0) + 
@@ -237,9 +239,12 @@ class travelController
                 header('Location:' . URL . 'reservation');
                 exit();
             } else {
-                header('location:' . URL . 'travel');
+                header('location:' . URL . 'transport');
                 exit();
             }
+        } elseif (!isset($_SESSION['type']) and isset($url[2]) and $url[2] == "book") {
+            header('location:' . URL . 'login/notification/connect');
+            exit();
         } else {
             $destinations = $this->_model->executeQuery("SELECT * FROM destination");
             // Initialisation de la requête SQL et des paramètres

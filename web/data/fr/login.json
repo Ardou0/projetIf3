@@ -16,5 +16,10 @@
             "client": "Client",
             "company": "Entreprise"
         }
+    },
+    "notification": {
+        "missing": "Arguments manquants",
+        "registered": "Compte créé",
+        "connect": "Veuillez-vous connecter"
     }
 }

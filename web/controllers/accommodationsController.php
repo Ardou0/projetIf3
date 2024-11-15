@@ -11,12 +11,14 @@ class accommodationsController
     {
         $this->_model = new model();
         if (isset($url[2]) and $url[2] == "show" and isset($url[3])) {
-            $sql = "SELECT * FROM accommodation_reference WHERE accommodation_reference_id = ?";
+            $sql = "SELECT * FROM accommodation_reference AC INNER JOIN company c ON AC.company_id = c.company_id WHERE accommodation_reference_id = ?";
             $accommodation = $this->_model->executeQuery($sql, [$url[3]]);
             if ($accommodation) {
                 $accommodation = $accommodation[0];
+                $sql = "SELECT * FROM `comments` c INNER JOIN accommodation aa ON c.accommodation_id = aa.accommodation_id INNER JOIN client ct on c.client_id = ct.client_id WHERE aa.accommodation_reference_id = ?";
+                $comments = $this->_model->executeQuery($sql, [$url[3]]);
                 $this->_view = new view("offers/accommodation");
-                $this->_view->buildUp(array("accommodation" => $accommodation, "data" => $this->_model->extract("offers/accommodation.json")));
+                $this->_view->buildUp(array("accommodation" => $accommodation, "data" => $this->_model->extract("offers/accommodation.json"), 'comments' => $comments));
             } else {
                 header('location' . URL . 'accommodations');
                 exit();
@@ -118,9 +120,12 @@ class accommodationsController
                 header('Location:' . URL . 'reservation');
                 exit();
             } else {
-                header('Location:' . URL . 'accommodations');
+                header('location:' . URL . 'transport');
                 exit();
             }
+        } elseif (!isset($_SESSION['type']) and isset($url[2]) and $url[2] == "book") {
+            header('location:' . URL . 'login/notification/connect');
+            exit();
         } else {
             $this->_view = new view("accommodations");
 

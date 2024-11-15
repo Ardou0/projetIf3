@@ -20,13 +20,13 @@ class registerController
             if (isset($credentials['type'])) {
                 if ($credentials['type'] == "company") {
                     if (!isset($credentials['first_name']) || !isset($credentials['email']) || !isset($credentials['password'])) {
-                        header('location:' . URL . 'login/missing');
+                        header('location:' . URL . 'login/notification/missing');
                         exit();
                     }
                 }
                 if ($credentials['type'] == "client") {
                     if (!isset($credentials['first_name']) || !isset($credentials['last_name']) || !isset($credentials['email']) || !isset($credentials['password'])) {
-                        header('location:' . URL . 'login/missing');
+                        header('location:' . URL . 'login/notification/missing');
                         exit();
                     }
                 }
@@ -38,11 +38,11 @@ class registerController
                     if ($credentials['type'] == "client") {
                         $result = $this->_model->executeQuery("INSERT INTO client (first_name, last_name, email, password) VALUES ( ? , ? , ? , ?)", array($credentials['first_name'], $credentials['last_name'], $credentials['email'], hash('sha256', $credentials['password'])));
                     }
-                    header('location:' . URL . 'login/registered');
+                    header('location:' . URL . 'login/notification/registered');
                     exit();
                 }
             } else {
-                header('location:' . URL . 'login/missing');
+                header('location:' . URL . 'login/notification/missing');
                 exit();
             }
         }
