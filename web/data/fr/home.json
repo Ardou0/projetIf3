@@ -19,5 +19,8 @@
         "activities": "Activité(s) inclus",
         "days": "jours",
         "more": "En savoir plus"
+    },
+    "recommendation": {
+        "title": "Nos recommendation pour vous"
     }
 }

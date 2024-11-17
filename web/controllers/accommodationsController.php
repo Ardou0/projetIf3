@@ -120,14 +120,23 @@ class accommodationsController
                 header('Location:' . URL . 'reservation');
                 exit();
             } else {
-                header('location:' . URL . 'transport');
+                header('location:' . URL . 'accommodations/notification/error');
                 exit();
             }
         } elseif (!isset($_SESSION['type']) and isset($url[2]) and $url[2] == "book") {
             header('location:' . URL . 'login/notification/connect');
             exit();
+        } elseif (isset($_SESSION['type']) and $_SESSION['type'] == "company" and isset($url[2]) and $url[2] == "book") {
+            header('location:' . URL . 'accommodations/notification/enterprise');
+            exit();
         } else {
             $this->_view = new view("accommodations");
+
+            if (isset($url[2]) and $url[2] == "notification" and isset($args[3])) {
+                $notification = $url[3];
+            } else {
+                $notification = "";
+            }
 
             $destinations = $this->_model->executeQuery("SELECT * FROM destination");
             $sql = "SELECT *
@@ -172,7 +181,7 @@ class accommodationsController
             $sql .= " ORDER BY `accommodation_reference_id` DESC LIMIT 10";
 
 
-            $this->_view->buildUp(array("data" => $this->_model->extract("accommodations.json"), 'destinations' => $destinations, "accommodations" => $this->_model->executeQuery($sql, $params)));
+            $this->_view->buildUp(array("notification" => $notification, "data" => $this->_model->extract("accommodations.json"), 'destinations' => $destinations, "accommodations" => $this->_model->executeQuery($sql, $params)));
         }
     }
 }

@@ -101,7 +101,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                             <p><?= $data['accommodations']['amenities'] ?>: <?= htmlspecialchars($accommodation['amenities']) ?></p>
                             <p><?= $data['accommodations']['price_per_night'] ?>: <?= htmlspecialchars($accommodation['price_per_night']) ?> <?= CURRENCY ?></p>
                         </div>
-                        <a href="<?= URL . "accommodations/show/". $accommodation['accommodation_reference_id'] ?>" class="learn-more-btn"><?= $data['accommodations']['more'] ?></a>
+                        <a href="<?= URL . "accommodations/show/" . $accommodation['accommodation_reference_id'] ?>" class="learn-more-btn"><?= $data['accommodations']['more'] ?></a>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -109,5 +109,20 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             <p><?= $data['no-offers'] ?></p>
         <?php } ?>
     </div>
+    <?php
 
+    if ($notification) {
+    ?>
+        <div class="notification notification-<?= $notification ?>">
+            <?= $data["notification"][$notification] ?>
+        </div>
+        <script>
+            setTimeout(() => {
+                document.querySelector(".notification").remove();
+            }, 3000);
+        </script>
+    <?php
+    }
+
+    ?>
 </section>

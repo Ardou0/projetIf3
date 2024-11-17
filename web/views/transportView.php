@@ -169,4 +169,20 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             <p><?= $data['no-transports'] ?></p>
         <?php } ?>
     </div>
+    <?php
+
+    if ($notification) {
+    ?>
+        <div class="notification notification-<?= $notification ?>">
+            <?= $data["notification"][$notification] ?>
+        </div>
+        <script>
+            setTimeout(() => {
+                document.querySelector(".notification").remove();
+            }, 3000);
+        </script>
+    <?php
+    }
+
+    ?>
 </section>

@@ -230,8 +230,8 @@ INSERT INTO destination (continent, country, city) VALUES
 
 -- Ajout de données test pour la table company
 INSERT INTO company (full_name, email, password, picture) VALUES 
-('Company A', 'companya@example.com', 'password123', null),
-('Company B', 'companyb@example.com', 'password456', null);
+('Company A', 'companya@example.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', null),
+('Company B', 'companyb@example.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', null);
 
 -- Ajout de données test pour la table transport_reference
 INSERT INTO transport_reference (company_id, destination_id, provider_name, transport_type, ticket_format, seat_available, price) VALUES 
@@ -295,3 +295,8 @@ INSERT INTO payment (reservation_id, amount, payment_date, payment_method, payme
 INSERT INTO comments (client_id, package_id, transport_id, accommodation_id, rating, comments) VALUES 
 (1, 1, 1, 1, 5, 'Amazing trip to Paris, everything was perfect!'),
 (2, 2, 2, 2, 4, 'Great trip to New York, but the hotel could have been better.');
+
+INSERT INTO itinerary (package_reference_id, schedule_description, emergency_contact) VALUES
+(1, 'Day 1: Arrival in Paris, Day 2: Eiffel Tower Tour, Day 3: Louvre Museum Visit, Day 4-7: Free Time in Paris', '112'),
+(2, 'Day 1: Arrival in New York, Day 2: Statue of Liberty Visit, Day 3-5: City Exploration', '911'),
+(3, 'Day 1: Arrival in Rome, Day 2-10: Explore Rome, Vatican City, and Surroundings', '113');

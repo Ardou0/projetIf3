@@ -1,0 +1,60 @@
+{
+    "reservation": {
+        "title": "Reservations",
+        "confirmed": "Confirmed - Completed",
+        "pending": "Pending",
+        "cancelled": "Cancelled"
+    },
+    "payment": {
+        "title": "Finances",
+        "received": "Received",
+        "pending": "Pending",
+        "refunded": "Refunded"
+    },
+    "rating": {
+        "title": "Ratings",
+        "average": "Average Reviews",
+        "total": "Total Reviews"
+    },
+    "clients": {
+        "title": "My Clients",
+        "id": "Client ID",
+        "first": "First Name",
+        "last": "Last Name",
+        "phone": "Phone Number",
+        "email": "Email Address",
+        "reservation": "Reservation ID",
+        "status": "Reservation Status",
+        "action": {
+            "title": "Action",
+            "cancel": "Cancel",
+            "see": "View"
+        }
+    },
+    "offers": {
+        "title": "My Offers",
+        "id": "Offer ID",
+        "destination": "Destination",
+        "name": "Offer Title",
+        "details": "Details",
+        "type": "Type",
+        "price": "Price",
+        "action": {
+            "title": "Action",
+            "delete": "Delete",
+            "edit": "Edit",
+            "see": "View"
+        },
+        "accommodation": "Accommodation",
+        "transport": "Transport",
+        "package": "Package",
+        "new": "Create"
+    },
+    "search": {
+        "package": "Package",
+        "accommodation": "Accommodation",
+        "transport": "Transport",
+        "choose": "Select"
+    },
+    "create": "Create an Offer"
+}

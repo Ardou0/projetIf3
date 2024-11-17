@@ -11,22 +11,25 @@ class reservationController
     {
         $this->_model = new model();
 
-        if (!isset($_SESSION['type']) || $_SESSION['type'] == "company") {
+        if (!isset($_SESSION['type'])) {
             header('location:' . URL);
             exit();
+        } elseif (isset($url[2]) and $url[2] == 'invoice' and isset($url[3])) {
+            $this->generateInvoice($url);
+        } elseif (isset($url[2]) and $url[2] == 'cancel' and isset($url[3])) {
+            $this->cancelReservation($url);
         } else {
-
-            if (isset($url[2]) and $url[2] == 'invoice' and isset($url[3])) {
-                $this->generateInvoice($url);
-            } elseif (isset($url[2]) and $url[2] == 'pay' and isset($url[3])) {
+            if ($_SESSION['type'] == 'company') {
+                header('location:' . URL);
+                exit();
+            }
+            if (isset($url[2]) and $url[2] == 'pay' and isset($url[3])) {
                 $this->payReservation($url);
-            } elseif (isset($url[2]) and $url[2] == 'cancel' and isset($url[3])) {
-                $this->cancelReservation($url);
             } elseif (isset($url[2]) and $url[2] == 'comment' and !isset($url[3])) {
                 $this->commentReservation();
             } else {
 
-                if (isset($url[2]) == "notification" and isset($args[3])) {
+                if (isset($url[2]) and $url[2] == "notification" and isset($args[3])) {
                     $notification = $url[3];
                 } else {
                     $notification = "";
@@ -185,7 +188,11 @@ GROUP BY
     R.reservation_id 
 ORDER BY 
     R.reservation_date DESC;";
-        $reservation = $this->_model->executeQuery($sql, [$_SESSION['id'], $url[3]]);
+        if ($_SESSION['type'] == "company" and isset($url[4])) {
+            $reservation = $this->_model->executeQuery($sql, [$url[4], $url[3]]);
+        } else {
+            $reservation = $this->_model->executeQuery($sql, [$_SESSION['id'], $url[3]]);
+        }
         if (isset($reservation)) {
             $reservation = $reservation[0];
             $this->_view = new view("invoice");
@@ -197,21 +204,40 @@ ORDER BY
 
     private function payReservation($url)
     {
-        $sql = "UPDATE `payment` p SET `payment_status`='completed' WHERE reservation_id = (SELECT reservation_id FROM reservation WHERE reservation_id = ? and client_id = ?);";
-        $this->_model->executeQuery($sql, [$url[3], $_SESSION['id']]);
-        $sql = "UPDATE `reservation` SET `status`='confirmed' WHERE reservation_id = ? and client_id = ?";
-        $this->_model->executeQuery($sql, [$url[3], $_SESSION['id']]);
-        header("location:" . URL . "reservation/notification/payed");
-        exit();
+        if (!isset($url[4])) {
+            header('location:' . URL . 'reservation/notification/error');
+            exit();
+        } else {
+            if ($url[4] == "bank") {
+                $method = "bank_transfer";
+            } elseif ($url[4] == "card") {
+                $method = 'credit_card';
+            }
+            $sql = "UPDATE `payment` p SET `payment_status`='completed', `payment_method` = ? WHERE reservation_id = (SELECT reservation_id FROM reservation WHERE reservation_id = ? and client_id = ?);";
+            $this->_model->executeQuery($sql, [$method, $url[3], $_SESSION['id']]);
+            $sql = "UPDATE `reservation` SET `status`='confirmed' WHERE reservation_id = ? and client_id = ?";
+            $this->_model->executeQuery($sql, [$url[3], $_SESSION['id']]);
+            header("location:" . URL . "reservation/notification/payed");
+            exit();
+        }
     }
 
     private function cancelReservation($url)
     {
+        if ($_SESSION['type'] == "company" and isset($url[4])) {
+            $id = $url[4];
+            $redirect = "dashboard";
+        } else {
+            $id = $_SESSION['id'];
+            $redirect = "reservation/notification/cancelled";
+        }
         $sql = "UPDATE `payment` p SET `payment_status`='refunded' WHERE reservation_id = (SELECT reservation_id FROM reservation WHERE reservation_id = ? and client_id = ?);";
-        $this->_model->executeQuery($sql, [$url[3], $_SESSION['id']]);
+        $this->_model->executeQuery($sql, [$url[3], $id]);
         $sql = "UPDATE `reservation` SET `status`='cancelled'  WHERE reservation_id = ? and client_id = ?";
-        $this->_model->executeQuery($sql, [$url[3], $_SESSION['id']]);
-        header("location:" . URL . "reservation/notification/cancelled");
+        $this->_model->executeQuery($sql, [$url[3], $id]);
+
+
+        header("location:" . URL . $redirect);
         exit();
     }
 

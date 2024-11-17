@@ -1,0 +1,60 @@
+{
+    "reservation": {
+        "title": "Réservations",
+        "confirmed": "Confirmées - Complétées",
+        "pending": "En attente",
+        "cancelled": "Annulées"
+    },
+    "payment": {
+        "title": "Finances",
+        "received": "Reçu",
+        "pending": "En attente",
+        "refunded": "Remboursé"
+    },
+    "rating": {
+        "title": "Notations",
+        "average": "Moyenne des avis",
+        "total": "Total d'avis"
+    },
+    "clients": {
+        "title": "Mes clients",
+        "id": "Identifiant client",
+        "first": "Prénom",
+        "last": "Nom",
+        "phone": "Numéro de téléphone",
+        "email": "Adresse mail",
+        "reservation": "Identifiant de la réservation",
+        "status": "Statut de la réservation",
+        "action": {
+            "title": "Action",
+            "cancel": "Annuler",
+            "see": "Voir"
+        }
+    },
+    "offers": {
+        "title": "Mes offres",
+        "id":"Identifiant de l'offre",
+        "destination": "Destination",
+        "name": "Titre de l'offre",
+        "details": "Détails",
+        "type": "Type",
+        "price": "Prix",
+        "action": {
+            "title": "Action",
+            "delete": "Supprimer",
+            "edit": "Modifier",
+            "see": "Voir"
+        },
+        "accommodation": "Logement",
+        "transport": "Transport",
+        "package": "Pack",
+        "new" : "Créer"
+    },
+    "search": {
+        "package": "Pack",
+        "accommodation": "Logement",
+        "transport": "Transport",
+        "choose": "Selectionner"
+    },
+    "create": "Créer une offre"
+}

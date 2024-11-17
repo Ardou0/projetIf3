@@ -163,12 +163,13 @@ select {
     right: 15px;
 }
 
-.notification-missing {
+.notification-missing,
+.notification-error {
     background: #ff000073;
     border: 2px solid red;
 }
 
-.notification-register,
+.notification-registered,
 .notification-connect {
 
     background: #00ff3773;

@@ -38,5 +38,9 @@
             "bus": "Bus",
             "car": "Voiture"
         }
+    },
+    "notification": {
+        "error": "Une erreur est survenue",
+        "enterprise": "Vous ne pouvez pas faire de réservation"
     }
 }

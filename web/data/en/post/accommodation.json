@@ -1,0 +1,11 @@
+{
+    "title": "New Accommodation",
+    "publish": "Publish",
+    "choose": "Select",
+    "price": "Price per Night",
+    "provider": "Company Name",
+    "picture": "Select Photo",
+    "room": "Room Type",
+    "amenities": "Amenities",
+    "occupants": "Number of Sleeps"
+}

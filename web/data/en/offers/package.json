@@ -1,0 +1,57 @@
+{
+    "activities": {
+        "title": "Here are the included activities",
+        "none": "There are no included activities"
+    },
+    "accommodation": {
+        "title": "Accommodation",
+        "room": "Room Type",
+        "plus": "Amenities",
+        "for": "Number of Sleeps"
+    },
+    "transport": {
+        "title": "Transport",
+        "type": {
+            "title": "Mode of Transport",
+            "plane": "Plane",
+            "train": "Train",
+            "bus": "Bus",
+            "car": "Car"
+        },
+        "format": "Ticket Format",
+        "seat": "Available Seat"
+    },
+    "price": {
+        "title": "Price Summary",
+        "pack": "Package",
+        "accommodation": "Accommodation (per night)",
+        "transport": "Transport",
+        "total": "Total"
+    },
+    "itinerary": {
+        "title": "Planned Itinerary",
+        "description": "The package will proceed as follows",
+        "contact": "Emergency contact in case of any issue"
+    },
+    "book": {
+        "title": "Would you like to book",
+        "button": "Book Now"
+    },
+    "reservation_title": "Book Now",
+    "first_name_label": "First Name",
+    "last_name_label": "Last Name",
+    "email_label": "Email",
+    "add_passenger_button": "Add a Passenger",
+    "max_passengers_alert": "No more seats available",
+    "departure": "Departure Date",
+    "return": "Return Date",
+    "passenger": "Passengers",
+    "you": "You",
+    "comments": {
+        "title": "Comments"
+    },
+    "nothing": "No comments",
+    "company_title": "The Company",
+    "company_name": "Company Name",
+    "company_email": "Company Email"
+}

@@ -146,7 +146,7 @@ section .main-search-bar button svg:hover {
     color: var(--background-color);
 }
 
-.package-container ul{
+.package-container ul {
     margin-left: 20px;
 }
 
@@ -211,16 +211,18 @@ section .main-search-bar button svg:hover {
     display: grid;
     justify-items: center;
 }
+
 .continent-container svg {
     max-height: 800px;
     position: absolute;
     top: -120px;
 }
 
-.continent path{
+.continent path {
     transition: 0.25s;
 }
-.continent:hover path  {
+
+.continent:hover path {
     stroke: var(--background-color);
     fill: var(--link-color);
     cursor: pointer;
@@ -240,4 +242,27 @@ section .main-search-bar button svg:hover {
     .package-container {
         grid-template: '.';
     }
+}
+
+.offer {
+    width: 250px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid var(--background-color);
+}
+
+.offer h4 {
+    text-align: center;
+
+}
+
+.offer p {
+    margin: 20px auto;
+}
+
+.container-offer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }

@@ -148,11 +148,14 @@ class transportController
                 header('Location:' . URL . 'reservation');
                 exit();
             } else {
-                header('location:' . URL . 'transport');
+                header('location:' . URL . 'transport/notification/error');
                 exit();
             }
         } elseif (!isset($_SESSION['type']) and isset($url[2]) and $url[2] == "book") {
             header('location:' . URL . 'login/notification/connect');
+            exit();
+        } elseif (isset($_SESSION['type']) and $_SESSION['type'] == "company" and isset($url[2]) and $url[2] == "book") {
+            header('location:' . URL . 'transport/notification/enterprise');
             exit();
         } else {
 
@@ -193,8 +196,14 @@ class transportController
 
             $sql .= " ORDER BY t.`transport_reference_id` DESC LIMIT 10";
 
+            if (isset($url[2]) and $url[2] == "notification" and isset($args[3])) {
+                $notification = $url[3];
+            } else {
+                $notification = "";
+            }
 
-            $this->_view->buildUp(array("data" => $this->_model->extract("transport.json"), 'destinations' => $destinations, "transports" => $this->_model->executeQuery($sql, $params)));
+
+            $this->_view->buildUp(array("notification" => $notification, "data" => $this->_model->extract("transport.json"), 'destinations' => $destinations, "transports" => $this->_model->executeQuery($sql, $params)));
         }
     }
 }

@@ -40,6 +40,9 @@ class registerController
                     }
                     header('location:' . URL . 'login/notification/registered');
                     exit();
+                } else {
+                    header('location:' . URL . 'login/notification/error');
+                    exit();
                 }
             } else {
                 header('location:' . URL . 'login/notification/missing');

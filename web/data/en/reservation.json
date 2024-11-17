@@ -1,0 +1,25 @@
+{
+    "invoice": "Details",
+    "destination": "Destination",
+    "duration": "Duration",
+    "price": "Price",
+    "date": "Travel Date",
+    "reservation": "Reservation Status",
+    "payment": "Payment Status",
+    "pay": "Pay",
+    "cancel": "Cancel",
+    "comment": "Leave a Review",
+    "notification": {
+        "payed": "Payment successfully completed",
+        "error": "An error has occurred",
+        "cancelled": "Your reservation has been cancelled",
+        "comment": "Review submitted"
+    },
+    "taken": "On",
+    "motd": "Reservation Summary",
+    "from": "From",
+    "to": "To",
+    "nothing": "No Reservations",
+    "bank": "Bank Transfer",
+    "card": "Credit Card"
+}

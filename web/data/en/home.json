@@ -1,0 +1,26 @@
+{
+    "header": {
+        "title": "WallSub Travels",
+        "subtitle": "Travel Around the World"
+    },
+    "form": {
+        "title": "Choose Your Destination",
+        "go": "I want to go to"
+    },
+    "map": {
+        "title": "Around the World",
+        "description": "Click on the continent of your choice"
+    },
+    "packs": {
+        "title": "Travel Packages",
+        "destination": "Destination",
+        "duration": "Duration",
+        "price": "Price",
+        "activities": "Included Activity(ies)",
+        "days": "days",
+        "more": "Learn More"
+    },
+    "recommendation": {
+        "title": "Our Recommendations for You"
+    }
+}

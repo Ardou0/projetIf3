@@ -8,7 +8,7 @@
     },
     "company": {
         "profile": "profil",
-        "offers": "Mes offres",
+        "dashboard": "Dashboard",
         "login/logout": "deconnexion"
     },
     "menu": {

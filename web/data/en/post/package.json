@@ -1,0 +1,21 @@
+{
+    "title": "New Package",
+    "publish": "Publish",
+    "choose": "Select",
+    "price": "Activity Price",
+    "picture": "Select Photo",
+    "choose_transport": "Transport ID",
+    "choose_accommodation": "Accommodation ID",
+    "itinerary": "Itinerary",
+    "emergency_contact": "Emergency Contact",
+    "duration": "Duration",
+    "days": "in days",
+    "description": "Description",
+    "activities_title": "Activities",
+    "add_activity": "Add an Activity",
+    "remove_activity": "Remove an Activity",
+    "activity_name": "Activity Name",
+    "activity_description": "Activity Description",
+    "activity_duration": "Activity Duration",
+    "reached": "Maximum Number of Activities Reached"
+}

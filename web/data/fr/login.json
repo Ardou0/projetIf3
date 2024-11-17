@@ -20,6 +20,7 @@
     "notification": {
         "missing": "Arguments manquants",
         "registered": "Compte créé",
-        "connect": "Veuillez-vous connecter"
+        "connect": "Veuillez-vous connecter",
+        "error": "Une erreur est survenu"
     }
 }

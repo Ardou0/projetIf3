@@ -36,5 +36,10 @@
     "payment_amount_label": "Montant",
     "payment_date_label": "Date de Paiement",
     "no-passenger": "Aucun passager suplémentaire",
-    "none": "Aucun"
+    "none": "Aucun",
+    "itinerary": {
+        "title": "Itinéraire prévu",
+        "description": "Le pack se déroulera de la manière suivante",
+        "contact": "Le contact d'urgence en cas de problème"
+    }
 }

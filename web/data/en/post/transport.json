@@ -1,0 +1,16 @@
+{
+    "title": "New Transport",
+    "publish": "Publish",
+    "transport": {
+        "title": "Mode of Transport",
+        "plane": "Plane",
+        "train": "Train",
+        "bus": "Bus",
+        "car": "Car"
+    },
+    "choose": "Select",
+    "provider": "Company Name",
+    "seat": "Seats for Sale",
+    "price": "Price",
+    "ticket": "Ticket Format"
+}

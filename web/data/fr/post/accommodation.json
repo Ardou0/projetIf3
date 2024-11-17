@@ -1,0 +1,11 @@
+{
+    "title": "Nouveau Logement",
+    "publish": "Publier",
+    "choose": "Selectionner",
+    "price": "Prix à la nuité",
+    "provider": "Nom de la companie",
+    "picture": "Selectionner la Photo",
+    "room": "Type de chambre",
+    "amenities": "Equipements",
+    "occupants": "Nombre de couchage"
+}

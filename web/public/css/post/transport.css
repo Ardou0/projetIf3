@@ -1,0 +1,44 @@
+section {
+    width: 80%;
+    margin: 50px auto;
+}
+
+
+@media (max-width: 1200px) {
+    #transport-section {
+        width: 95% !important;
+    }
+
+    section {
+        width: 100%;
+    }
+}
+
+h1 {
+    font-family: "Protest Strike", sans-serif;
+    font-size: 25px;
+    color: var(--background-color);
+    text-align: center;
+}
+
+form {
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+input, select {
+    width: 250px;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid var(--background-color);
+    border-radius: 15px;
+}
+
+input[type="submit"] {
+    width: 150px;
+    cursor: pointer;
+}

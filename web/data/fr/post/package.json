@@ -1,0 +1,21 @@
+{
+    "title": "Nouveau Pack",
+    "publish": "Publier",
+    "choose": "Selectionner",
+    "price": "Prix des activités",
+    "picture": "Selectionner la Photo",
+    "choose_transport": "Identifiant du transport",
+    "choose_accommodation": "Identifiant du logement",
+    "itinerary": "Itinéraire",
+    "emergency_contact": "Contact d'urgence",
+    "duration": "Durée",
+    "days": "en jours",
+    "description": "Description",
+    "activities_title": "Les activités",
+    "add_activity": "Ajouter une activité",
+    "remove_activity": "Supprimer l'acitivité",
+    "activity_name": "Nom de l'activité",
+    "activity_description": "Description de l'acitivité",
+    "activity_duration": "Durée de l'activité",
+    "reached": "Nombre maximum d'activités atteinte"
+}

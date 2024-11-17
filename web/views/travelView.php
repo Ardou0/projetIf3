@@ -166,7 +166,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                             </div>
                         </div>
 
-                        <a href="<?= URL."travel/show/". $package['package_reference_id'] ?>" class="learn-more-btn"><?= $data['packs']['more'] ?></a>
+                        <a href="<?= URL . "travel/show/" . $package['package_reference_id'] ?>" class="learn-more-btn"><?= $data['packs']['more'] ?></a>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -178,6 +178,24 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
         }
         ?>
     </div>
+
+    <?php
+
+    if ($notification) {
+    ?>
+        <div class="notification notification-<?= $notification ?>">
+            <?= $data["notification"][$notification] ?>
+        </div>
+        <script>
+            setTimeout(() => {
+                document.querySelector(".notification").remove();
+            }, 3000);
+        </script>
+    <?php
+    }
+
+    ?>
+
     <script>
         function changeSlide(direction, carouselId) {
             const carousel = document.getElementById(carouselId);

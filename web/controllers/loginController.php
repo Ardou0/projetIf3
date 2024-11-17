@@ -59,12 +59,12 @@ class loginController
                 header('location:' . URL);
                 exit();
             } else {
-                header('location:' . URL . 'login/error');
+                header('location:' . URL . 'login/notification/error');
                 exit();
             }
         }
         else {
-            header('location:' . URL . 'login/error');
+            header('location:' . URL . 'login/notification/error');
             exit();
         }
     }

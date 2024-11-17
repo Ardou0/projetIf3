@@ -36,12 +36,13 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                     }
                 } else {
                     echo $data['none'];
-                } 
-                
+                }
+
                 ?>
             </ul>
         </div>
     </div>
+
 
     <!-- Détails du forfait (affiché seulement si le forfait existe) -->
     <?php if (!empty($reservation['package_description'])) { ?>
@@ -51,6 +52,19 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                 <p><strong><?php echo $data['package_description_label']; ?> :</strong> <?php echo $reservation['package_description']; ?></p>
                 <p><strong><?php echo $data['package_duration_label']; ?> :</strong> <?php echo $reservation['package_duration']; ?> <?php echo $data['days_label']; ?></p>
                 <p><strong><?php echo $data['package_price_label']; ?> :</strong> <?php echo $reservation['package_price']; ?> EUR</p>
+            </div>
+        </div>
+    <?php } ?>
+
+
+    <!-- Détails de l'itinéraire (affiché seulement si le forfait existe) -->
+    <?php if (!empty($reservation['itinerary_id'])) { ?>
+        <div class="itinerary-container section">
+            <h2><?= $data["itinerary"]["title"] ?></h2>
+            <div class="details">
+                <p><?= $data['itinerary']['description'] ?> :</p>
+                <p><?= $reservation['itinerary_schedule'] ?></p>
+                <p><?= $data['itinerary']['contact'] ?>: <?= $reservation['emergency_contact'] ?></p>
             </div>
         </div>
     <?php } ?>

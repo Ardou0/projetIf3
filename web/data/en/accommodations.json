@@ -1,0 +1,38 @@
+{
+    "search": {
+        "price": "Price",
+        "place": "Place",
+        "choose": "Select",
+        "people": "Number of People",
+        "alone": "Alone",
+        "couple": "Couple",
+        "family": "Family",
+        "activities": "Number of Activities",
+        "continent": {
+            "title": "Continent",
+            "eu": "Europe",
+            "na": "North America",
+            "sa": "South America",
+            "oc": "Oceania",
+            "as": "Asia",
+            "af": "Africa"
+        },
+        "date": {
+            "departure": "Departure",
+            "return": "Return"
+        }
+    },
+    "no-offers": "No offers match your filters. Please try changing the filters.",
+    "accommodations": {
+        "location": "Location",
+        "room_type": "Room Type",
+        "max_occupants": "Number of People",
+        "amenities": "Amenities",
+        "price_per_night": "Price per Night",
+        "more": "Book"
+    },
+    "notification": {
+        "error": "An error has occurred",
+        "enterprise": "You cannot make a booking"
+    }
+}

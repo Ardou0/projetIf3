@@ -1,0 +1,42 @@
+{
+    "title": "My Profile",
+    "description": "To provide a service that meets your expectations, it is essential that you fill in or update your data.",
+    "login": {
+        "title": "My Login Information",
+        "mail": "Your Email",
+        "password": "Your Current Password",
+        "newer": "Your New Password"
+    },
+    "typeHere": "Type here",
+    "update": "Update",
+    "personal": {
+        "client": {
+            "title": "My Personal Information",
+            "first-name": "First Name",
+            "last-name": "Last Name",
+            "phone": "Phone Number",
+            "birth": "Date of Birth",
+            "preference": "Preferred Mode of Transport"
+        },
+        "company": {
+            "title": "My Company Information",
+            "name": "Company Name",
+            "picture": "Company Photo",
+            "select": "Click to Choose"
+        }
+    },
+    "search": {
+        "choose": "Select",
+        "transport": {
+            "title": "Mode of Transport",
+            "plane": "Plane",
+            "train": "Train",
+            "bus": "Bus",
+            "car": "Car"
+        }
+    },
+    "notification": {
+        "error": "An error has occurred",
+        "updated": "Update successful"
+    }
+}

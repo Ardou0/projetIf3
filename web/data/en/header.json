@@ -1,0 +1,20 @@
+{
+    "login": "Login",
+    "logged": "Welcome",
+    "client": {
+        "profile": "Profile",
+        "reservation": "Reservation",
+        "login/logout": "Logout"
+    },
+    "company": {
+        "profile": "Profile",
+        "dashboard": "Dashboard",
+        "login/logout": "Logout"
+    },
+    "menu": {
+        "home": "Home",
+        "travel": "Travel",
+        "accommodations": "Accommodations",
+        "transport": "Transport"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "title": "Accommodation Reservation",
+    "accommodation": {
+        "title": "Accommodation",
+        "room": "Room Type",
+        "plus": "Amenities",
+        "for": "Number of Sleeps"
+    },
+    "price": {
+        "title": "Price Summary",
+        "pack": "Package",
+        "accommodation": "Accommodation (per night)",
+        "transport": "Transport",
+        "total": "Total"
+    },
+    "book": {
+        "title": "Would you like to book",
+        "button": "Book Now"
+    },
+    "departure": "Departure Date",
+    "return": "Return Date",
+    "comments": {
+        "title": "Comments"
+    },
+    "nothing": "No comments",
+    "company_title": "The Company",
+    "company_name": "Company Name",
+    "company_email": "Company Email"
+}

@@ -252,3 +252,28 @@ form svg {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+
+.notification {
+    width: 250px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    text-align: center;
+}
+
+.notification-error,
+.notification-enterprise {
+    background: #ff000073;
+    border: 2px solid red;
+}
+
+.notification-ok {
+
+    background: #00ff3773;
+    border: 2px solid rgb(51, 255, 0);
+}

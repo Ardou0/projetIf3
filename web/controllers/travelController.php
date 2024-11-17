@@ -239,11 +239,14 @@ class travelController
                 header('Location:' . URL . 'reservation');
                 exit();
             } else {
-                header('location:' . URL . 'transport');
+                header('location:' . URL . 'travel/notification/error');
                 exit();
             }
         } elseif (!isset($_SESSION['type']) and isset($url[2]) and $url[2] == "book") {
             header('location:' . URL . 'login/notification/connect');
+            exit();
+        } elseif (isset($_SESSION['type']) and $_SESSION['type'] == "company" and isset($url[2]) and $url[2] == "book") {
+            header('location:' . URL . 'travel/notification/enterprise');
             exit();
         } else {
             $destinations = $this->_model->executeQuery("SELECT * FROM destination");
@@ -340,10 +343,15 @@ class travelController
                     }
                 }
             }
+            if (isset($url[2]) and $url[2] == "notification" and isset($url[3])) {
+                $notification = $url[3];
+            } else {
+                $notification = "";
+            }
 
             // Transmission des packages à la vue
             $this->_view = new view("travel");
-            $this->_view->buildUp(['packages' => $package_references, 'destinations' => $destinations, 'data' => $this->_model->extract('travel.json')]);
+            $this->_view->buildUp(['notification' => $notification, 'packages' => $package_references, 'destinations' => $destinations, 'data' => $this->_model->extract('travel.json')]);
         }
     }
 }

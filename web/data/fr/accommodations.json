@@ -30,5 +30,9 @@
         "amenities": "Equipements",
         "price_per_night": "Prix par nuit",
         "more": "Réserver"
+    },
+    "notification": {
+        "error": "Une erreur est survenue",
+        "enterprise": "Vous ne pouvez pas faire de réservation"
     }
 }

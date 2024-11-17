@@ -1,0 +1,26 @@
+{
+    "login": {
+        "button": "Login",
+        "id": "Email",
+        "password": "Password",
+        "remember": "Remember Me"
+    },
+    "register": {
+        "button": "Register",
+        "iam": "I am a",
+        "firstname": "First Name",
+        "name": "Last Name",
+        "id": "Email",
+        "password": "Password",
+        "type": {
+            "client": "Client",
+            "company": "Company"
+        }
+    },
+    "notification": {
+        "missing": "Missing arguments",
+        "registered": "Account created",
+        "connect": "Please log in",
+        "error": "An error has occurred"
+    }
+}

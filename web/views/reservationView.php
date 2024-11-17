@@ -24,12 +24,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                         <?= $data['invoice'] ?>
                     </a>
                     <?php if ($reservation['payment_status'] === 'pending') { ?>
-                        <a class="pay-button" href="<?= URL . "reservation/pay/" . $reservation['reservation_id'] ?>">
+                        <button class="pay-button" onclick="openPayment(<?= $reservation['reservation_id'] ?>)">
                             <?= $data['pay'] ?>
-                        </a>
+                        </button>
                     <?php } ?>
 
-                    <?php if ($reservation['reservation_status'] === 'confirmed' && strtotime($reservation['travel_date_from']) > time()) { ?>
+                    <?php if (($reservation['reservation_status'] === 'confirmed' || $reservation['reservation_status'] === 'pending') && strtotime($reservation['travel_date_from']) > time()) { ?>
                         <a class="cancel-button" href="<?= URL . "reservation/cancel/" . $reservation['reservation_id'] ?>">
                             <?= $data['cancel'] ?>
                         </a>
@@ -53,7 +53,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
         }
     } else {
         echo "<h1>" . $data['nothing'] . "</h1>";
-
     }
     ?>
 
@@ -99,7 +98,20 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             </div>
         </form>
     </div>
+
+    <div class="payment-section section-hidden">
+        <div class="container-payment-button">
+
+        </div>
+    </div>
     <script>
+        function openPayment(ids) {
+            document.querySelector(".container-payment-button").innerHTML = `
+            <a class="payment-button" href="<?= URL . "reservation/pay/" ?>${ids}/bank"><?= $data["bank"] ?></a>
+            <a class="payment-button" href="<?= URL . "reservation/pay/" ?>${ids}/card"><?= $data["card"] ?></a>`;
+            document.querySelector(".payment-section").classList.remove("section-hidden");
+        }
+
         document.getElementById('divRating').addEventListener('click', function(event) {
             if (event.target.tagName.toLowerCase() != 'span') return;
 

@@ -1,0 +1,213 @@
+section {
+    width: 80%;
+    margin: 50px auto;
+}
+
+
+@media (max-width: 1200px) {
+    #dashboard-section {
+        width: 95% !important;
+    }
+
+    section {
+        width: 100%;
+    }
+}
+
+h1 {
+    font-family: "Protest Strike", sans-serif;
+    font-size: 25px;
+    color: var(--background-color);
+    text-align: center;
+}
+
+.header-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+.report {
+    width: 250px;
+    height: 250px;
+    padding: 20px;
+    border: 2px solid var(--background-color);
+    border-radius: 15px;
+}
+
+.confirmed-reservation {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    flex-direction: column;
+    box-shadow: 0px 1px black;
+}
+
+.confirmed-reservation div {
+    text-align: center;
+}
+
+.annex-reservation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+
+}
+
+.pending-reservation {
+    width: 50%;
+    text-align: center;
+    box-shadow: 1px 0px black
+}
+
+.cancelled-reservation {
+    width: 50%;
+    text-align: center;
+}
+
+.average-rating {
+    box-shadow: 0px 1px black;
+}
+
+.average-rating,
+.total-rating {
+    text-align: center;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.title-count {
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.671);
+}
+
+.count-reservation {
+    font-size: 35px;
+    color: var(--background-color);
+}
+
+.pending-reservation .count-reservation {
+    color: rgb(255, 136, 0);
+}
+
+.cancelled-reservation .count-reservation {
+    color: rgb(255, 60, 0);
+}
+
+#donut-finance {
+    margin: auto;
+}
+
+.body-section h1,
+.footer-section h1 {
+    margin: 50px auto;
+}
+
+table {
+    margin: auto;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--background-color);
+}
+
+table tr {
+    height: 50px;
+    border-bottom: 1px solid var(--background-color);
+}
+
+table td {
+    border-left: 1px solid var(--background-color);
+    border-right: 1px solid var(--background-color);
+    padding: 5px;
+    text-align: center;
+}
+
+table .first-line {
+    border-top: 1px solid var(--background-color);
+    background-color: rgba(2, 52, 54, 0.7);
+    color: white;
+}
+
+.body-section a,
+.footer-section a {
+    font-family: "Protest Strike", sans-serif;
+    color: var(--background-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+}
+
+.more {
+    margin-left: 50px;
+}
+
+.footer-section a {
+    margin: 10px;
+}
+
+.body-section a:hover::after,
+.footer-section a:hover::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    content: attr(text);
+    color: var(--link-color);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.body-section a::after,
+.footer-section a::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    opacity: 1;
+    overflow: hidden;
+    content: attr(text);
+    color: var(--link-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.new-offers {
+    width: 400px;
+    height: 200px;
+    margin: 50px auto;
+    border: 2px solid var(--background-color);
+    padding: 15px;
+    border-radius: 15px;
+}
+.new-offers h1 {
+    margin: 30px auto;
+}
+.new-offers form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.new-offers form input, .new-offers form select{
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid var(--background-color);
+    border-radius: 8px;
+    cursor: pointer;
+}

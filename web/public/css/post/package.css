@@ -1,0 +1,98 @@
+section {
+    width: 80%;
+    margin: 50px auto;
+}
+
+
+@media (max-width: 1200px) {
+    #transport-section {
+        width: 95% !important;
+    }
+
+    section {
+        width: 100%;
+    }
+}
+
+h1,
+h2 {
+    font-family: "Protest Strike", sans-serif;
+    font-size: 25px;
+    color: var(--background-color);
+    text-align: center;
+}
+
+form {
+    margin: 35px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    width: 250px;
+
+}
+
+input,
+select,
+textarea,
+.file-name {
+    width: 250px;
+    resize: vertical;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid var(--background-color);
+    border-radius: 15px;
+}
+
+input[type="submit"] {
+    width: 150px;
+    cursor: pointer;
+}
+
+
+.img-container {
+    width: 200px;
+    display: flex;
+    height: 200px;
+    overflow: hidden;
+    border: 2px solid var(--background-color);
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    margin: 5px auto;
+}
+
+.preview-image {
+    width: auto;
+    height: 100%;
+}
+
+.activity-entry {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#activities-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+button {
+    width: 150px;
+    resize: vertical;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid var(--background-color);
+    border-radius: 15px;
+    margin: auto;
+    cursor: pointer;
+}
