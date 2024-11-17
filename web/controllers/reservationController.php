@@ -29,7 +29,7 @@ class reservationController
                 $this->commentReservation();
             } else {
 
-                if (isset($url[2]) and $url[2] == "notification" and isset($args[3])) {
+                if (isset($url[2]) and $url[2] == "notification" and isset($url[3])) {
                     $notification = $url[3];
                 } else {
                     $notification = "";
