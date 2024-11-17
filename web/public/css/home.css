@@ -266,4 +266,5 @@ section .main-search-bar button svg:hover {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 20px;
 }
