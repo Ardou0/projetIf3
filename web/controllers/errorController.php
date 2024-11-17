@@ -6,10 +6,12 @@ class errorController
 {
 
     private $_view;
+    private $_model;
 
     public function __construct($e)
     {
         $this->_view = new view("error");
-        $this->_view->buildUp(array("error" => $e));
+        $this->_model = new model();
+        $this->_view->buildUp(array("error" => $e, "data" => $this->_model->extract("error.json")));
     }
 }

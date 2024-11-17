@@ -9,6 +9,7 @@ if (!isset($method)) {
 
 <section id="package-section">
     <h1><?= $data['title'] ?></h1>
+    <p><?= $data['explanation'] ?></p>
     <form action="<?= URL ?>offer/<?= $method ?>/package/<?= isset($package) ? $package['package_reference_id'] : '' ?>" method="POST" enctype="multipart/form-data">
         <input type="text" name="name" value="package" hidden>
         <select name="destination" required>
@@ -34,10 +35,10 @@ if (!isset($method)) {
                 <?php if (isset($activities) && is_array($activities)) {
                     foreach ($activities as $index => $activity) { ?>
                         <div class="activity-entry">
-                            <input type="text" name="activity-<?= $index ?>-name" placeholder="<?= $data['activity_name'] ?>" value="<?= htmlspecialchars($activity['activity_name']) ?>">
-                            <input type="text" name="activity-<?= $index ?>-description" placeholder="<?= $data['activity_description'] ?>" value="<?= htmlspecialchars($activity['activity_description']) ?>">
-                            <input type="number" name="activity-<?= $index ?>-duration" placeholder="<?= $data['activity_duration'] ?>" value="<?= htmlspecialchars($activity['duration_hours']) ?>">
-                            <input type="number" name="activity-<?= $index ?>-id" value="<?= $activity['activity_id'] ?>" hidden>
+                            <input type="text" name="activity-<?= $index ?>-name" required placeholder="<?= $data['activity_name'] ?>" value="<?= htmlspecialchars($activity['activity_name']) ?>">
+                            <input type="text" name="activity-<?= $index ?>-description" required placeholder="<?= $data['activity_description'] ?>" value="<?= htmlspecialchars($activity['activity_description']) ?>">
+                            <input type="number" name="activity-<?= $index ?>-duration" required placeholder="<?= $data['activity_duration'] ?>" value="<?= htmlspecialchars($activity['duration_hours']) ?>">
+                            <input type="number" name="activity-<?= $index ?>-id" required value="<?= $activity['activity_id'] ?>" hidden>
                             <div class="personal-form-element">
                                 <div class="file-name" onclick="document.getElementById('activity-picture-<?= $index ?>').click();">
                                     <?= $data['picture'] ?>
@@ -72,10 +73,10 @@ if (!isset($method)) {
             const activityEntry = document.createElement('div');
             activityEntry.classList.add('activity-entry');
             activityEntry.innerHTML = `
-            <input type="text" name="activity-${activityIndex}-name" placeholder="<?= $data['activity_name'] ?>">
-            <input type="text" name="activity-${activityIndex}-description" placeholder="<?= $data['activity_description'] ?>">
-            <input type="number" name="activity-${activityIndex}-duration" placeholder="<?= $data['activity_duration'] ?>">
-            <input type="number" name="activity-${activityIndex}-id" hidden value="0">
+            <input type="text" name="activity-${activityIndex}-name" required placeholder="<?= $data['activity_name'] ?>">
+            <input type="text" name="activity-${activityIndex}-description" required placeholder="<?= $data['activity_description'] ?>">
+            <input type="number" name="activity-${activityIndex}-duration" required placeholder="<?= $data['activity_duration'] ?>">
+            <input type="number" name="activity-${activityIndex}-id" required hidden value="0">
             <div class="personal-form-element">
                 <div class="file-name" onclick="document.getElementById('activity-picture-${activityIndex}').click();">
                     <?= $data['picture'] ?>

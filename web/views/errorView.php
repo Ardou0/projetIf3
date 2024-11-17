@@ -4,4 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
 
 ?>
 
-<h1>Erreur : <?= $error ?></h1>
+<section>
+    <h1><?= $data['error'] ?> : <?= $error ?></h1>
+    <a href="<?= URL ?>"><?= $data['getSafe'] ?></a>
+</section>

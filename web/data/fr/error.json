@@ -3,5 +3,7 @@
     "wait": "Veuillez patienter quelques instants...",
     "database": {
         "ready": "La base de donnée est en cours de chargement"
-    }
+    },
+    "error": "Erreur",
+    "getSafe": "Retourner en lieu sur"
 }

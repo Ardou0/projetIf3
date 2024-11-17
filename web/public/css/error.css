@@ -1,0 +1,25 @@
+section {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Protest Strike", sans-serif;
+    font-size: 45px;
+    color: var(--background-color);
+}
+
+section a {
+    text-decoration: none;
+    color: black;
+    margin: 50px auto;
+    padding: 10px;
+    border: 2px solid var(--background-color);
+    border-radius: 15px;
+
+}

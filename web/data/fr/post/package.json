@@ -17,5 +17,6 @@
     "activity_name": "Nom de l'activité",
     "activity_description": "Description de l'acitivité",
     "activity_duration": "Durée de l'activité",
-    "reached": "Nombre maximum d'activités atteinte"
+    "reached": "Nombre maximum d'activités atteinte",
+    "explanation": "Pour créer un nouveau pack, fournissez les identifiants (disponibles sur votre Dashboard) d'un transport et d'un logement ayant la même destination que le pack. Le prix du pack reflète uniquement le coût des activités proposées, tandis que le transport et le logement ont leur propre tarification."
 }

@@ -17,5 +17,6 @@
     "activity_name": "Activity Name",
     "activity_description": "Activity Description",
     "activity_duration": "Activity Duration",
-    "reached": "Maximum Number of Activities Reached"
+    "reached": "Maximum Number of Activities Reached",
+    "explanation": "To create a new package, provide the identifiers (available on your Dashboard) for a transport and an accommodation that share the same destination as the package. The package price reflects only the cost of the activities offered, while the transport and accommodation have their own separate pricing."
 }

@@ -211,9 +211,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                             <td><?= $package['description'] ?></td>
                             <td>
                                 <?php
-                                foreach ($activities as $activity) {
-                                    if ($activity["package_reference_id"] == $package['package_reference_id']) {
-                                        echo $activity['activity_name'] . "<br>";
+                                if (isset($activities)) {
+                                    foreach ($activities as $activity) {
+                                        if ($activity["package_reference_id"] == $package['package_reference_id']) {
+                                            echo $activity['activity_name'] . "<br>";
+                                        }
                                     }
                                 }
                                 ?>
