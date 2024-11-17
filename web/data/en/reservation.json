@@ -2,6 +2,7 @@
     "invoice": "Details",
     "destination": "Destination",
     "duration": "Duration",
+    "days": "Days",
     "price": "Price",
     "date": "Travel Date",
     "reservation": "Reservation Status",
@@ -13,7 +14,7 @@
         "payed": "Payment successfully completed",
         "error": "An error has occurred",
         "cancelled": "Your reservation has been cancelled",
-        "comment": "Review submitted"
+        "comment": "Review published"
     },
     "taken": "On",
     "motd": "Reservation Summary",
@@ -21,5 +22,6 @@
     "to": "To",
     "nothing": "No Reservations",
     "bank": "Bank Transfer",
-    "card": "Credit Card"
+    "card": "Credit Card",
+    "publish": "Publish Review"
 }

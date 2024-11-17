@@ -12,8 +12,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
                 <h2><?php echo htmlspecialchars($reservation['destination_city']) . " : " . $data['motd']; ?></h2>
                 <div class="description">
                     <p><strong><?= $data['destination'] ?>:</strong> <?php echo htmlspecialchars($reservation['destination_city']) . ", " . htmlspecialchars($reservation['destination_country']); ?></p>
-                    <p><strong><?= $data['duration'] ?>:</strong> <?php echo htmlspecialchars($reservation['duration_days']); ?> jours</p>
-                    <p><strong><?= $data['price'] ?>:</strong> <?php echo number_format($reservation['total_price'], 2); ?> €</p>
+                    <p><strong><?= $data['duration'] ?>:</strong> <?php echo htmlspecialchars($reservation['duration_days']); ?> <?= $data['days']?></p>
+                    <p><strong><?= $data['price'] ?>:</strong> <?php echo number_format($reservation['total_price'], 2); ?> <?= CURRENCY ?></p>
                     <p><strong><?= $data['date'] ?>:</strong> <?= $data['from'] ?> <?php echo htmlspecialchars($reservation['travel_date_from']); ?> <?= $data['to'] ?> <?php echo htmlspecialchars($reservation['travel_date_to']); ?></p>
                     <p class="<?= $reservation['reservation_status'] ?>"><strong><?= $data['reservation'] ?>:</strong> <?php echo ucfirst($reservation['reservation_status']); ?></p>
                     <p class="<?= $reservation['payment_status'] ?>"><strong><?= $data['payment'] ?>:</strong> <?php echo ucfirst($reservation['payment_status']); ?></p>
@@ -93,8 +93,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/core/options.php');
             </div>
             <textarea id="commentText" name="comment" placeholder="Écrivez votre avis ici..." required></textarea>
             <div class="buttons-form">
-                <button type="submit" class="publish-button">Publier l'avis</button>
-                <div class="cancel-button" onclick="closeRating()">Annuler</div>
+                <button type="submit" class="publish-button"><?= $data['publish'] ?></button>
+                <div class="cancel-button" onclick="closeRating()"><?= $data['cancel'] ?></div>
             </div>
         </form>
     </div>

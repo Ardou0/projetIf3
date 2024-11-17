@@ -2,6 +2,7 @@
     "invoice": "Détails",
     "destination": "Destination",
     "duration": "Durée",
+    "days": "Jours",
     "price": "Prix",
     "date": "Date de voyage",
     "reservation": "Statut de la réservation",
@@ -21,5 +22,6 @@
     "to": "au",
     "nothing": "Aucune Réservation",
     "bank": "Virement",
-    "card": "Carte de crédit"
+    "card": "Carte de crédit",
+    "publish": "Publier l'avis"
 }
