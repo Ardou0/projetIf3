@@ -25,6 +25,7 @@ section .content-header {
     align-items: center;
     justify-content: space-evenly;
     background-blend-mode: color;
+    background-size: cover;
     background-color: rgba(0, 0, 0, 0.301);
 }
 

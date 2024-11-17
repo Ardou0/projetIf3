@@ -100,7 +100,7 @@ class offerController
             exit();
         } elseif ($type == "accommodation") {
 
-            if (empty($_POST['picture']) or !isset($_POST['picture'])) {
+            if (empty($_FILES['picture']) or !isset($_FILES['picture'])) {
                 $sql = "UPDATE `accommodation_reference` SET `destination_id`= ?,`provider_name`= ?,`room_type`= ?,`amenities`= ?,`max_occupants`= ?,`price_per_night`= ? WHERE company_id = ? and accommodation_reference_id = ?";
                 $params = [
                     $_POST['destination'],
@@ -128,7 +128,6 @@ class offerController
                     $id
                 ];
             }
-
             $this->_model->executeQuery($sql, $params);
             header('location:' . URL . 'dashboard');
             exit();

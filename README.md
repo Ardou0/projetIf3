@@ -13,7 +13,6 @@ Contents:
 
 - [Requirements](#requirements)
 - [Configuration](#configuration)
-- [Installation](#installation)
 - [Usage](#usage)
 
 ## Requirements
@@ -28,68 +27,32 @@ Make sure to [add your user to the `docker` group](https://docs.docker.com/insta
 
 Edit the `.env` file to change the default IP address, MySQL root password and Database name.
 
-## Installation
-
-Open a terminal and `cd` to the folder in which `docker-compose.yml` is saved and run:
-
-```
-docker-compose up
-```
-
-This creates two new folders next to your `docker-compose.yml` file.
-
-* `data` – used to store and restore database dumps and initial databse for import
-* `web` – the location of your php application files
-
-The containers are now built and running. You should be able to access the WordPress installation with the configured IP in the browser address. By default it is `http://127.0.0.1`.
-
-For convenience you may add a new entry into your hosts file.
 
 ## Usage
 
 ### Starting containers
 
-You can start the containers with the `up` command in daemon mode (by adding `-d` as an argument) or by using the `start` command:
+You can start the project/containers with the `start.bash` script :
 
 ```
-docker-compose start
+bash start.bash
 ```
 
 ### Stopping containers
 
 ```
-docker-compose stop
+bash stop.bash
 ```
 
 ### Removing containers
 
-To stop and remove all the containers use the`down` command:
+While using the command to stop, it also remove all containers, no need to run another command :
 
 ```
-docker-compose down
+bash start.bash
 ```
 
-Use `-v` if you need to remove the database volume which is used to persist the database:
-
-```
-docker-compose down -v
-```
-
-### Project from existing source
-
-Copy the `docker-compose.yml` file into a new directory. In the directory you create two folders:
-
-* `data` – here you add the database dump or paste to init.sql
-* `web` – here you copy your existing php project files
-
-You can now use the `up` command:
-
-```
-docker-compose up
-```
-
-This will create the containers and populate the database with the given dump.
-
+It also remove the database volume.
 
 ### Creating database dumps
 
